@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penilaian 7 Orang - Rekap Bulanan</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f3f5f7;
+    color: #222;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 10px #00000012;
+}
+
+h2 {
+    font-size: 19px;
+    margin: 0 0 15px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 180px repeat(7, 1fr);
+    gap: 10px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+input,
+button,
+select {
+    font: inherit;
+}
+
+input[type="date"],
+input[type="text"],
+input[type="number"],
+input[type="month"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+input[type="number"] {
+    text-align: center;
+}
+
+button {
+    border: 0;
+    border-radius: 7px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #222;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+    padding: 7px 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 9px;
+    text-align: center;
+}
+
+th {
+    background: #eef2ff;
+}
+
+td:first-child,
+th:first-child {
+    text-align: left;
+}
+
+.average {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.avg-table td {
+    font-weight: bold;
+}
+
+.message {
+    margin-top: 10px;
+    color: #166534;
+    font-weight: bold;
+}
+
+@media (max-width: 800px) {
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-grid .date-field {
+        grid-column: 1 / -1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📊 Penilaian 7 Orang</h1>
+
+    <div class="subtitle">
+        Input nilai setiap hari dan otomatis menghitung rata-rata bulanan.
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- PENGATURAN NAMA -->
+    <!-- ============================= -->
+
+    <div class="card">
+
+        <h2>1. Pengaturan Nama</h2>
+
+        <div class="form-grid" id="namesForm"></div>
+
+        <div class="actions">
+
+            <button class="btn-primary" onclick="saveNames()">
+                Simpan Nama
+            </button>
+
+        </div>
+
+        <div id="nameMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- INPUT PENILAIAN -->
+    <!-- ============================= -->
+
+    <div class="card">
+
+        <h2>2. Input Penilaian Harian</h2>
+
+        <div class="form-grid" id="scoreForm"></div>
+
+        <div class="actions">
+
+            <button class="btn-primary" onclick="saveScore()">
+                💾 Simpan Penilaian
+            </button>
+
+            <button class="btn-secondary" onclick="clearScoreForm()">
+                Bersihkan
+            </button>
+
+        </div>
+
+        <div id="scoreMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- DATA HARIAN -->
+    <!-- ============================= -->
+
+    <div class="card">
+
+        <h2>3. Data Penilaian Harian</h2>
+
+        <div class="table-wrap">
+
+            <table id="dailyTable"></table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- REKAP BULANAN -->
+    <!-- ============================= -->
+
+    <div class="card">
+
+        <h2>4. Rekap Rata-rata Bulanan</h2>
+
+        <div style="max-width:220px;margin-bottom:15px">
+
+            <label>Pilih Bulan</label>
+
+            <input
+                type="month"
+                id="monthPicker"
+                onchange="renderMonthly()"
+            >
+
+        </div>
+
+        <div class="table-wrap">
+
+            <table
+                id="monthlyTable"
+                class="avg-table">
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   PENYIMPANAN DATA
+========================================= */
+
+const KEY_NAMES = 'penilaian7_nama';
+
+const KEY_DATA = 'penilaian7_data';
+
+
+/* =========================================
+   NAMA DEFAULT
+========================================= */
+
+let names =
+    JSON.parse(localStorage.getItem(KEY_NAMES) || 'null') ||
+    [
+        'Orang 1',
+        'Orang 2',
+        'Orang 3',
+        'Orang 4',
+        'Orang 5',
+        'Orang 6',
+        'Orang 7'
+    ];
+
+
+let data =
+    JSON.parse(localStorage.getItem(KEY_DATA) || '[]');
+
+
+/* =========================================
+   TANGGAL HARI INI
+========================================= */
+
+function today() {
+
+    const d = new Date();
+
+    return (
+        d.getFullYear() +
+        '-' +
+        String(d.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(d.getDate()).padStart(2, '0')
+    );
+}
+
+
+/* =========================================
+   BULAN SAAT INI
+========================================= */
+
+function currentMonth() {
+
+    const d = new Date();
+
+    return (
+        d.getFullYear() +
+        '-' +
+        String(d.getMonth() + 1).padStart(2, '0')
+    );
+}
+
+
+/* =========================================
+   FORM NAMA
+========================================= */
+
+function renderNames() {
+
+    let h = '';
+
+    for (let i = 0; i < 7; i++) {
+
+        h += `
+        <div>
+            <label>Nama ${i + 1}</label>
+
+            <input
+                type="text"
+                id="name${i}"
+                value="${esc(names[i])}"
+            >
+        </div>
+        `;
+
+    }
+
+    document.getElementById('namesForm').innerHTML = h;
+}
+
+
+/* =========================================
+   SIMPAN NAMA
+========================================= */
+
+function saveNames() {
+
+    let newNames = [];
+
+    for (let i = 0; i < 7; i++) {
+
+        let value =
+            document.getElementById('name' + i)
+            .value
+            .trim();
+
+        newNames.push(
+            value || 'Orang ' + (i + 1)
+        );
+    }
+
+    names = newNames;
+
+    localStorage.setItem(
+        KEY_NAMES,
+        JSON.stringify(names)
+    );
+
+    document.getElementById(
+        'nameMessage'
+    ).textContent =
+        'Nama berhasil disimpan.';
+
+    renderScoreForm();
+
+    renderDaily();
+
+    renderMonthly();
+
+    setTimeout(() => {
+
+        document.getElementById(
+            'nameMessage'
+        ).textContent = '';
+
+    }, 2500);
+}
+
+
+/* =========================================
+   FORM PENILAIAN
+========================================= */
+
+function renderScoreForm() {
+
+    let h = `
+        <div class="date-field">
+
+            <label>Tanggal</label>
+
+            <input
+                type="date"
+                id="scoreDate"
+                value="${today()}"
+            >
+
+        </div>
+    `;
+
+
+    names.forEach((name, i) => {
+
+        h += `
+        <div>
+
+            <label>${esc(name)}</label>
+
+            <input
+                type="number"
+                id="score${i}"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="0-100"
+            >
+
+        </div>
+        `;
+
+    });
+
+
+    document.getElementById(
+        'scoreForm'
+    ).innerHTML = h;
+}
+
+
+/* =========================================
+   SIMPAN PENILAIAN
+========================================= */
+
+function saveScore() {
+
+    const date =
+        document.getElementById(
+            'scoreDate'
+        ).value;
+
+
+    if (!date) {
+
+        alert(
+            'Pilih tanggal terlebih dahulu.'
+        );
+
+        return;
+    }
+
+
+    let scores = [];
+
+
+    for (let i = 0; i < 7; i++) {
+
+        const el =
+            document.getElementById(
+                'score' + i
+            );
+
+
+        if (
+            el.value === '' ||
+            Number(el.value) < 0 ||
+            Number(el.value) > 100
+        ) {
+
+            alert(
+                'Nilai ' +
+                names[i] +
+                ' harus diisi antara 0 sampai 100.'
+            );
+
+            el.focus();
+
+            return;
+        }
+
+
+        scores.push(
+            Number(el.value)
+        );
+    }
+
+
+    /*
+       Jika tanggal sudah ada,
+       maka data lama diperbarui.
+    */
+
+    const existing =
+        data.findIndex(
+            x => x.date === date
+        );
+
+
+    const row = {
+        date: date,
+        scores: scores
+    };
+
+
+    if (existing >= 0) {
+
+        data[existing] = row;
+
+    } else {
+
+        data.push(row);
+
+    }
+
+
+    /*
+       Urutkan berdasarkan tanggal
+    */
+
+    data.sort(
+        (a, b) =>
+            a.date.localeCompare(b.date)
+    );
+
+
+    /*
+       Simpan ke browser
+    */
+
+    localStorage.setItem(
+        KEY_DATA,
+        JSON.stringify(data)
+    );
+
+
+    document.getElementById(
+        'scoreMessage'
+    ).textContent =
+        'Penilaian tanggal ' +
+        formatDate(date) +
+        ' berhasil disimpan.';
+
+
+    renderDaily();
+
+    renderMonthly();
+
+
+    setTimeout(() => {
+
+        document.getElementById(
+            'scoreMessage'
+        ).textContent = '';
+
+    }, 2500);
+}
+
+
+/* =========================================
+   BERSIHKAN FORM
+========================================= */
+
+function clearScoreForm() {
+
+    document.getElementById(
+        'scoreDate'
+    ).value = today();
+
+
+    for (let i = 0; i < 7; i++) {
+
+        document.getElementById(
+            'score' + i
+        ).value = '';
+
+    }
+}
+
+
+/* =========================================
+   EDIT DATA
+========================================= */
+
+function editRow(date) {
+
+    const row =
+        data.find(
+            x => x.date === date
+        );
+
+
+    if (!row) return;
+
+
+    document.getElementById(
+        'scoreDate'
+    ).value = date;
+
+
+    row.scores.forEach(
+        (value, i) => {
+
+            document.getElementById(
+                'score' + i
+            ).value = value;
+
+        }
+    );
+
+
+    window.scrollTo({
+
+        top:
+            document
+            .getElementById('scoreForm')
+            .closest('.card')
+            .offsetTop - 10,
+
+        behavior: 'smooth'
+
+    });
+}
+
+
+/* =========================================
+   HAPUS DATA
+========================================= */
+
+function deleteRow(date) {
+
+    if (
+        !confirm(
+            'Hapus penilaian tanggal ' +
+            formatDate(date) +
+            '?'
+        )
+    ) {
+
+        return;
+    }
+
+
+    data =
+        data.filter(
+            x => x.date !== date
+        );
+
+
+    localStorage.setItem(
+        KEY_DATA,
+        JSON.stringify(data)
+    );
+
+
+    renderDaily();
+
+    renderMonthly();
+}
+
+
+/* =========================================
+   TABEL DATA HARIAN
+========================================= */
+
+function renderDaily() {
+
+    let h = `
+        <thead>
+            <tr>
+
+                <th>Tanggal</th>
+    `;
+
+
+    names.forEach(name => {
+
+        h += `
+            <th>
+                ${esc(name)}
+            </th>
+        `;
+
+    });
+
+
+    h += `
+                <th>Aksi</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+    `;
+
+
+    if (!data.length) {
+
+        h += `
+            <tr>
+
+                <td colspan="9">
+                    Belum ada data penilaian.
+                </td>
+
+            </tr>
+        `;
+
+    } else {
+
+        data.forEach(row => {
+
+            h += `
+                <tr>
+
+                    <td>
+                        ${formatDate(row.date)}
+                    </td>
+            `;
+
+
+            row.scores.forEach(value => {
+
+                h += `
+                    <td>
+                        ${Number(value).toFixed(2)}
+                    </td>
+                `;
+
+            });
+
+
+            h += `
+                    <td>
+
+                        <button
+                            class="btn-secondary"
+                            onclick="editRow('${row.date}')"
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            class="btn-danger"
+                            onclick="deleteRow('${row.date}')"
+                        >
+                            Hapus
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        });
+
+    }
+
+
+    h += `
+        </tbody>
+    `;
+
+
+    document.getElementById(
+        'dailyTable'
+    ).innerHTML = h;
+}
+
+
+/* =========================================
+   REKAP BULANAN
+========================================= */
+
+function renderMonthly() {
+
+    const month =
+        document.getElementById(
+            'monthPicker'
+        ).value;
+
+
+    /*
+       Ambil semua data pada bulan
+       yang dipilih
+    */
+
+    const rows =
+        data.filter(
+            row =>
+                row.date.startsWith(month)
+        );
+
+
+    let sums =
+        Array(7).fill(0);
+
+
+    let counts =
+        Array(7).fill(0);
+
+
+    /*
+       Hitung total nilai
+    */
+
+    rows.forEach(row => {
+
+        row.scores.forEach(
+            (value, i) => {
+
+                sums[i] += Number(value);
+
+                counts[i]++;
+
+            }
+        );
+
+    });
+
+
+    let h = `
+        <thead>
+
+            <tr>
+
+                <th>Nama</th>
+
+                <th>Jumlah Hari</th>
+
+                <th>Rata-rata</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+    `;
+
+
+    /*
+       Tampilkan rata-rata
+       masing-masing orang
+    */
+
+    names.forEach(
+        (name, i) => {
+
+            const average =
+                counts[i]
+                ? sums[i] / counts[i]
+                : 0;
+
+
+            h += `
+                <tr>
+
+                    <td>
+                        ${esc(name)}
+                    </td>
+
+                    <td>
+                        ${counts[i]}
+                    </td>
+
+                    <td class="average">
+
+                        ${
+                            counts[i]
+                            ? average.toFixed(2)
+                            : '-'
+                        }
+
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
+
+    /*
+       Rata-rata semua orang
+    */
+
+    if (rows.length) {
+
+        const totalAverage =
+            sums.reduce(
+                (a, b) => a + b,
+                0
+            ) / 7 / rows.length;
+
+
+        h += `
+            <tr>
+
+                <th>
+                    Rata-rata Semua
+                </th>
+
+                <th>
+                    ${rows.length} hari
+                </th>
+
+                <th class="average">
+
+                    ${totalAverage.toFixed(2)}
+
+                </th>
+
+            </tr>
+        `;
+
+    } else {
+
+        h += `
+            <tr>
+
+                <td colspan="3">
+
+                    Belum ada penilaian
+                    pada bulan ini.
+
+                </td>
+
+            </tr>
+        `;
+
+    }
+
+
+    h += `
+        </tbody>
+    `;
+
+
+    document.getElementById(
+        'monthlyTable'
+    ).innerHTML = h;
+}
+
+
+/* =========================================
+   FORMAT TANGGAL
+========================================= */
+
+function formatDate(date) {
+
+    const [year, month, day] =
+        date.split('-');
+
+
+    return (
+        day +
+        '/' +
+        month +
+        '/' +
+        year
+    );
+}
+
+
+/* =========================================
+   PENGAMAN HTML
+========================================= */
+
+function esc(value) {
+
+    return String(value).replace(
+        /[&<>"']/g,
+        function (m) {
+
+            return {
+
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+
+            }[m];
+
+        }
+    );
+}
+
+
+/* =========================================
+   JALANKAN PROGRAM
+========================================= */
+
+document.getElementById(
+    'monthPicker'
+).value = currentMonth();
+
+
+renderNames();
+
+renderScoreForm();
+
+renderDaily();
+
+renderMonthly();
+
+</script>
+
+</body>
+</html>
