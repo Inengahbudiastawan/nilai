@@ -1,271 +1,1851 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Penilaian 7 Orang - Rekap Bulanan</title>
+
+<title>Norton Bali Computer - Presentasi</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f3f5f7;
-    color: #222;
+html {
+    scroll-behavior: smooth;
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #020617;
+    color: white;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   SLIDE
+===================================================== */
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 7vw 80px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+}
+
+.slide.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   OVERLAY
+===================================================== */
+
+.slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,6,23,.94),
+            rgba(2,6,23,.72),
+            rgba(2,6,23,.58)
+        );
+
+    z-index: 0;
+}
+
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(56,189,248,.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(37,99,235,.18),
+            transparent 35%
+        );
+
+    z-index: 1;
+
+    animation: glowMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove {
+    from {
+        transform: scale(1);
+        opacity: .7;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+    width: 100%;
+    max-width: 1150px;
+
+    position: relative;
+    z-index: 5;
+}
+
+.small-title {
+    color: #38bdf8;
+
+    font-size: 17px;
+    letter-spacing: 5px;
+    font-weight: bold;
+
+    margin-bottom: 18px;
 }
 
 h1 {
-    margin: 0 0 6px;
-    font-size: 26px;
-}
+    font-size: clamp(42px, 7vw, 85px);
+    line-height: 1.05;
 
-.subtitle {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 2px 10px #00000012;
+    margin-bottom: 25px;
 }
 
 h2 {
-    font-size: 19px;
-    margin: 0 0 15px;
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 1.1;
+
+    margin-bottom: 25px;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: 180px repeat(7, 1fr);
-    gap: 10px;
+p {
+    font-size: clamp(18px, 2vw, 25px);
+    line-height: 1.6;
+
+    color: #dbeafe;
 }
 
-label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #555;
+.highlight {
+    color: #facc15;
 }
 
-input,
-button,
-select {
-    font: inherit;
+.blue {
+    color: #38bdf8;
 }
 
-input[type="date"],
-input[type="text"],
-input[type="number"],
-input[type="month"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    position: absolute;
+
+    top: 22px;
+    left: 30px;
+
+    z-index: 20;
 }
 
-input[type="number"] {
-    text-align: center;
+.logo img {
+    width: 110px;
+    max-height: 65px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 4px 15px rgba(0,0,0,.7));
 }
 
-button {
-    border: 0;
-    border-radius: 7px;
-    padding: 10px 14px;
-    cursor: pointer;
-    font-weight: bold;
+
+/* =====================================================
+   NOMOR SLIDE
+===================================================== */
+
+.slide-number {
+    position: absolute;
+
+    top: 27px;
+    right: 30px;
+
+    color: rgba(255,255,255,.8);
+
+    font-size: 14px;
+
+    z-index: 20;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: rgba(0,0,0,.3);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    backdrop-filter: blur(10px);
 }
 
-.btn-primary {
-    background: #2563eb;
-    color: white;
-}
 
-.btn-secondary {
-    background: #e5e7eb;
-    color: #222;
-}
+/* =====================================================
+   CARD
+===================================================== */
 
-.btn-danger {
-    background: #dc2626;
-    color: white;
-    padding: 7px 10px;
-}
-
-.actions {
+.cards {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    justify-content: center;
+    gap: 20px;
     flex-wrap: wrap;
+
+    margin-top: 35px;
 }
 
-.table-wrap {
-    overflow-x: auto;
+.card {
+    width: 270px;
+
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.14),
+            rgba(255,255,255,.04)
+        );
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+
+    transition: .3s;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 850px;
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(56,189,248,.6);
 }
 
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 9px;
-    text-align: center;
+.card-icon {
+    font-size: 45px;
+    margin-bottom: 12px;
 }
 
-th {
-    background: #eef2ff;
+.card h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
 }
 
-td:first-child,
-th:first-child {
-    text-align: left;
+.card p {
+    font-size: 15px;
 }
 
-.average {
+
+/* =====================================================
+   SLIDE 1
+===================================================== */
+
+.slide1 {
+    background-image:
+        url("https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=2000&q=85");
+}
+
+.money {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.quote {
+    margin-top: 30px;
+
+    color: #facc15;
+
+    font-size: 21px;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   SLIDE 2
+===================================================== */
+
+.slide2 {
+    background-image:
+        url("https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=2000&q=85");
+}
+
+.profile-box {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 30px;
+
+    background: rgba(0,0,0,.35);
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    backdrop-filter: blur(15px);
+}
+
+.profile-list {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.profile-item {
+    padding: 13px 20px;
+
+    background: rgba(255,255,255,.1);
+
+    border-radius: 12px;
+
+    font-size: 17px;
+
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+
+/* =====================================================
+   SLIDE 3
+===================================================== */
+
+.slide3 {
+    background-image:
+        url("https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=2000&q=85");
+}
+
+.ai-image {
+    width: min(600px,90%);
+
+    height: 210px;
+
+    object-fit: cover;
+
+    border-radius: 22px;
+
+    margin: 20px auto;
+
+    display: block;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.55);
+
+    border:
+        2px solid rgba(255,255,255,.2);
+}
+
+.collaboration {
+    display: inline-block;
+
+    padding: 12px 23px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   SLIDE 4
+===================================================== */
+
+.slide4 {
+    background-image:
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=85");
+}
+
+.ranger {
+    font-size: 75px;
+    margin: 15px;
+}
+
+.power {
+    font-size: clamp(28px,5vw,55px);
+
+    font-weight: bold;
+
+    color: #facc15;
+
+    margin: 20px 0;
+}
+
+.motivation {
+    max-width: 850px;
+    margin: auto;
+}
+
+
+/* =====================================================
+   SLIDE 5
+===================================================== */
+
+.slide5 {
+    background-image:
+        url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=85");
+}
+
+.heart {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.team {
+    font-size: clamp(30px,5vw,60px);
+
+    font-weight: bold;
+
+    color: #34d399;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   SLIDE 6
+===================================================== */
+
+.slide6 {
+    background-image:
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=85");
+}
+
+.pantun {
+    max-width: 850px;
+
+    margin: 25px auto;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid rgba(255,255,255,.2);
+
+    backdrop-filter: blur(15px);
+
+    font-size: clamp(20px,3vw,32px);
+
+    line-height: 1.8;
+}
+
+.pantun strong {
+    color: #facc15;
+}
+
+
+/* =====================================================
+   SLIDE 7
+===================================================== */
+
+.slide7 {
+    background-image:
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=85");
+}
+
+.thanks {
+    font-size: clamp(50px,8vw,100px);
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+.nbc-final {
+    width: 170px;
+
+    max-width: 45%;
+
+    margin: 25px auto;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 10px 25px rgba(0,0,0,.6));
+}
+
+.final-message {
+    color: #facc15;
+
+    font-size: clamp(20px,3vw,30px);
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   NAVIGASI
+===================================================== */
+
+.navigation {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 100;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.navigation button {
+    border: 1px solid rgba(255,255,255,.2);
+
+    background: rgba(255,255,255,.9);
+
+    color: #111827;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
     font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.4);
+
+    transition: .25s;
+}
+
+.navigation button:hover {
+    background: #38bdf8;
+
+    color: white;
+
+    transform: scale(1.1);
+}
+
+
+/* =====================================================
+   TOMBOL CATATAN
+===================================================== */
+
+.notes-button {
+    position: fixed;
+
+    left: 25px;
+    bottom: 25px;
+
+    z-index: 150;
+
+    border: none;
+
+    padding: 13px 20px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #facc15,
+            #f59e0b
+        );
+
+    color: #111827;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4);
+
+    transition: .25s;
+}
+
+.notes-button:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+.progress {
+    position: fixed;
+
+    left: 0;
+    bottom: 0;
+
+    height: 4px;
+
+    width: 14.28%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #38bdf8,
+            #2563eb
+        );
+
+    z-index: 200;
+
+    box-shadow:
+        0 0 15px rgba(56,189,248,.7);
+
+    transition: width .35s ease;
+}
+
+
+/* =====================================================
+   PANEL CATATAN
+===================================================== */
+
+.notes-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.65);
+
+    backdrop-filter: blur(7px);
+
+    z-index: 500;
+
+    display: none;
+}
+
+.notes-overlay.show {
+    display: block;
+}
+
+
+/* =====================================================
+   NOTES PANEL
+===================================================== */
+
+.notes-panel {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: min(470px, 100%);
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0f172a,
+            #020617
+        );
+
+    border-left:
+        1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        -20px 0 70px rgba(0,0,0,.5);
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    transform: translateX(100%);
+
+    animation: panelIn .3s forwards;
+}
+
+@keyframes panelIn {
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+.notes-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.notes-header h2 {
+    font-size: 27px;
+
+    margin: 0;
+
+    color: #facc15;
+}
+
+.close-notes {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.1);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+
     font-weight: bold;
 }
 
-.avg-table td {
-    font-weight: bold;
+.input-group input,
+.input-group textarea {
+    width: 100%;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.07);
+
+    color: white;
+
+    padding: 13px 14px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    resize: vertical;
 }
 
-.message {
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 0 3px rgba(56,189,248,.1);
+}
+
+.input-group textarea {
+    min-height: 110px;
+}
+
+
+/* =====================================================
+   SAVE BUTTON
+===================================================== */
+
+.save-note {
+    width: 100%;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #0891b2
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    margin-bottom: 25px;
+}
+
+.save-note:hover {
+    opacity: .9;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.notes-toolbar {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.notes-toolbar button {
+    flex: 1;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.07);
+
+    color: white;
+
+    padding: 10px 8px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.notes-toolbar button:hover {
+    background: rgba(255,255,255,.14);
+}
+
+.notes-toolbar .danger {
+    color: #fca5a5;
+}
+
+
+/* =====================================================
+   DAFTAR CATATAN
+===================================================== */
+
+.notes-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.note-empty {
+    padding: 25px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    border:
+        1px dashed rgba(255,255,255,.15);
+
+    border-radius: 15px;
+}
+
+.note-item {
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    border-radius: 15px;
+
+    padding: 15px;
+}
+
+.note-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+}
+
+.note-name {
+    color: #38bdf8;
+
+    font-weight: bold;
+
+    font-size: 15px;
+}
+
+.note-slide {
+    color: #facc15;
+
+    font-size: 11px;
+
+    background: rgba(250,204,21,.1);
+
+    padding: 4px 7px;
+
+    border-radius: 10px;
+}
+
+.note-text {
+    color: #e2e8f0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+
+    margin-bottom: 10px;
+}
+
+.note-date {
+    color: #64748b;
+
+    font-size: 10px;
+}
+
+.delete-note {
     margin-top: 10px;
-    color: #166534;
+
+    border: none;
+
+    background: rgba(239,68,68,.12);
+
+    color: #fca5a5;
+
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 90px;
+
+    transform:
+        translateX(-50%) translateY(20px);
+
+    background: #16a34a;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+
     font-weight: bold;
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .3s;
 }
 
-@media (max-width: 800px) {
-    .form-grid {
-        grid-template-columns: 1fr 1fr;
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%) translateY(0);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:700px) {
+
+    .slide {
+        padding: 75px 20px 80px;
     }
 
-    .form-grid .date-field {
-        grid-column: 1 / -1;
+    .logo {
+        top: 17px;
+        left: 18px;
     }
+
+    .logo img {
+        width: 80px;
+    }
+
+    .slide-number {
+        top: 20px;
+        right: 18px;
+
+        font-size: 11px;
+    }
+
+    .small-title {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .cards {
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 13px;
+    }
+
+    .card-icon {
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+
+    .card h3 {
+        font-size: 17px;
+    }
+
+    .card p {
+        font-size: 12px;
+    }
+
+    .ai-image {
+        height: 145px;
+    }
+
+    .ranger {
+        font-size: 50px;
+    }
+
+    .pantun {
+        padding: 20px;
+        font-size: 18px;
+    }
+
+    .navigation {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .navigation button {
+        width: 43px;
+        height: 43px;
+
+        font-size: 18px;
+    }
+
+    .notes-button {
+        left: 15px;
+        bottom: 15px;
+
+        padding: 11px 15px;
+
+        font-size: 12px;
+    }
+
+    .notes-panel {
+        padding: 20px;
+    }
+
 }
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="container">
 
-    <h1>📊 Penilaian 7 Orang</h1>
+<!-- =====================================================
+     SLIDE 1
+===================================================== -->
 
-    <div class="subtitle">
-        Input nilai setiap hari dan otomatis menghitung rata-rata bulanan.
+<section class="slide slide1 active">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
     </div>
 
+    <div class="slide-number">
+        01 / 07
+    </div>
 
-    <!-- ============================= -->
-    <!-- PENGATURAN NAMA -->
-    <!-- ============================= -->
+    <div class="content">
 
-    <div class="card">
+        <div class="money">💻</div>
 
-        <h2>1. Pengaturan Nama</h2>
+        <div class="small-title">
+            NORTON BALI COMPUTER
+        </div>
 
-        <div class="form-grid" id="namesForm"></div>
+        <h1>
+            Menuju
+            <span class="highlight">
+                Pendapatan
+            </span>
+            Kelas Dunia
+        </h1>
 
-        <div class="actions">
+        <p>
+            Membangun semangat, pelayanan,
+            inovasi dan kerja sama untuk menuju
+            pertumbuhan yang lebih besar.
+        </p>
 
-            <button class="btn-primary" onclick="saveNames()">
-                Simpan Nama
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3>Pertumbuhan</h3>
+                <p>
+                    Fokus pada peningkatan
+                    kualitas dan hasil kerja.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌎</div>
+                <h3>Visi Global</h3>
+                <p>
+                    Berpikir lebih luas dan
+                    berani punya target besar.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Naik Level</h3>
+                <p>
+                    Terus belajar dan berkembang
+                    bersama tim.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="quote">
+            "Target besar dimulai dari langkah kecil."
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 2
+===================================================== -->
+
+<section class="slide slide2">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        02 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="small-title">
+            PROFILE PERUSAHAAN
+        </div>
+
+        <h2>
+            Norton Bali Computer
+        </h2>
+
+        <div class="profile-box">
+
+            <p>
+                Norton Bali Computer hadir sebagai
+                pusat solusi teknologi untuk kebutuhan
+                komputer, laptop, printer dan aksesori.
+            </p>
+
+            <div class="profile-list">
+
+                <div class="profile-item">
+                    💻 Komputer
+                </div>
+
+                <div class="profile-item">
+                    🖥️ Laptop
+                </div>
+
+                <div class="profile-item">
+                    🖨️ Printer
+                </div>
+
+                <div class="profile-item">
+                    🎧 Aksesori
+                </div>
+
+                <div class="profile-item">
+                    🛠️ Service
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top:25px">
+
+            <span class="highlight">
+                Visi:
+            </span>
+
+            menjadi bagian dari perkembangan
+            teknologi dunia dari Bali.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 3
+===================================================== -->
+
+<section class="slide slide3">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        03 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="small-title">
+            TECHNOLOGY + HUMAN
+        </div>
+
+        <h2>
+            🤖 AI & Norton
+            <span class="blue">
+                Berkolaborasi
+            </span>
+        </h2>
+
+        <p>
+            AI membantu manusia bekerja lebih
+            cepat, mencari informasi dan
+            meningkatkan produktivitas.
+        </p>
+
+        <img
+            class="ai-image"
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+            alt="Artificial Intelligence">
+
+        <div class="collaboration">
+            🤖 AI + 👨💻 TEAM = 🚀 PRODUKTIVITAS
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">💡</div>
+
+                <h3>Ide</h3>
+
+                <p>
+                    Membantu mencari ide
+                    dan solusi pekerjaan.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+
+                <h3>Cepat</h3>
+
+                <p>
+                    Membantu menyelesaikan
+                    pekerjaan lebih efisien.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+
+                <h3>Data</h3>
+
+                <p>
+                    Membantu mengolah
+                    informasi.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 4
+===================================================== -->
+
+<section class="slide slide4">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        04 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="small-title">
+            SEMANGAT TEAM
+        </div>
+
+        <div class="ranger">
+            🦸‍♂️ 🦸‍♀️
+        </div>
+
+        <h2>
+            Team Norton
+            <span class="highlight">
+                Siap!
+            </span>
+        </h2>
+
+        <div class="power">
+            ⚡ POWER RANGER MODE ⚡
+        </div>
+
+        <div class="motivation">
+
+            <p>
+                Kita adalah manusia.
+                Kita bisa lelah dan bisa sakit.
+            </p>
+
+            <br>
+
+            <p>
+                Tetapi ketika menghadapi tantangan,
+                mari saling membantu dan menguatkan.
+            </p>
+
+            <br>
+
+            <p class="highlight">
+                "Satu Team. Satu Semangat.
+                Satu Tujuan."
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 5
+===================================================== -->
+
+<section class="slide slide5">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        05 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="heart">
+            ❤️
+        </div>
+
+        <div class="small-title">
+            APRESIASI TEAM
+        </div>
+
+        <div class="team">
+            TERIMA KASIH TEAM!
+        </div>
+
+        <h2>
+            Kerja Keras Kalian
+            <span class="highlight">
+                Berarti
+            </span>
+        </h2>
+
+        <p>
+            Setiap pelayanan kepada pelanggan,
+            setiap masalah yang diselesaikan,
+            dan setiap target yang dikejar
+            adalah bagian dari perjalanan kita.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    Kerja Sama
+                </h3>
+
+                <p>
+                    Kita kuat karena bekerja
+                    sebagai satu team.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🔥
+                </div>
+
+                <h3>
+                    Semangat
+                </h3>
+
+                <p>
+                    Terus belajar dan berkembang.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Prestasi
+                </h3>
+
+                <p>
+                    Hasil besar lahir dari
+                    kerja keras bersama.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 6
+===================================================== -->
+
+<section class="slide slide6">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        06 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="small-title">
+            PANTUN UNTUK TEAM
+        </div>
+
+        <h2>
+            🥁 Pantun Semangat
+        </h2>
+
+        <div class="pantun">
+
+            <strong>
+                Pergi ke Bali membeli komputer,
+            </strong>
+
+            <br>
+
+            Pulangnya membawa printer.
+
+            <br><br>
+
+            <strong>
+                Team Norton terus kompak dan pintar,
+            </strong>
+
+            <br>
+
+            <strong>
+                Bersama sukses semakin besar!
+            </strong>
+
+        </div>
+
+        <p>
+            😄 Jangan lupa senyum,
+            karena pelanggan juga ikut bahagia!
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SLIDE 7
+===================================================== -->
+
+<section class="slide slide7">
+
+    <div class="grid"></div>
+
+    <div class="logo">
+        <img src="nbc-removebg-preview.png"
+             alt="Norton Bali Computer">
+    </div>
+
+    <div class="slide-number">
+        07 / 07
+    </div>
+
+    <div class="content">
+
+        <div class="small-title">
+            NORTON BALI COMPUTER
+        </div>
+
+        <div class="thanks">
+            TERIMA KASIH
+        </div>
+
+        <p>
+            Untuk seluruh team yang telah bekerja keras,
+            memberikan pelayanan terbaik,
+            dan terus berjuang bersama.
+        </p>
+
+        <img
+            class="nbc-final"
+            src="nbc-removebg-preview.png"
+            alt="NBC Logo">
+
+        <div class="final-message">
+            SATU TEAM • SATU SEMANGAT • SATU TUJUAN
+        </div>
+
+        <br>
+
+        <p>
+            💙 Norton Bali Computer
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TOMBOL CATATAN
+===================================================== -->
+
+<button
+    class="notes-button"
+    onclick="openNotes()">
+
+    📝 Catatan Kritik
+
+</button>
+
+
+<!-- =====================================================
+     NAVIGASI
+===================================================== -->
+
+<div class="navigation">
+
+    <button
+        onclick="previousSlide()"
+        title="Slide sebelumnya">
+        ←
+    </button>
+
+    <button
+        onclick="nextSlide()"
+        title="Slide berikutnya">
+        →
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<div
+    class="progress"
+    id="progress">
+</div>
+
+
+<!-- =====================================================
+     NOTES OVERLAY
+===================================================== -->
+
+<div
+    class="notes-overlay"
+    id="notesOverlay">
+
+    <div class="notes-panel">
+
+        <div class="notes-header">
+
+            <h2>
+                📝 Kritik & Saran
+            </h2>
+
+            <button
+                class="close-notes"
+                onclick="closeNotes()">
+
+                ×
+
             </button>
 
         </div>
 
-        <div id="nameMessage" class="message"></div>
 
-    </div>
+        <!-- INPUT NAMA -->
 
+        <div class="input-group">
 
-    <!-- ============================= -->
-    <!-- INPUT PENILAIAN -->
-    <!-- ============================= -->
-
-    <div class="card">
-
-        <h2>2. Input Penilaian Harian</h2>
-
-        <div class="form-grid" id="scoreForm"></div>
-
-        <div class="actions">
-
-            <button class="btn-primary" onclick="saveScore()">
-                💾 Simpan Penilaian
-            </button>
-
-            <button class="btn-secondary" onclick="clearScoreForm()">
-                Bersihkan
-            </button>
-
-        </div>
-
-        <div id="scoreMessage" class="message"></div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- DATA HARIAN -->
-    <!-- ============================= -->
-
-    <div class="card">
-
-        <h2>3. Data Penilaian Harian</h2>
-
-        <div class="table-wrap">
-
-            <table id="dailyTable"></table>
-
-        </div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- REKAP BULANAN -->
-    <!-- ============================= -->
-
-    <div class="card">
-
-        <h2>4. Rekap Rata-rata Bulanan</h2>
-
-        <div style="max-width:220px;margin-bottom:15px">
-
-            <label>Pilih Bulan</label>
+            <label>
+                Nama
+            </label>
 
             <input
-                type="month"
-                id="monthPicker"
-                onchange="renderMonthly()"
-            >
+                type="text"
+                id="noteName"
+                placeholder="Masukkan nama...">
 
         </div>
 
-        <div class="table-wrap">
 
-            <table
-                id="monthlyTable"
-                class="avg-table">
-            </table>
+        <!-- INPUT CATATAN -->
+
+        <div class="input-group">
+
+            <label>
+                Kritik / Saran
+            </label>
+
+            <textarea
+                id="noteText"
+                placeholder="Tuliskan kritik atau saran..."></textarea>
+
+        </div>
+
+
+        <!-- SAVE -->
+
+        <button
+            class="save-note"
+            onclick="saveNote()">
+
+            💾 Simpan Catatan
+
+        </button>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="notes-toolbar">
+
+            <button
+                onclick="exportNotes()">
+
+                📥 Export TXT
+
+            </button>
+
+            <button
+                class="danger"
+                onclick="deleteAllNotes()">
+
+                🗑️ Hapus Semua
+
+            </button>
+
+        </div>
+
+
+        <!-- LIST -->
+
+        <div
+            class="notes-list"
+            id="notesList">
 
         </div>
 
@@ -274,774 +1854,739 @@ th:first-child {
 </div>
 
 
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Catatan berhasil disimpan!
+
+</div>
+
+
 <script>
 
-/* =========================================
-   PENYIMPANAN DATA
-========================================= */
+/* =====================================================
+   SLIDE SYSTEM
+===================================================== */
 
-const KEY_NAMES = 'penilaian7_nama';
+let currentSlide = 0;
 
-const KEY_DATA = 'penilaian7_data';
+const slides =
+    document.querySelectorAll(".slide");
 
-
-/* =========================================
-   NAMA DEFAULT
-========================================= */
-
-let names =
-    JSON.parse(localStorage.getItem(KEY_NAMES) || 'null') ||
-    [
-        'Orang 1',
-        'Orang 2',
-        'Orang 3',
-        'Orang 4',
-        'Orang 5',
-        'Orang 6',
-        'Orang 7'
-    ];
+const progress =
+    document.getElementById("progress");
 
 
-let data =
-    JSON.parse(localStorage.getItem(KEY_DATA) || '[]');
+function showSlide(number) {
 
-
-/* =========================================
-   TANGGAL HARI INI
-========================================= */
-
-function today() {
-
-    const d = new Date();
-
-    return (
-        d.getFullYear() +
-        '-' +
-        String(d.getMonth() + 1).padStart(2, '0') +
-        '-' +
-        String(d.getDate()).padStart(2, '0')
-    );
-}
-
-
-/* =========================================
-   BULAN SAAT INI
-========================================= */
-
-function currentMonth() {
-
-    const d = new Date();
-
-    return (
-        d.getFullYear() +
-        '-' +
-        String(d.getMonth() + 1).padStart(2, '0')
-    );
-}
-
-
-/* =========================================
-   FORM NAMA
-========================================= */
-
-function renderNames() {
-
-    let h = '';
-
-    for (let i = 0; i < 7; i++) {
-
-        h += `
-        <div>
-            <label>Nama ${i + 1}</label>
-
-            <input
-                type="text"
-                id="name${i}"
-                value="${esc(names[i])}"
-            >
-        </div>
-        `;
-
+    if (number < 0) {
+        number = 0;
     }
 
-    document.getElementById('namesForm').innerHTML = h;
-}
-
-
-/* =========================================
-   SIMPAN NAMA
-========================================= */
-
-function saveNames() {
-
-    let newNames = [];
-
-    for (let i = 0; i < 7; i++) {
-
-        let value =
-            document.getElementById('name' + i)
-            .value
-            .trim();
-
-        newNames.push(
-            value || 'Orang ' + (i + 1)
-        );
+    if (number >= slides.length) {
+        number = slides.length - 1;
     }
 
-    names = newNames;
+    slides.forEach(function(slide) {
 
-    localStorage.setItem(
-        KEY_NAMES,
-        JSON.stringify(names)
-    );
-
-    document.getElementById(
-        'nameMessage'
-    ).textContent =
-        'Nama berhasil disimpan.';
-
-    renderScoreForm();
-
-    renderDaily();
-
-    renderMonthly();
-
-    setTimeout(() => {
-
-        document.getElementById(
-            'nameMessage'
-        ).textContent = '';
-
-    }, 2500);
-}
-
-
-/* =========================================
-   FORM PENILAIAN
-========================================= */
-
-function renderScoreForm() {
-
-    let h = `
-        <div class="date-field">
-
-            <label>Tanggal</label>
-
-            <input
-                type="date"
-                id="scoreDate"
-                value="${today()}"
-            >
-
-        </div>
-    `;
-
-
-    names.forEach((name, i) => {
-
-        h += `
-        <div>
-
-            <label>${esc(name)}</label>
-
-            <input
-                type="number"
-                id="score${i}"
-                min="0"
-                max="100"
-                step="0.01"
-                placeholder="0-100"
-            >
-
-        </div>
-        `;
+        slide.classList.remove("active");
 
     });
 
+    slides[number].classList.add("active");
 
-    document.getElementById(
-        'scoreForm'
-    ).innerHTML = h;
+    currentSlide = number;
+
+    updateProgress();
 }
 
 
-/* =========================================
-   SIMPAN PENILAIAN
-========================================= */
+function updateProgress() {
 
-function saveScore() {
+    const percentage =
+        ((currentSlide + 1) /
+        slides.length) * 100;
 
-    const date =
-        document.getElementById(
-            'scoreDate'
-        ).value;
+    progress.style.width =
+        percentage + "%";
+}
 
 
-    if (!date) {
+function nextSlide() {
 
-        alert(
-            'Pilih tanggal terlebih dahulu.'
+    if (currentSlide <
+        slides.length - 1) {
+
+        showSlide(
+            currentSlide + 1
         );
 
-        return;
     }
 
+}
 
-    let scores = [];
+
+function previousSlide() {
+
+    if (currentSlide > 0) {
+
+        showSlide(
+            currentSlide - 1
+        );
+
+    }
+
+}
 
 
-    for (let i = 0; i < 7; i++) {
+/* =====================================================
+   KEYBOARD
+===================================================== */
 
-        const el =
-            document.getElementById(
-                'score' + i
-            );
+document.addEventListener(
+    "keydown",
+    function(event) {
 
+        /* Jika panel catatan terbuka,
+           ESC untuk menutup */
 
         if (
-            el.value === '' ||
-            Number(el.value) < 0 ||
-            Number(el.value) > 100
+            event.key === "Escape" &&
+            document
+                .getElementById("notesOverlay")
+                .classList.contains("show")
         ) {
 
-            alert(
-                'Nilai ' +
-                names[i] +
-                ' harus diisi antara 0 sampai 100.'
-            );
-
-            el.focus();
+            closeNotes();
 
             return;
         }
 
 
-        scores.push(
-            Number(el.value)
+        /* Jangan pindah slide ketika
+           sedang mengetik di input */
+
+        if (
+            event.target.tagName === "INPUT" ||
+            event.target.tagName === "TEXTAREA"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "ArrowRight" ||
+            event.key === "ArrowDown" ||
+            event.key === "PageDown" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            nextSlide();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowUp" ||
+            event.key === "PageUp"
+        ) {
+
+            event.preventDefault();
+
+            previousSlide();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SWIPE
+===================================================== */
+
+let startX = 0;
+let startY = 0;
+
+
+document.addEventListener(
+    "touchstart",
+    function(event) {
+
+        startX =
+            event.touches[0].clientX;
+
+        startY =
+            event.touches[0].clientY;
+
+    }
+);
+
+
+document.addEventListener(
+    "touchend",
+    function(event) {
+
+        const endX =
+            event.changedTouches[0].clientX;
+
+        const endY =
+            event.changedTouches[0].clientY;
+
+        const distanceX =
+            endX - startX;
+
+        const distanceY =
+            endY - startY;
+
+
+        if (
+            Math.abs(distanceX) >
+            Math.abs(distanceY)
+        ) {
+
+            if (distanceX < -70) {
+                nextSlide();
+            }
+
+            if (distanceX > 70) {
+                previousSlide();
+            }
+
+            return;
+        }
+
+
+        if (distanceY < -70) {
+            nextSlide();
+        }
+
+        if (distanceY > 70) {
+            previousSlide();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NOTES SYSTEM
+===================================================== */
+
+let notes = [];
+
+
+/* =====================================================
+   LOAD NOTES
+===================================================== */
+
+function loadNotes() {
+
+    const saved =
+        localStorage.getItem(
+            "nortonBaliNotes"
         );
+
+    if (saved) {
+
+        try {
+
+            notes = JSON.parse(saved);
+
+        } catch (error) {
+
+            notes = [];
+
+        }
+
+    }
+
+    renderNotes();
+}
+
+
+/* =====================================================
+   OPEN NOTES
+===================================================== */
+
+function openNotes() {
+
+    document
+        .getElementById("notesOverlay")
+        .classList.add("show");
+
+    renderNotes();
+
+    setTimeout(function() {
+
+        document
+            .getElementById("noteName")
+            .focus();
+
+    }, 300);
+
+}
+
+
+/* =====================================================
+   CLOSE NOTES
+===================================================== */
+
+function closeNotes() {
+
+    document
+        .getElementById("notesOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   SAVE NOTE
+===================================================== */
+
+function saveNote() {
+
+    const name =
+        document
+            .getElementById("noteName")
+            .value
+            .trim();
+
+    const text =
+        document
+            .getElementById("noteText")
+            .value
+            .trim();
+
+
+    if (!name) {
+
+        alert(
+            "Silakan masukkan nama."
+        );
+
+        return;
+
     }
 
 
-    /*
-       Jika tanggal sudah ada,
-       maka data lama diperbarui.
-    */
+    if (!text) {
 
-    const existing =
-        data.findIndex(
-            x => x.date === date
+        alert(
+            "Silakan masukkan kritik atau saran."
         );
 
+        return;
 
-    const row = {
-        date: date,
-        scores: scores
+    }
+
+
+    const newNote = {
+
+        id: Date.now(),
+
+        name: name,
+
+        text: text,
+
+        slide:
+            currentSlide + 1,
+
+        date:
+            new Date().toLocaleString(
+                "id-ID"
+            )
+
     };
 
 
-    if (existing >= 0) {
+    notes.unshift(newNote);
 
-        data[existing] = row;
-
-    } else {
-
-        data.push(row);
-
-    }
-
-
-    /*
-       Urutkan berdasarkan tanggal
-    */
-
-    data.sort(
-        (a, b) =>
-            a.date.localeCompare(b.date)
-    );
-
-
-    /*
-       Simpan ke browser
-    */
 
     localStorage.setItem(
-        KEY_DATA,
-        JSON.stringify(data)
+        "nortonBaliNotes",
+        JSON.stringify(notes)
     );
 
 
-    document.getElementById(
-        'scoreMessage'
-    ).textContent =
-        'Penilaian tanggal ' +
-        formatDate(date) +
-        ' berhasil disimpan.';
+    document
+        .getElementById("noteName")
+        .value = "";
+
+    document
+        .getElementById("noteText")
+        .value = "";
 
 
-    renderDaily();
+    renderNotes();
 
-    renderMonthly();
+    showToast(
+        "Catatan berhasil disimpan!"
+    );
 
-
-    setTimeout(() => {
-
-        document.getElementById(
-            'scoreMessage'
-        ).textContent = '';
-
-    }, 2500);
 }
 
 
-/* =========================================
-   BERSIHKAN FORM
-========================================= */
+/* =====================================================
+   RENDER NOTES
+===================================================== */
 
-function clearScoreForm() {
+function renderNotes() {
 
-    document.getElementById(
-        'scoreDate'
-    ).value = today();
-
-
-    for (let i = 0; i < 7; i++) {
-
+    const list =
         document.getElementById(
-            'score' + i
-        ).value = '';
-
-    }
-}
-
-
-/* =========================================
-   EDIT DATA
-========================================= */
-
-function editRow(date) {
-
-    const row =
-        data.find(
-            x => x.date === date
+            "notesList"
         );
 
 
-    if (!row) return;
+    if (notes.length === 0) {
+
+        list.innerHTML = `
+            <div class="note-empty">
+                Belum ada kritik atau saran.
+                <br><br>
+                Silakan masukkan catatan pertama.
+            </div>
+        `;
+
+        return;
+
+    }
 
 
-    document.getElementById(
-        'scoreDate'
-    ).value = date;
+    list.innerHTML = "";
 
 
-    row.scores.forEach(
-        (value, i) => {
+    notes.forEach(function(note) {
 
-            document.getElementById(
-                'score' + i
-            ).value = value;
+        const item =
+            document.createElement("div");
 
-        }
-    );
+        item.className =
+            "note-item";
 
 
-    window.scrollTo({
+        item.innerHTML = `
 
-        top:
-            document
-            .getElementById('scoreForm')
-            .closest('.card')
-            .offsetTop - 10,
+            <div class="note-top">
 
-        behavior: 'smooth'
+                <div class="note-name">
+                    ${escapeHTML(note.name)}
+                </div>
+
+                <div class="note-slide">
+                    Slide ${note.slide}
+                </div>
+
+            </div>
+
+            <div class="note-text">
+                ${escapeHTML(note.text)}
+            </div>
+
+            <div class="note-date">
+                ${escapeHTML(note.date)}
+            </div>
+
+            <button
+                class="delete-note"
+                onclick="deleteNote(${note.id})">
+
+                🗑️ Hapus
+
+            </button>
+
+        `;
+
+
+        list.appendChild(item);
 
     });
+
 }
 
 
-/* =========================================
-   HAPUS DATA
-========================================= */
+/* =====================================================
+   DELETE NOTE
+===================================================== */
 
-function deleteRow(date) {
+function deleteNote(id) {
 
     if (
         !confirm(
-            'Hapus penilaian tanggal ' +
-            formatDate(date) +
-            '?'
+            "Hapus catatan ini?"
         )
     ) {
 
         return;
-    }
-
-
-    data =
-        data.filter(
-            x => x.date !== date
-        );
-
-
-    localStorage.setItem(
-        KEY_DATA,
-        JSON.stringify(data)
-    );
-
-
-    renderDaily();
-
-    renderMonthly();
-}
-
-
-/* =========================================
-   TABEL DATA HARIAN
-========================================= */
-
-function renderDaily() {
-
-    let h = `
-        <thead>
-            <tr>
-
-                <th>Tanggal</th>
-    `;
-
-
-    names.forEach(name => {
-
-        h += `
-            <th>
-                ${esc(name)}
-            </th>
-        `;
-
-    });
-
-
-    h += `
-                <th>Aksi</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-    `;
-
-
-    if (!data.length) {
-
-        h += `
-            <tr>
-
-                <td colspan="9">
-                    Belum ada data penilaian.
-                </td>
-
-            </tr>
-        `;
-
-    } else {
-
-        data.forEach(row => {
-
-            h += `
-                <tr>
-
-                    <td>
-                        ${formatDate(row.date)}
-                    </td>
-            `;
-
-
-            row.scores.forEach(value => {
-
-                h += `
-                    <td>
-                        ${Number(value).toFixed(2)}
-                    </td>
-                `;
-
-            });
-
-
-            h += `
-                    <td>
-
-                        <button
-                            class="btn-secondary"
-                            onclick="editRow('${row.date}')"
-                        >
-                            Edit
-                        </button>
-
-                        <button
-                            class="btn-danger"
-                            onclick="deleteRow('${row.date}')"
-                        >
-                            Hapus
-                        </button>
-
-                    </td>
-
-                </tr>
-            `;
-
-        });
 
     }
 
 
-    h += `
-        </tbody>
-    `;
+    notes =
+        notes.filter(
+            function(note) {
 
-
-    document.getElementById(
-        'dailyTable'
-    ).innerHTML = h;
-}
-
-
-/* =========================================
-   REKAP BULANAN
-========================================= */
-
-function renderMonthly() {
-
-    const month =
-        document.getElementById(
-            'monthPicker'
-        ).value;
-
-
-    /*
-       Ambil semua data pada bulan
-       yang dipilih
-    */
-
-    const rows =
-        data.filter(
-            row =>
-                row.date.startsWith(month)
-        );
-
-
-    let sums =
-        Array(7).fill(0);
-
-
-    let counts =
-        Array(7).fill(0);
-
-
-    /*
-       Hitung total nilai
-    */
-
-    rows.forEach(row => {
-
-        row.scores.forEach(
-            (value, i) => {
-
-                sums[i] += Number(value);
-
-                counts[i]++;
+                return note.id !== id;
 
             }
         );
 
-    });
 
-
-    let h = `
-        <thead>
-
-            <tr>
-
-                <th>Nama</th>
-
-                <th>Jumlah Hari</th>
-
-                <th>Rata-rata</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-    `;
-
-
-    /*
-       Tampilkan rata-rata
-       masing-masing orang
-    */
-
-    names.forEach(
-        (name, i) => {
-
-            const average =
-                counts[i]
-                ? sums[i] / counts[i]
-                : 0;
-
-
-            h += `
-                <tr>
-
-                    <td>
-                        ${esc(name)}
-                    </td>
-
-                    <td>
-                        ${counts[i]}
-                    </td>
-
-                    <td class="average">
-
-                        ${
-                            counts[i]
-                            ? average.toFixed(2)
-                            : '-'
-                        }
-
-                    </td>
-
-                </tr>
-            `;
-
-        }
+    localStorage.setItem(
+        "nortonBaliNotes",
+        JSON.stringify(notes)
     );
 
 
-    /*
-       Rata-rata semua orang
-    */
+    renderNotes();
 
-    if (rows.length) {
+    showToast(
+        "Catatan dihapus."
+    );
 
-        const totalAverage =
-            sums.reduce(
-                (a, b) => a + b,
-                0
-            ) / 7 / rows.length;
+}
 
 
-        h += `
-            <tr>
+/* =====================================================
+   DELETE ALL
+===================================================== */
 
-                <th>
-                    Rata-rata Semua
-                </th>
+function deleteAllNotes() {
 
-                <th>
-                    ${rows.length} hari
-                </th>
+    if (notes.length === 0) {
 
-                <th class="average">
+        alert(
+            "Belum ada catatan."
+        );
 
-                    ${totalAverage.toFixed(2)}
-
-                </th>
-
-            </tr>
-        `;
-
-    } else {
-
-        h += `
-            <tr>
-
-                <td colspan="3">
-
-                    Belum ada penilaian
-                    pada bulan ini.
-
-                </td>
-
-            </tr>
-        `;
+        return;
 
     }
 
 
-    h += `
-        </tbody>
-    `;
+    if (
+        !confirm(
+            "Yakin ingin menghapus SEMUA catatan?"
+        )
+    ) {
+
+        return;
+
+    }
 
 
-    document.getElementById(
-        'monthlyTable'
-    ).innerHTML = h;
-}
+    notes = [];
 
 
-/* =========================================
-   FORMAT TANGGAL
-========================================= */
-
-function formatDate(date) {
-
-    const [year, month, day] =
-        date.split('-');
-
-
-    return (
-        day +
-        '/' +
-        month +
-        '/' +
-        year
+    localStorage.removeItem(
+        "nortonBaliNotes"
     );
+
+
+    renderNotes();
+
+    showToast(
+        "Semua catatan telah dihapus."
+    );
+
 }
 
 
-/* =========================================
-   PENGAMAN HTML
-========================================= */
+/* =====================================================
+   EXPORT TXT
+===================================================== */
 
-function esc(value) {
+function exportNotes() {
 
-    return String(value).replace(
-        /[&<>"']/g,
-        function (m) {
+    if (notes.length === 0) {
 
-            return {
+        alert(
+            "Belum ada catatan untuk diekspor."
+        );
 
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
+        return;
 
-            }[m];
+    }
+
+
+    let content =
+        "NORTON BALI COMPUTER\n";
+
+    content +=
+        "CATATAN KRITIK & SARAN\n";
+
+    content +=
+        "========================================\n\n";
+
+
+    notes.forEach(
+        function(note, index) {
+
+            content +=
+                (index + 1) +
+                ". Nama: " +
+                note.name +
+                "\n";
+
+            content +=
+                "   Slide: " +
+                note.slide +
+                "\n";
+
+            content +=
+                "   Waktu: " +
+                note.date +
+                "\n";
+
+            content +=
+                "   Kritik/Saran:\n" +
+                note.text +
+                "\n";
+
+            content +=
+                "----------------------------------------\n\n";
 
         }
     );
+
+
+    const blob =
+        new Blob(
+            [content],
+            {
+                type:
+                    "text/plain;charset=utf-8"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+    link.href = url;
+
+    link.download =
+        "catatan-kritik-norton-bali-computer.txt";
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+
+    URL.revokeObjectURL(url);
+
+    showToast(
+        "Catatan berhasil diekspor!"
+    );
+
 }
 
 
-/* =========================================
-   JALANKAN PROGRAM
-========================================= */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-document.getElementById(
-    'monthPicker'
-).value = currentMonth();
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
 
 
-renderNames();
+/* =====================================================
+   TOAST
+===================================================== */
 
-renderScoreForm();
+function showToast(message) {
 
-renderDaily();
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
-renderMonthly();
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function() {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE PANEL KLIK LUAR
+===================================================== */
+
+document
+    .getElementById("notesOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                this
+            ) {
+
+                closeNotes();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadNotes();
+
+showSlide(0);
 
 </script>
 
 </body>
 </html>
+```
+
