@@ -25,7 +25,7 @@ html, body {
 .header {
   position: fixed;
   top: 0; left: 0; width: 100%;
-  height: 60px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,13 +42,13 @@ html, body {
   gap: 12px; 
 }
 .header-logo { 
-  width: 36px; 
-  height: 36px; 
+  width: 32px; 
+  height: 32px; 
   object-fit: contain; 
   filter: drop-shadow(0 0 10px rgba(56,189,248,0.5)); 
 }
 .header-title { 
-  font-size: 20px; 
+  font-size: 18px; 
   font-weight: 900; 
   letter-spacing: 2px; 
   color: #fff; 
@@ -66,14 +66,14 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 68px 24px 40px;
+  padding: 64px 24px 36px;
   background-size: cover;
   background-position: center;
 }
 .slide.active { display: flex; }
 .slide::before {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.92) 0%, rgba(2, 6, 23, 0.98) 100%);
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.93) 0%, rgba(2, 6, 23, 0.98) 100%);
   z-index: 0;
 }
 .grid-bg {
@@ -91,13 +91,13 @@ html, body {
 
 /* ===== TYPOGRAPHY & HEADER SLIDE ===== */
 .slide-header {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   flex-shrink: 0;
   text-align: center;
 }
-.small-title { color: #38bdf8; font-size: 13px; letter-spacing: 2px; font-weight: 800; margin-bottom: 2px; text-transform: uppercase; }
-h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; line-height: 1.1; margin-bottom: 8px; color: #fff; }
-h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; margin-bottom: 0; color: #fff; }
+.small-title { color: #38bdf8; font-size: 12px; letter-spacing: 2px; font-weight: 800; margin-bottom: 2px; text-transform: uppercase; }
+h1 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 900; line-height: 1.1; margin-bottom: 6px; color: #fff; }
+h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; margin-bottom: 0; color: #fff; }
 .highlight { color: #facc15; }
 
 /* ===== BACKGROUND IMAGES ===== */
@@ -105,24 +105,26 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
 .slide2 { background-image: url("https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=85"); }
 .slide3 { background-image: url("https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=2000&q=85"); }
 .slide4 { background-image: url("https://images.unsplash.com/photo-1556742049-0a670f4a4591?auto=format&fit=crop&w=2000&q=85"); }
+.slide5 { background-image: url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=85"); }
+.slide6 { background-image: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=85"); }
 
 /* ===== SLIDE 1: MENU MATERI ===== */
 .material-menu {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px 36px; margin-top: 20px; width: 100%; max-width: 980px; margin-x: auto;
+  gap: 12px 32px; margin-top: 8px; width: 100%; max-width: 1000px; margin-inline: auto;
 }
-.menu-col { display: flex; flex-direction: column; gap: 14px; }
-.menu-item { display: flex; align-items: center; gap: 14px; cursor: pointer; }
+.menu-col { display: flex; flex-direction: column; gap: 10px; }
+.menu-item { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .menu-number {
-  flex: 0 0 52px; width: 52px; height: 52px; border-radius: 50%;
+  flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: #0284c7; border: 2px solid #38bdf8; color: #fff;
-  font-size: 22px; font-weight: 900; transition: .2s;
+  font-size: 18px; font-weight: 900; transition: .2s;
 }
 .menu-text {
-  flex: 1; height: 52px; display: flex; align-items: center; justify-content: center;
+  flex: 1; height: 42px; display: flex; align-items: center; justify-content: center;
   text-align: center; padding: 0 16px; background: rgba(255, 255, 255, 0.95);
-  color: #0f172a; border-radius: 12px; font-size: 18px; font-weight: 800;
+  color: #0f172a; border-radius: 10px; font-size: 15px; font-weight: 800;
   transition: .2s; border: 2px solid #0284c7; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 .menu-item:hover .menu-number { transform: scale(1.08); background: #0369a1; }
@@ -130,28 +132,28 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
 
 /* ===== LAYOUT GRAFIK & ANALISA ===== */
 .chart-layout {
-  display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 6px;
+  display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 4px;
 }
 .curve-panel {
   background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(56, 189, 248, 0.4);
-  border-radius: 12px; padding: 8px 14px; flex: 0 1 auto;
+  border-radius: 12px; padding: 6px 12px; flex: 0 1 auto;
   display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 125px; backdrop-filter: blur(8px);
+  min-height: 110px; backdrop-filter: blur(8px);
 }
 .curve-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
-.panel-title { font-size: 13px; font-weight: 900; letter-spacing: 1px; color: #fff; }
-.legend { display: flex; gap: 16px; font-size: 12px; font-weight: 800; }
-.legend span { display: flex; align-items: center; gap: 6px; }
-.legend i { display: inline-block; width: 20px; height: 4px; border-radius: 3px; }
+.panel-title { font-size: 12.5px; font-weight: 900; letter-spacing: 1px; color: #fff; }
+.legend { display: flex; gap: 14px; font-size: 11.5px; font-weight: 800; }
+.legend span { display: flex; align-items: center; gap: 5px; }
+.legend i { display: inline-block; width: 18px; height: 3.5px; border-radius: 3px; }
 .legend-2025 { background: #ff7a20; }
 .legend-2026 { background: #38bdf8; }
 .legend-online { background: #facc15; }
 
-.curve-chart { width: 100%; height: 100%; min-height: 90px; position: relative; }
+.curve-chart { width: 100%; height: 100%; min-height: 80px; position: relative; }
 .curve-chart svg { width: 100%; height: 100%; overflow: visible; }
 .curve-grid line { stroke: rgba(255, 255, 255, 0.08) !important; stroke-width: 1 !important; }
 .curve-axis { stroke: #475569 !important; stroke-width: 1.5 !important; }
-.curve { fill: none !important; stroke-width: 3.5 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+.curve { fill: none !important; stroke-width: 3.2 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
 
 .curve-2025 { stroke: #ff7a20 !important; }
 .curve-2026 { stroke: #38bdf8 !important; }
@@ -163,38 +165,38 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
 
 .value-2025, .value-2026, .value-online {
   font-family: 'Urbanist', sans-serif !important;
-  font-size: 11px !important;
+  font-size: 10.5px !important;
   font-weight: 900 !important;
   text-anchor: middle !important;
   paint-order: stroke fill !important;
   stroke: #020617 !important;
-  stroke-width: 3.5px !important;
+  stroke-width: 3px !important;
   stroke-linejoin: round !important;
 }
 .value-2025 { fill: #ffaa66 !important; }
 .value-2026 { fill: #7dd3fc !important; }
 .value-online { fill: #fef08a !important; }
 
-.ytext, .xtext { fill: #94a3b8 !important; font-size: 10.5px !important; font-weight: 800 !important; }
+.ytext, .xtext { fill: #94a3b8 !important; font-size: 10px !important; font-weight: 800 !important; }
 .xtext { text-anchor: middle !important; }
 
 /* ===== PANEL CATATAN ANALISA (BULLET POINTS STYLE) ===== */
 .analysis-panel {
   background: rgba(15, 23, 42, 0.95); 
   border: 2px solid rgba(56, 189, 248, 0.45);
-  border-radius: 14px; 
-  padding: 10px 18px;
+  border-radius: 12px; 
+  padding: 8px 16px;
   width: 100%; 
   max-width: 1150px; 
   margin: 0 auto;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.7);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
   backdrop-filter: blur(12px);
   flex: 0 0 auto;
 }
 .analysis-panel .panel-title { 
-  font-size: 13.5px; 
+  font-size: 12.5px; 
   font-weight: 900;
-  margin-bottom: 6px; 
+  margin-bottom: 4px; 
   color: #38bdf8; 
   text-align: center; 
   letter-spacing: 2px;
@@ -204,17 +206,17 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   padding: 0;
   margin: 0;
 }
 .notes-list li {
   position: relative;
-  padding-left: 18px;
-  font-size: 13.5px;
+  padding-left: 16px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #e2e8f0;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 .notes-list li::before {
   content: "•";
@@ -222,7 +224,7 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   left: 0;
   color: #38bdf8;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
 }
 .notes-list li strong {
@@ -230,12 +232,12 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   font-weight: 900;
 }
 
-/* ===== TABEL RANKING ABSENSI (SLIDE 4) ===== */
+/* ===== TABEL UMUM / RANKING / VISI PROKER ===== */
 .table-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.92);
   border: 2px solid rgba(56, 189, 248, 0.35);
   border-radius: 12px;
   overflow: hidden;
@@ -246,20 +248,21 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 13px;
+  font-size: 12.5px;
 }
 .ranking-table th {
   background: #0284c7;
   color: #fff;
   font-weight: 900;
-  padding: 6px 10px;
+  padding: 7px 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 11px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 .ranking-table td {
-  padding: 5px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-weight: 700;
   color: #e2e8f0;
 }
@@ -270,11 +273,11 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   font-weight: 900;
-  font-size: 11px;
+  font-size: 10.5px;
 }
 .rank-1 { background: #facc15; color: #0f172a; box-shadow: 0 0 10px rgba(250,204,21,0.6); }
 .rank-2 { background: #cbd5e1; color: #0f172a; }
@@ -285,22 +288,22 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
   border: 2px solid rgba(74, 222, 128, 0.4);
   border-radius: 12px;
-  padding: 8px 16px;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
 .sdm-note-icon {
-  font-size: 26px;
+  font-size: 24px;
   flex-shrink: 0;
 }
 .sdm-note-content h4 {
   color: #4ade80;
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 900;
   margin-bottom: 2px;
   letter-spacing: 0.5px;
@@ -308,64 +311,183 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
 }
 .sdm-note-content p {
   color: #e2e8f0;
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.3;
   margin: 0;
+}
+
+/* ===== KHUSUS SLIDE 5: VISI PROKER & TARGET IMAGE ===== */
+.proker-banner {
+  background: linear-gradient(90deg, #0284c7, #2563eb);
+  border: 2px solid #38bdf8;
+  border-radius: 12px;
+  padding: 8px 16px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.proker-banner h3 {
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.proker-banner h3 span { color: #facc15; }
+
+.slide5-container {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.slide5-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.slide5-target-card {
+  background: rgba(15, 23, 42, 0.92);
+  border: 2px solid rgba(56, 189, 248, 0.4);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  height: 100%;
+}
+.slide5-target-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.3));
+}
+.slide5-target-card span {
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ===== KHUSUS SLIDE 6: KUNJUNGAN INSTANSI (KOPERASI CLUB MED & NATA) ===== */
+.slide6-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.koperasi-card {
+  background: rgba(15, 23, 42, 0.92);
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+}
+.koperasi-img-box {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  background: #020617;
+}
+.koperasi-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+.koperasi-img-box img:hover { transform: scale(1.05); }
+.koperasi-info h3 {
+  font-size: 15px;
+  font-weight: 900;
+  color: #facc15;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.koperasi-info p {
+  font-size: 12px;
+  font-weight: 700;
+  color: #cbd5e1;
+  line-height: 1.35;
 }
 
 /* ===== NAVIGATION & FOOTER ===== */
 .slide-number {
-  position: fixed; top: 16px; right: 24px; z-index: 1001;
-  padding: 4px 14px; border-radius: 20px; background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.2); font-size: 13px; font-weight: 800; color: #38bdf8;
+  position: fixed; top: 14px; right: 24px; z-index: 1001;
+  padding: 4px 12px; border-radius: 20px; background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 12px; font-weight: 800; color: #38bdf8;
 }
 .navigation { 
   position: fixed; right: 20px; bottom: 12px; z-index: 1001; display: flex; flex-direction: column; gap: 6px; 
 }
 .navigation button {
-  border: none; background: rgba(255, 255, 255, 0.9); color: #0f172a; width: 36px; height: 36px;
-  border-radius: 50%; font-size: 15px; font-weight: 900; cursor: pointer; transition: .2s;
+  border: none; background: rgba(255, 255, 255, 0.9); color: #0f172a; width: 34px; height: 34px;
+  border-radius: 50%; font-size: 14px; font-weight: 900; cursor: pointer; transition: .2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
 }
 .navigation button:hover { background: #38bdf8; color: #fff; transform: scale(1.1); }
-.progress { position: fixed; left: 0; bottom: 0; height: 3px; width: 25%; background: linear-gradient(90deg, #38bdf8, #2563eb); z-index: 1001; transition: width .3s; }
+.progress { position: fixed; left: 0; bottom: 0; height: 3px; width: 16.66%; background: linear-gradient(90deg, #38bdf8, #2563eb); z-index: 1001; transition: width .3s; }
 .footer-text { 
-  position: fixed; bottom: 8px; left: 24px; z-index: 1000; color: #64748b; font-size: 11px; font-weight: 700;
-  background: rgba(2, 6, 23, 0.7); padding: 2px 10px; border-radius: 4px;
+  position: fixed; bottom: 6px; left: 24px; z-index: 1000; color: #64748b; font-size: 10.5px; font-weight: 700;
+  background: rgba(2, 6, 23, 0.7); padding: 2px 8px; border-radius: 4px;
 }
 
 /* ===== RESPONSIVE MOBILE ===== */
 @media (max-width: 850px) {
-  .header { height: 50px; padding: 0 12px; }
-  .header-brand { gap: 8px; }
-  .header-logo { width: 26px; height: 26px; }
-  .header-title { font-size: 14px; letter-spacing: 1px; }
+  .header { height: 48px; padding: 0 10px; }
+  .header-brand { gap: 6px; }
+  .header-logo { width: 24px; height: 24px; }
+  .header-title { font-size: 13px; letter-spacing: 1px; }
   
-  .slide { padding: 55px 10px 35px; }
+  .slide { padding: 52px 10px 30px; }
   .slide-number { top: 10px; right: 10px; font-size: 10px; }
   .footer-text { display: none; }
   
-  .material-menu { grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
-  .menu-col { gap: 8px; }
-  .menu-number { width: 40px; height: 40px; flex: 0 0 40px; font-size: 16px; }
-  .menu-text { height: 40px; font-size: 14px; }
+  .material-menu { grid-template-columns: 1fr; gap: 6px; margin-top: 4px; }
+  .menu-col { gap: 6px; }
+  .menu-number { width: 36px; height: 36px; flex: 0 0 36px; font-size: 14px; }
+  .menu-text { height: 36px; font-size: 12px; }
   
-  .analysis-panel { padding: 8px 12px; }
-  .analysis-panel .panel-title { font-size: 11.5px; }
-  .notes-list li { font-size: 11.5px; }
+  .slide5-container { grid-template-columns: 1fr; gap: 8px; }
+  .slide5-target-card img { max-height: 100px; }
   
-  .ranking-table th, .ranking-table td { padding: 4px 6px; font-size: 10px; }
+  .slide6-grid { grid-template-columns: 1fr; gap: 10px; }
+  .koperasi-img-box { height: 120px; }
+  
+  .analysis-panel { padding: 6px 10px; }
+  .analysis-panel .panel-title { font-size: 11px; }
+  .notes-list li { font-size: 11px; }
+  
+  .ranking-table th, .ranking-table td { padding: 5px 6px; font-size: 9.5px; }
   .sdm-note-box { padding: 6px 10px; gap: 8px; }
-  .sdm-note-icon { font-size: 20px; }
-  .sdm-note-content h4 { font-size: 11px; }
-  .sdm-note-content p { font-size: 10px; }
+  .sdm-note-icon { font-size: 18px; }
+  .sdm-note-content h4 { font-size: 10.5px; }
+  .sdm-note-content p { font-size: 9.5px; }
   
-  .value-2025, .value-2026, .value-online { font-size: 9.5px !important; stroke-width: 2px !important; }
-  .curve-panel { padding: 6px 8px; min-height: 115px; }
-  .legend { font-size: 10px; gap: 8px; }
-  .navigation { right: 8px; bottom: 8px; }
-  .navigation button { width: 32px; height: 32px; font-size: 13px; }
+  .value-2025, .value-2026, .value-online { font-size: 9px !important; stroke-width: 2px !important; }
+  .curve-panel { padding: 4px 6px; min-height: 100px; }
+  .legend { font-size: 9.5px; gap: 6px; }
+  .navigation { right: 6px; bottom: 6px; }
+  .navigation button { width: 30px; height: 30px; font-size: 12px; }
 }
 </style>
 </head>
@@ -378,22 +500,24 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   </div>
 </header>
 
-<div class="slide-number" id="slideNum">01 / 04</div>
+<div class="slide-number" id="slideNum">01 / 06</div>
 
 <!-- SLIDE 1: MENU UTAMA -->
 <section class="slide slide1 active">
   <div class="grid-bg"></div>
   <div class="content" style="justify-content: center;">
     <div class="small-title" style="text-align: center;">AGENDA PRESENTASI</div>
-    <h1 style="text-align: center; margin-bottom: 12px;">MATERI PRESENTASI</h1>
+    <h1 style="text-align: center; margin-bottom: 10px;">MATERI PRESENTASI</h1>
     <div class="material-menu">
       <div class="menu-col">
-        <div class="menu-item" onclick="showSlide(0)"><span class="menu-number">1</span><span class="menu-text">PENDAPATAN</span></div>
+        <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">1</span><span class="menu-text">PENDAPATAN</span></div>
         <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">2</span><span class="menu-text">PERBANDINGAN PENDAPATAN</span></div>
+        <div class="menu-item" onclick="showSlide(4)"><span class="menu-number">5</span><span class="menu-text">VISI PROKER (ONLINE)</span></div>
       </div>
       <div class="menu-col">
         <div class="menu-item" onclick="showSlide(2)"><span class="menu-number">3</span><span class="menu-text">BELANJA ONLINE</span></div>
         <div class="menu-item" onclick="showSlide(3)"><span class="menu-number">4</span><span class="menu-text">PERFORMANCE & ABSENSI SDM</span></div>
+        <div class="menu-item" onclick="showSlide(5)"><span class="menu-number">6</span><span class="menu-text">KUNJUNGAN KOPERASI & INSTANSI</span></div>
       </div>
     </div>
   </div>
@@ -607,7 +731,7 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
       <table class="ranking-table">
         <thead>
           <tr>
-            <th style="width: 60px; text-align: center;">Rank</th>
+            <th style="width: 50px; text-align: center;">Rank</th>
             <th>Nama Karyawan</th>
             <th style="text-align: center;">Skor Absensi</th>
             <th style="text-align: center;">Wajib Kerja</th>
@@ -704,6 +828,120 @@ h2 { font-size: clamp(20px, 2.3vw, 28px); font-weight: 900; line-height: 1.2; ma
   </div>
 </section>
 
+<!-- SLIDE 5: VISI PROKER & TARGET IMAGE -->
+<section class="slide slide5">
+  <div class="grid-bg"></div>
+  <div class="content" style="justify-content: center; gap: 14px;">
+    
+    <!-- BANNER VISI PROKER -->
+    <div class="proker-banner">
+      <h3>VISI PROKER : <span>PENINGKATAN QTY PELANGGAN MENGEDEPANKAN BELANJA ONLINE</span></h3>
+    </div>
+
+    <div class="slide5-container">
+      <div class="slide5-left">
+        <div class="slide-header" style="text-align: left; margin-bottom: 2px;">
+          <h2>🎯 <span class="highlight">VISI UTAMA & CAPAIAN</span></h2>
+        </div>
+
+        <!-- TABEL VISI UTAMA & CAPAIAN -->
+        <div class="table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 40px; text-align: center;" rowspan="2">No</th>
+                <th style="width: 190px;" rowspan="2">Program Kerja</th>
+                <th rowspan="2">Indikator</th>
+                <th style="width: 60px; text-align: center;" rowspan="2">Baseline</th>
+                <th style="width: 60px; text-align: center;" rowspan="2">Target</th>
+                <th style="text-align: center;" colspan="3">Capaian</th>
+              </tr>
+              <tr>
+                <th style="text-align: center; background: #0369a1;">Juli</th>
+                <th style="text-align: center; background: #0369a1;">Agustus</th>
+                <th style="text-align: center; background: #0369a1;">September</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center; font-weight: 900;">1</td>
+                <td><strong>Peningkatan Qty pelanggan mengedepankan belanja online</strong></td>
+                <td>Meningkatnya kunjungan</td>
+                <td style="text-align: center; font-weight: 900; color: #38bdf8;">42</td>
+                <td style="text-align: center; font-weight: 900; color: #facc15;">55</td>
+                <td style="text-align: center; font-weight: 900;">43</td>
+                <td style="text-align: center; font-weight: 900;">43</td>
+                <td style="text-align: center; color: #94a3b8;">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- KOTAK GAMBAR TARGET.PNG -->
+      <div class="slide5-target-card">
+        <img src="target.png" alt="Target Archery" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80'">
+        <span>🎯 TARGET & STRATEGI</span>
+      </div>
+    </div>
+
+    <!-- FOKUS PERBAIKAN -->
+    <div class="sdm-note-box" style="border-color: rgba(56, 189, 248, 0.5);">
+      <div class="sdm-note-icon">💡</div>
+      <div class="sdm-note-content">
+        <h4 style="color: #38bdf8;">Fokus Perbaikan</h4>
+        <p>Meningkatkan aktivitas belanja online melalui distribusi informasi produk, promo, harga, stok, dan <i>follow-up</i> pelanggan secara lebih aktif agar belanja online dapat meningkatkan jumlah pelanggan sekaligus mengimbangi perubahan perilaku pelanggan yang semakin memilih berbelanja secara digital.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SLIDE 6: KUNJUNGAN KOPERASI & INSTANSI (CLUB MED & NATA) -->
+<section class="slide slide6">
+  <div class="grid-bg"></div>
+  <div class="content" style="justify-content: center; gap: 14px;">
+    <div class="slide-header">
+      <div class="small-title">MATERI 06 • KUNJUNGAN & RELASI STRATEGIS</div>
+      <h2>🤝 <span class="highlight">KUNJUNGAN KOPERASI & INSTANSI</span></h2>
+    </div>
+
+    <div class="slide6-grid">
+      <!-- KOPERASI CLUB MED -->
+      <div class="koperasi-card">
+        <div class="koperasi-img-box">
+          <img src="koperasi.jpeg" alt="Koperasi Club Med" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="koperasi-info">
+          <h3>🏢 Koperasi Club Med</h3>
+          <p>Kunjungan koordinasi dan kemitraan strategis pengadaan perangkat kerja serta layanan IT bersama manajemen koperasi Club Med untuk memperkuat ekspansi lini bisnis korporat.</p>
+        </div>
+      </div>
+
+      <!-- KOPERASI NATA -->
+      <div class="koperasi-card">
+        <div class="koperasi-img-box">
+          <img src="koperasi2.jpeg" alt="Koperasi Nata" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="koperasi-info">
+          <h3>🤝 Koperasi Nata</h3>
+          <p>Eksplorasi peluang kerjasama pengadaan inventaris toko, dukungan layanan teknis, serta program kemudahan pembayaran bagi anggota koperasi instansi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATATAN KUNJUNGAN -->
+    <div class="sdm-note-box" style="border-color: rgba(250, 204, 21, 0.4);">
+      <div class="sdm-note-icon">🎯</div>
+      <div class="sdm-note-content">
+        <h4 style="color: #facc15;">Dampak & Tindak Lanjut Instansi</h4>
+        <p>Mempererat hubungan B2B, memperluas jaringan pemasaran offline ke sektor instansi & korporasi di Bali, serta memastikan pelayanan purna jual terbaik untuk mendukung pertumbuhan omset berkelanjutan.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <div class="footer-text">Norton Bali Computer • Presentasi Executive</div>
 <div class="navigation">
   <button onclick="previousSlide()" title="Sebelumnya (Slide Atas)">▲</button>
@@ -751,7 +989,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Inisialisasi awal
-showSlide(0);
+showSlide(currentSlide);
 </script>
 </body>
 </html>
