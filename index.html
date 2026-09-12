@@ -489,6 +489,245 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .navigation { right: 6px; bottom: 6px; }
   .navigation button { width: 30px; height: 30px; font-size: 12px; }
 }
+
+/* ===== MOBILE + TOUCH OPTIMIZATION ===== */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+body {
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slide {
+  height: 100dvh;
+  min-height: 100svh;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+@media (max-width: 850px) {
+  .slide {
+    height: 100dvh;
+    min-height: 100svh;
+    padding: 56px 8px 38px;
+    overflow: hidden;
+  }
+
+  .content {
+    max-width: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .slide-header {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .slide-header h2 {
+    font-size: clamp(17px, 5vw, 24px);
+    line-height: 1.15;
+  }
+
+  .small-title {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  /* Menu HP dibuat lebih lega dan mudah disentuh */
+  .material-menu {
+    width: 100%;
+    max-width: 520px;
+    gap: 8px;
+  }
+
+  .menu-col {
+    gap: 8px;
+  }
+
+  .menu-item {
+    min-height: 40px;
+  }
+
+  .menu-number {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .menu-text {
+    min-height: 38px;
+    height: auto;
+    padding: 7px 10px;
+    font-size: 11.5px;
+    line-height: 1.15;
+  }
+
+  /* Grafik tidak dipaksa terlalu tinggi di HP */
+  .chart-layout {
+    min-height: 0;
+    gap: 7px;
+    overflow: hidden;
+  }
+
+  .curve-panel {
+    min-height: 0;
+    height: 43vh;
+    max-height: 390px;
+    flex-shrink: 1;
+  }
+
+  .curve-chart {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .analysis-panel {
+    max-height: 31vh;
+    overflow: hidden;
+  }
+
+  .notes-list {
+    overflow: hidden;
+  }
+
+  .notes-list li {
+    font-size: 10.5px;
+    line-height: 1.25;
+  }
+
+  /* Tabel tetap terlihat rapi di layar kecil */
+  .table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .ranking-table {
+    table-layout: fixed;
+    font-size: 9px;
+  }
+
+  .ranking-table th,
+  .ranking-table td {
+    padding: 5px 3px;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .ranking-table th:first-child,
+  .ranking-table td:first-child {
+    width: 34px !important;
+  }
+
+  .sdm-note-box {
+    min-height: 0;
+    max-height: 22vh;
+    overflow: hidden;
+  }
+
+  /* Slide 5 */
+  .slide5-container {
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .slide5-left {
+    min-width: 0;
+  }
+
+  .slide5-target-card {
+    max-height: 150px;
+  }
+
+  /* Slide 6: foto tidak melebar/crop berlebihan di HP */
+  .slide6 .slide6-grid {
+    gap: 8px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .slide6 .koperasi-card {
+    min-height: 0;
+  }
+
+  .slide6 .koperasi-img-box {
+    height: 31vh;
+    max-height: 210px;
+    min-height: 105px;
+  }
+
+  .slide6 .koperasi-info {
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .slide6 .koperasi-info h3 {
+    font-size: 15px;
+  }
+
+  .slide6 .koperasi-info p {
+    font-size: 10.5px;
+    line-height: 1.35;
+  }
+
+  .navigation {
+    right: 7px;
+    bottom: 8px;
+  }
+
+  .navigation button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .slide-number {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* HP sangat pendek: prioritaskan isi utama */
+@media (max-width: 850px) and (max-height: 700px) {
+  .slide {
+    padding-top: 52px;
+    padding-bottom: 32px;
+  }
+
+  .slide-header h2 {
+    font-size: 16px;
+  }
+
+  .curve-panel {
+    height: 38vh;
+  }
+
+  .analysis-panel {
+    max-height: 28vh;
+  }
+
+  .slide6 .koperasi-img-box {
+    height: 24vh;
+  }
+
+  .slide6 .koperasi-info p {
+    font-size: 9.5px;
+  }
+}
+
+/* ===== VERTICAL SWIPE AREA ===== */
+body, .slide, .content, .grid-bg {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 </style>
 </head>
 <body>
@@ -1998,5 +2237,50 @@ document.addEventListener("touchend", (e) => {
 }, {passive:true});
 
 </script>
+
+<script>
+/* ===== VERTICAL TOUCH SWIPE ===== */
+(function () {
+  let startX = 0, startY = 0, startTime = 0;
+  let tracking = false;
+
+  document.addEventListener('touchstart', function (e) {
+    if (!e.touches || !e.touches.length) return;
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    startTime = Date.now();
+    tracking = true;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    if (!tracking || !e.changedTouches || !e.changedTouches.length) return;
+    tracking = false;
+
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    const elapsed = Date.now() - startTime;
+
+    // Hanya anggap sebagai swipe bila gerak vertikal lebih dominan.
+    const minDistance = 55;
+    const maxTime = 900;
+
+    if (elapsed > maxTime || Math.abs(dy) < minDistance) return;
+    if (Math.abs(dy) < Math.abs(dx) * 1.25) return;
+
+    if (typeof showSlide !== 'function') return;
+
+    // Atas -> bawah = slide sebelumnya
+    // Bawah -> atas = slide berikutnya
+    if (dy > 0) {
+      showSlide(-1);
+    } else {
+      showSlide(1);
+    }
+  }, { passive: true });
+})();
+</script>
+
 </body>
 </html>
