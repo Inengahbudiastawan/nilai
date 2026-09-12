@@ -1207,6 +1207,180 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     }
   }
 </style>
+  <!-- SLIDE 8: NORTON BALI COMPUTER BERTRANSFORMASI -->
+<section class="slide slide8">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 08 • DIGITAL TRANSFORMATION</div>
+      <h2>🚀 <span class="highlight">NORTON BALI COMPUTER BERTRANSFORMASI</span></h2>
+      <p class="slide-subtitle">Evolusi layanan dari konvensional (offline) menuju ekosistem digital untuk kemudahan pelanggan.</p>
+    </div>
+
+    <div class="slide8-grid">
+      <!-- Card 1: Video COD & Setting di Lokasi -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="Video1.mp4" autoplay loop muted playsinline></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Layanan Langsung
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🛠️ COD & Setting di Lokasi</h3>
+          <p>Memberikan pengalaman belanja terbaik melalui layanan Cash on Delivery (COD) langsung ke tempat pelanggan, disertai instalasi dan pengaturan perangkat langsung di lokasi.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Video Belanja Online Lewat Ojol -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="Video2.mp4" autoplay loop muted playsinline></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Pengiriman Cepat
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🛵 Belanja Online Lewat Ojol</h3>
+          <p>Integrasi pengiriman instan bekerja sama dengan layanan ojek online untuk memastikan produk pesanan cepat sampai dengan aman dan efisien langsung ke tangan pembeli.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 8 -->
+<style>
+  .slide8 .slide-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .slide8 .slide8-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  .slide8 .media-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.6));
+    border: 1.5px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+  }
+
+  .slide8 .media-card:hover {
+    transform: translateY(-6px);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
+  }
+
+  .slide8 .media-box {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide8 .media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .slide8 .media-card:hover .media-box video {
+    transform: scale(1.05);
+  }
+
+  .slide8 .media-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    color: #38bdf8;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  .slide8 .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #38bdf8; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  .slide8 .media-info {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .slide8 .media-info h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide8 .media-info p {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 850px) {
+    .slide8 .slide8-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .slide8 .media-box {
+      height: 180px;
+    }
+    .slide8 .media-info {
+      padding: 14px 16px;
+    }
+  }
+</style>
 
 <div class="footer-text">Norton Bali Computer • Bali Global Group</div>
 <div class="navigation">
