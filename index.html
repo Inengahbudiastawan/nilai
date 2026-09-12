@@ -897,50 +897,139 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   </div>
 </section>
 
-<!-- SLIDE 6: KUNJUNGAN KOPERASI & INSTANSI (CLUB MED & NATA) -->
+<!-- SLIDE 6: KUNJUNGAN KOPERASI & INSTANSI -->
 <section class="slide slide6">
   <div class="grid-bg"></div>
-  <div class="content" style="justify-content: center; gap: 14px;">
+  <div class="content">
     <div class="slide-header">
-      <div class="small-title">MATERI 06 • KUNJUNGAN & RELASI STRATEGIS</div>
+      <div class="small-title">MATERI 06 • RELASI B2B & KEMITRAAN</div>
       <h2>🤝 <span class="highlight">KUNJUNGAN KOPERASI & INSTANSI</span></h2>
     </div>
 
     <div class="slide6-grid">
-      <!-- KOPERASI CLUB MED -->
+      <!-- Card 1 -->
       <div class="koperasi-card">
         <div class="koperasi-img-box">
-          <img src="koperasi.jpeg" alt="Koperasi Club Med" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
+          <img src="koperasi2.jpeg" alt="Club Med Bali">
+          <div class="img-overlay"></div>
         </div>
         <div class="koperasi-info">
-          <h3>🏢 Koperasi Club Med</h3>
-          <p>Kunjungan koordinasi dan kemitraan strategis pengadaan perangkat kerja serta layanan IT bersama manajemen koperasi Club Med untuk memperkuat ekspansi lini bisnis korporat.</p>
+          <span class="badge">Resort Partner</span>
+          <h3>🌴 Koperasi Club Med Bali</h3>
+          <p>Kunjungan strategis dalam rangka menjajaki kerja sama penyediaan perangkat IT, komputer, serta pemeliharaan hardware secara berkala bagi karyawan dan fasilitas resort.</p>
         </div>
       </div>
 
-      <!-- KOPERASI NATA -->
+      <!-- Card 2 -->
       <div class="koperasi-card">
         <div class="koperasi-img-box">
-          <img src="koperasi2.jpeg" alt="Koperasi Nata" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80'">
+          <img src="koperasi.jpeg" alt="Instansi Nata">
+          <div class="img-overlay"></div>
         </div>
         <div class="koperasi-info">
-          <h3>🤝 Koperasi Nata</h3>
-          <p>Eksplorasi peluang kerjasama pengadaan inventaris toko, dukungan layanan teknis, serta program kemudahan pembayaran bagi anggota koperasi instansi.</p>
+          <span class="badge">Corporate Partner</span>
+          <h3>🏢 Instansi / Koperasi Nata</h3>
+          <p>Diskusi kolaborasi pengadaan inventaris kantor dan solusi perangkat komputer untuk mendukung digitalisasi serta efisiensi operasional administratif instansi.</p>
         </div>
       </div>
     </div>
-
-    <!-- CATATAN KUNJUNGAN -->
-    <div class="sdm-note-box" style="border-color: rgba(250, 204, 21, 0.4);">
-      <div class="sdm-note-icon">🎯</div>
-      <div class="sdm-note-content">
-        <h4 style="color: #facc15;">Dampak & Tindak Lanjut Instansi</h4>
-        <p>Mempererat hubungan B2B, memperluas jaringan pemasaran offline ke sektor instansi & korporasi di Bali, serta memastikan pelayanan purna jual terbaik untuk mendukung pertumbuhan omset berkelanjutan.</p>
-      </div>
-    </div>
-
   </div>
 </section>
+
+<!-- CSS KHUSUS SLIDE 6 -->
+<style>
+  .slide6 .slide6-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .slide6 .koperasi-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .slide6 .koperasi-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .slide6 .koperasi-img-box {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .slide6 .koperasi-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .slide6 .koperasi-card:hover .koperasi-img-box img {
+    transform: scale(1.08);
+  }
+
+  .slide6 .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .slide6 .koperasi-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .slide6 .badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.8rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border-radius: 50px;
+  }
+
+  .slide6 .koperasi-info h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .slide6 .koperasi-info p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .slide6 .slide6-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 
 <div class="footer-text">Norton Bali Computer • Presentasi Executive</div>
 <div class="navigation">
