@@ -1207,7 +1207,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     }
   }
 </style>
-  <!-- SLIDE 8: NORTON BALI COMPUTER BERTRANSFORMASI -->
+<!-- SLIDE 8: NORTON BALI COMPUTER BERTRANSFORMASI -->
 <section class="slide slide8">
   <div class="grid-bg"></div>
   <div class="content">
@@ -1221,7 +1221,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
       <!-- Card 1: Video COD & Setting di Lokasi -->
       <div class="media-card">
         <div class="media-box">
-          <video src="Video1.mp4" autoplay loop muted playsinline></video>
+          <video src="Video1.mp4" autoplay loop muted playsinline controls></video>
           <div class="media-badge">
             <span class="pulse-dot"></span> Layanan Langsung
           </div>
@@ -1235,7 +1235,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
       <!-- Card 2: Video Belanja Online Lewat Ojol -->
       <div class="media-card">
         <div class="media-box">
-          <video src="Video2.mp4" autoplay loop muted playsinline></video>
+          <video src="video2.mp4" autoplay loop muted playsinline controls></video>
           <div class="media-badge">
             <span class="pulse-dot"></span> Pengiriman Cepat
           </div>
@@ -1261,10 +1261,10 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .slide8 .slide8-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 30px; /* Jarak antar kartu diperlebar */
     margin-top: 16px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1350px; /* Lebar keseluruhan grid diperbesar maksimal agar memenuhi layar */
     margin-inline: auto;
   }
 
@@ -1289,9 +1289,9 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .slide8 .media-box {
     position: relative;
     width: 100%;
-    height: 230px;
+    height: 280px; /* Tinggi video tetap pas */
     overflow: hidden;
-    background: #020617;
+    background: #020617; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1300,13 +1300,9 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .slide8 .media-box video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; 
     object-position: center;
-    transition: transform 0.6s ease;
-  }
-
-  .slide8 .media-card:hover .media-box video {
-    transform: scale(1.05);
+    z-index: 1;
   }
 
   .slide8 .media-badge {
@@ -1323,11 +1319,12 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     color: #38bdf8;
     border-radius: 20px;
     border: 1px solid rgba(56, 189, 248, 0.3);
-    z-index: 2;
+    z-index: 3;
     display: flex;
     align-items: center;
     gap: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    pointer-events: none; 
   }
 
   .slide8 .pulse-dot {
@@ -1374,14 +1371,552 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
       gap: 16px;
     }
     .slide8 .media-box {
-      height: 180px;
+      height: 210px;
     }
     .slide8 .media-info {
       padding: 14px 16px;
     }
   }
 </style>
+<!-- SLIDE 9: SDM UNGGUL (PERBEDAAN SDM MAJU DAN MUNDUR) -->
+<section class="slide slide9">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 09 • HUMAN RESOURCES & MINDSET</div>
+      <h2>💡 <span class="highlight">SDM UNGGUL: MAJU VS MUNDUR</span></h2>
+      <p class="slide-subtitle">Transformasi kualitas sumber daya manusia sebagai fondasi utama kesuksesan bisnis digital.</p>
+    </div>
 
+    <div class="slide9-grid">
+      <!-- Card 1: SDM Maju (Progresif) -->
+      <div class="sdm-card maju">
+        <div class="sdm-img-box">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="SDM Maju Progresif">
+          <div class="sdm-badge maju-badge">
+            <span class="pulse-dot"></span> Progresif & Solutif
+          </div>
+        </div>
+
+        <div class="sdm-content">
+          <div class="sdm-header">
+            <div class="sdm-icon">🌟</div>
+            <h3>SDM Maju (Progresif)</h3>
+          </div>
+          <ul class="sdm-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Growth Mindset:</strong> Selalu haus akan ilmu baru, adaptif terhadap teknologi, dan melihat tantangan sebagai peluang.
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Inisiatif & Solutif:</strong> Proaktif mencari jalan keluar saat menghadapi masalah tanpa harus menunggu instruksi.
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Orientasi Hasil & Kualitas:</strong> Bekerja dengan standar tinggi, efisien, dan bertanggung jawab penuh pada target.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2: SDM Mundur (Stagnan) -->
+      <div class="sdm-card mundur">
+        <div class="sdm-img-box">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="SDM Mundur Stagnan">
+          <div class="sdm-badge mundur-badge">
+            <span class="pulse-dot-red"></span> Stagnan & Pasif
+          </div>
+        </div>
+
+        <div class="sdm-content">
+          <div class="sdm-header">
+            <div class="sdm-icon">⚠️</div>
+            <h3>SDM Mundur (Stagnan)</h3>
+          </div>
+          <ul class="sdm-list">
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Fixed Mindset:</strong> Cepat puas, enggan belajar hal baru, dan menolak perubahan sistem digital yang masuk.
+              </div>
+            </li>
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Pasif & Menunggu:</strong> Hanya bekerja sebatas menggugurkan kewajiban dan minim inisiatif dalam operasional.
+              </div>
+            </li>
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Mental Menyalahkan:</strong> Sering mencari alasan, menyalahkan situasi atau rekan kerja saat terjadi kendala.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 9 -->
+<style>
+  .slide9 .slide-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .slide9 .slide9-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 14px;
+    width: 100%;
+    max-width: 1250px;
+    margin-inline: auto;
+  }
+
+  .slide9 .sdm-card {
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .slide9 .sdm-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .slide9 .sdm-card.maju {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(14, 116, 144, 0.35));
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+  }
+  .slide9 .sdm-card.maju:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
+  }
+
+  .slide9 .sdm-card.mundur {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(153, 27, 27, 0.25));
+    border: 1.5px solid rgba(248, 113, 113, 0.3);
+  }
+  .slide9 .sdm-card.mundur:hover {
+    border-color: #f87171;
+    box-shadow: 0 15px 35px rgba(248, 113, 113, 0.15);
+  }
+
+  .slide9 .sdm-img-box {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide9 .sdm-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .slide9 .sdm-card:hover .sdm-img-box img {
+    transform: scale(1.05);
+  }
+
+  .slide9 .sdm-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  .slide9 .maju-badge {
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  .slide9 .mundur-badge {
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+  }
+
+  .slide9 .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #38bdf8;
+  }
+
+  .slide9 .pulse-dot-red {
+    width: 6px;
+    height: 6px;
+    background-color: #f87171;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #f87171;
+  }
+
+  .slide9 .sdm-content {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .slide9 .sdm-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+  }
+
+  .slide9 .sdm-icon {
+    font-size: 20px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .slide9 .sdm-header h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide9 .sdm-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slide9 .sdm-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  .slide9 .check-icon {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .slide9 .cross-icon {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.15);
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .slide9 .sdm-list strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  @media (max-width: 850px) {
+    .slide9 .slide9-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .slide9 .sdm-img-box {
+      height: 140px;
+    }
+  }
+</style>
+  <!-- SLIDE 10: PENUTUP / TERIMA KASIH -->
+<section class="slide slide10">
+  <div class="grid-bg"></div>
+  <div class="glow-effect"></div>
+  <div class="content closing-content">
+    
+    <!-- Logo NBC Besar di Tengah -->
+    <div class="closing-logo-container">
+      <!-- Ubah src di bawah dengan path logo NBC Anda (misal: logo.png) -->
+      <img src="nbc-removebg-preview.png" alt="NBC Logo" class="closing-logo">
+      <div class="logo-ring"></div>
+    </div>
+
+    <!-- Teks Penutup -->
+    <div class="closing-text">
+      <div class="small-title">THANK YOU • NORTON BALI COMPUTER</div>
+      <h2>Terima <span class="highlight">Kasih</span></h2>
+      <p class="closing-subtitle">Transformasi Digital, Kolaborasi Solid, Menuju Masa Depan Bisnis yang Lebih Unggul.</p>
+    </div>
+
+    <!-- Informasi Kontak / Footer Singkat -->
+    <div class="closing-contact">
+      <div class="contact-item">
+        <span>📍</span> Jimbaran, Badung, Bali
+      </div>
+      <div class="contact-item">
+        <span>🌐</span> www.nortonbalicomputer.com
+      </div>
+      <div class="contact-item">
+        <span>📱</span> Official Support & Partner
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 10 -->
+<style>
+  .slide10 {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide10 .closing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+    gap: 24px;
+    z-index: 2;
+  }
+
+  /* Efek Cahaya / Glow di Tengah Belakang Logo */
+  .slide10 .glow-effect {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+    z-index: 1;
+    pointer-events: none;
+    animation: slowGlow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowGlow {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+
+  /* Kontainer Logo NBC Besar */
+  .slide10 .closing-logo-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.7));
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
+    z-index: 2;
+    margin-bottom: 4px;
+  }
+
+  .slide10 .closing-logo {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+
+  /* Lingkaran Animasi Keliling Logo */
+  .slide10 .logo-ring {
+    position: absolute;
+    inset: -8px;
+    border: 2px dashed rgba(56, 189, 248, 0.35);
+    border-radius: 50%;
+    animation: rotateRing 20s linear infinite;
+  }
+
+  @keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Teks Utama */
+  .slide10 .closing-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .slide10 h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .slide10 .closing-subtitle {
+    font-size: 1rem;
+    color: #94a3b8;
+    max-width: 650px;
+    margin: 0 auto;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Baris Kontak / Footer */
+  .slide10 .closing-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+  }
+
+  .slide10 .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    font-weight: 600;
+  }
+
+  .slide10 .contact-item span {
+    font-size: 1rem;
+  }
+
+  /* Responsif Mobile */
+  @media (max-width: 768px) {
+    .slide10 .closing-logo-container {
+      width: 110px;
+      height: 110px;
+    }
+    .slide10 .closing-logo {
+      width: 65px;
+      height: 65px;
+    }
+    .slide10 h2 {
+      font-size: 2rem;
+    }
+    .slide10 .closing-subtitle {
+      font-size: 0.9rem;
+      padding-inline: 16px;
+    }
+    .slide10 .closing-contact {
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 16px;
+      width: 90%;
+    }
+  }
+
+/* ===== RESPONSIVE + SWIPE HP ===== */
+html, body {
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+.slide {
+  touch-action: pan-y;
+}
+@media (max-width: 850px) {
+  .slide {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .content {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .slide-header h2,
+  .slide-header h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ranking-table {
+    min-width: 680px;
+  }
+  .curve-panel,
+  .analysis-panel,
+  .sdm-note-box,
+  .proker-banner {
+    max-width: 100%;
+  }
+  .slide6-grid {
+    width: 100%;
+  }
+}
+/* Tombol navigasi tetap mudah disentuh */
+.navigation button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+</style>
 <div class="footer-text">Norton Bali Computer • Bali Global Group</div>
 <div class="navigation">
   <button onclick="previousSlide()" title="Sebelumnya (Slide Atas)">▲</button>
@@ -1430,6 +1965,38 @@ document.addEventListener("keydown", (e) => {
 
 // Inisialisasi awal
 showSlide(currentSlide);
+
+// ===== SWIPE / GESER TANGAN DI HP =====
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+document.addEventListener("touchstart", (e) => {
+  if (!e.changedTouches || !e.changedTouches.length) return;
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+
+document.addEventListener("touchend", (e) => {
+  if (!e.changedTouches || !e.changedTouches.length) return;
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+
+  const dx = touchEndX - touchStartX;
+  const dy = touchEndY - touchStartY;
+
+  // Hanya dianggap swipe bila gerakan horizontal cukup jauh
+  // dan lebih dominan daripada gerakan vertikal.
+  if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+    if (dx < 0) {
+      nextSlide();       // geser kiri = slide berikutnya
+    } else {
+      previousSlide();   // geser kanan = slide sebelumnya
+    }
+  }
+}, {passive:true});
+
 </script>
 </body>
 </html>
