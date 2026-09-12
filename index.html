@@ -513,11 +513,13 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
         <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">1</span><span class="menu-text">PENDAPATAN</span></div>
         <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">2</span><span class="menu-text">PERBANDINGAN PENDAPATAN</span></div>
         <div class="menu-item" onclick="showSlide(4)"><span class="menu-number">5</span><span class="menu-text">VISI PROKER (ONLINE)</span></div>
+     <div class="menu-item" onclick="showSlide(2)"><span class="menu-number">3</span><span class="menu-text">BELANJA ONLINE</span></div>
       </div>
       <div class="menu-col">
         <div class="menu-item" onclick="showSlide(2)"><span class="menu-number">3</span><span class="menu-text">BELANJA ONLINE</span></div>
         <div class="menu-item" onclick="showSlide(3)"><span class="menu-number">4</span><span class="menu-text">PERFORMANCE & ABSENSI SDM</span></div>
         <div class="menu-item" onclick="showSlide(5)"><span class="menu-number">6</span><span class="menu-text">KUNJUNGAN KOPERASI & INSTANSI</span></div>
+     <div class="menu-item" onclick="showSlide(5)"><span class="menu-number">6</span><span class="menu-text">Distribusi informasi</span></div>
       </div>
     </div>
   </div>
@@ -1030,8 +1032,183 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     }
   }
 </style>
+  <!-- SLIDE 7: DISTRIBUSI INFORMASI & SEKOLAH -->
+<section class="slide slide7">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 07 • DISTRIBUSI & EDUKASI PUBLIK</div>
+      <h2>📢 <span class="highlight">DISTRIBUSI INFORMASI & SEKOLAH</span></h2>
+    </div>
 
-<div class="footer-text">Norton Bali Computer • Presentasi Executive</div>
+    <div class="slide7-grid">
+      <!-- Card 1: Video -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="video.mp4" autoplay loop muted playsinline></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Penyebaran Brosur
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🚦 Flayering Video di Lampu Merah</h3>
+          <p>Strategi distribusi informasi visual langsung ke masyarakat melalui media videotron/layar di titik-titik strategis lampu merah untuk jangkauan audiens yang luas.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Foto Sekolah -->
+      <div class="media-card">
+        <div class="media-box">
+          <img src="sekolah.jpeg" alt="SMA 1 Kuta">
+          <div class="img-overlay"></div>
+          <div class="media-badge">Edukasi & Sosialisasi</div>
+        </div>
+        <div class="media-info">
+          <h3>🏫 Kunjungan Edukasi ke SMA 1 Kuta</h3>
+          <p>Kegiatan sosialisasi dan pengenalan program langsung kepada siswa-siswi di sekolah guna membangun brand awareness dan edukasi teknologi sejak dini.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 7 (DI PERBAIKI & DIPERCANTIK) -->
+<style>
+  .slide7 .slide7-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 12px;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  .slide7 .media-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.6));
+    border: 1.5px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+  }
+
+  .slide7 .media-card:hover {
+    transform: translateY(-6px);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
+  }
+
+  .slide7 .media-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #020617;
+  }
+
+  .slide7 .media-box img,
+  .slide7 .media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .slide7 .media-card:hover .media-box img,
+  .slide7 .media-card:hover .media-box video {
+    transform: scale(1.05);
+  }
+
+  .slide7 .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide7 .media-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    color: #38bdf8;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  /* Indikator titik berdenyut untuk kesan live/aktif pada video */
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #38bdf8; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  .slide7 .media-info {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .slide7 .media-info h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide7 .media-info p {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 850px) {
+    .slide7 .slide7-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .slide7 .media-box {
+      height: 160px;
+    }
+    .slide7 .media-info {
+      padding: 12px 14px;
+    }
+  }
+</style>
+
+<div class="footer-text">Norton Bali Computer • Bali Global Group</div>
 <div class="navigation">
   <button onclick="previousSlide()" title="Sebelumnya (Slide Atas)">▲</button>
   <button onclick="nextSlide()" title="Berikutnya (Slide Bawah)">▼</button>
