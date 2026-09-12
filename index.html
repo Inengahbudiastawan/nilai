@@ -9,18 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BASE RESET & NATURAL SCROLL LAYOUT ===== */
+/* ===== BASE RESET & FLUID LAYOUT ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-html {
-  scroll-behavior: smooth;
-}
-body {
+html, body {
   width: 100%;
+  height: 100%;
+  overflow: hidden;
   font-family: 'Urbanist', -apple-system, sans-serif;
   background: #020617;
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 /* ===== HEADER ===== */
@@ -58,20 +56,21 @@ body {
 }
 .header-title span { color: #38bdf8; }
 
-/* ===== SECTION / SLIDE CONTAINER ===== */
+/* ===== SLIDE CONTAINER ===== */
 .slide {
   width: 100vw;
-  min-height: 100vh;
-  position: relative;
-  display: flex;
+  height: 100vh;
+  position: absolute;
+  inset: 0;
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 76px 24px 48px;
+  padding: 64px 24px 36px;
   background-size: cover;
   background-position: center;
-  border-bottom: 2px solid rgba(56, 189, 248, 0.15);
 }
+.slide.active { display: flex; }
 .slide::before {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(circle at center, rgba(15, 23, 42, 0.93) 0%, rgba(2, 6, 23, 0.98) 100%);
@@ -85,14 +84,14 @@ body {
 }
 .content {
   width: 100%; max-width: 1380px;
+  height: 100%;
   display: flex; flex-direction: column; justify-content: space-between;
   position: relative; z-index: 5;
-  flex: 1;
 }
 
 /* ===== TYPOGRAPHY & HEADER SLIDE ===== */
 .slide-header {
-  margin-bottom: 12px;
+  margin-bottom: 2px;
   flex-shrink: 0;
   text-align: center;
 }
@@ -112,10 +111,10 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 /* ===== SLIDE 1: MENU MATERI ===== */
 .material-menu {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px 32px; margin-top: 12px; width: 100%; max-width: 1000px; margin-inline: auto;
+  gap: 12px 32px; margin-top: 8px; width: 100%; max-width: 1000px; margin-inline: auto;
 }
 .menu-col { display: flex; flex-direction: column; gap: 10px; }
-.menu-item { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+.menu-item { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .menu-number {
   flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -133,15 +132,15 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 
 /* ===== LAYOUT GRAFIK & ANALISA ===== */
 .chart-layout {
-  display: flex; flex-direction: column; justify-content: space-between; gap: 12px; margin-top: 10px;
+  display: flex; flex-direction: column; height: 100%; justify-content: space-between; gap: 4px;
 }
 .curve-panel {
   background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(56, 189, 248, 0.4);
-  border-radius: 12px; padding: 10px 14px;
+  border-radius: 12px; padding: 6px 12px; flex: 0 1 auto;
   display: flex; flex-direction: column; justify-content: space-between;
-  backdrop-filter: blur(8px);
+  min-height: 110px; backdrop-filter: blur(8px);
 }
-.curve-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.curve-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
 .panel-title { font-size: 12.5px; font-weight: 900; letter-spacing: 1px; color: #fff; }
 .legend { display: flex; gap: 14px; font-size: 11.5px; font-weight: 800; }
 .legend span { display: flex; align-items: center; gap: 5px; }
@@ -150,7 +149,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 .legend-2026 { background: #38bdf8; }
 .legend-online { background: #facc15; }
 
-.curve-chart { width: 100%; height: 220px; position: relative; }
+.curve-chart { width: 100%; height: 100%; min-height: 80px; position: relative; }
 .curve-chart svg { width: 100%; height: 100%; overflow: visible; }
 .curve-grid line { stroke: rgba(255, 255, 255, 0.08) !important; stroke-width: 1 !important; }
 .curve-axis { stroke: #475569 !important; stroke-width: 1.5 !important; }
@@ -186,17 +185,18 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   background: rgba(15, 23, 42, 0.95); 
   border: 2px solid rgba(56, 189, 248, 0.45);
   border-radius: 12px; 
-  padding: 12px 18px;
+  padding: 8px 16px;
   width: 100%; 
   max-width: 1150px; 
   margin: 0 auto;
   box-shadow: 0 8px 30px rgba(0,0,0,0.7);
   backdrop-filter: blur(12px);
+  flex: 0 0 auto;
 }
 .analysis-panel .panel-title { 
   font-size: 12.5px; 
   font-weight: 900;
-  margin-bottom: 6px; 
+  margin-bottom: 4px; 
   color: #38bdf8; 
   text-align: center; 
   letter-spacing: 2px;
@@ -206,17 +206,17 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   padding: 0;
   margin: 0;
 }
 .notes-list li {
   position: relative;
   padding-left: 16px;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #e2e8f0;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 .notes-list li::before {
   content: "•";
@@ -240,7 +240,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   background: rgba(15, 23, 42, 0.92);
   border: 2px solid rgba(56, 189, 248, 0.35);
   border-radius: 12px;
-  overflow-x: auto;
+  overflow: hidden;
   box-shadow: 0 8px 30px rgba(0,0,0,0.6);
   backdrop-filter: blur(10px);
 }
@@ -249,20 +249,19 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   border-collapse: collapse;
   text-align: left;
   font-size: 12.5px;
-  min-width: 600px;
 }
 .ranking-table th {
   background: #0284c7;
   color: #fff;
   font-weight: 900;
-  padding: 9px 12px;
+  padding: 7px 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 11px;
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 .ranking-table td {
-  padding: 9px 12px;
+  padding: 7px 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   font-weight: 700;
   color: #e2e8f0;
@@ -289,7 +288,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
   border: 2px solid rgba(74, 222, 128, 0.4);
   border-radius: 12px;
-  padding: 10px 16px;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -314,7 +313,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   color: #e2e8f0;
   font-size: 11.5px;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.3;
   margin: 0;
 }
 
@@ -323,7 +322,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   background: linear-gradient(90deg, #0284c7, #2563eb);
   border: 2px solid #38bdf8;
   border-radius: 12px;
-  padding: 10px 16px;
+  padding: 8px 16px;
   text-align: center;
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
@@ -338,7 +337,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 
 .slide5-container {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 260px;
   gap: 14px;
   align-items: center;
   width: 100%;
@@ -354,23 +353,24 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   background: rgba(15, 23, 42, 0.92);
   border: 2px solid rgba(56, 189, 248, 0.4);
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 30px rgba(0,0,0,0.6);
   backdrop-filter: blur(10px);
+  height: 100%;
 }
 .slide5-target-card img {
   width: 100%;
-  max-height: 160px;
-  object-fit: cover;
+  max-height: 150px;
+  object-fit: contain;
   border-radius: 8px;
   filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.3));
 }
 .slide5-target-card span {
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 11.5px;
   font-weight: 800;
   color: #38bdf8;
@@ -379,7 +379,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   text-transform: uppercase;
 }
 
-/* ===== KHUSUS SLIDE 6: KUNJUNGAN INSTANSI ===== */
+/* ===== KHUSUS SLIDE 6: KUNJUNGAN INSTANSI (KOPERASI CLUB MED & NATA) ===== */
 .slide6-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -401,7 +401,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 }
 .koperasi-img-box {
   width: 100%;
-  height: 160px;
+  height: 150px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(56, 189, 248, 0.4);
@@ -430,18 +430,25 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   line-height: 1.35;
 }
 
-/* ===== QUICK JUMP BUTTON (FLOATING) ===== */
-.floating-top-btn {
-  position: fixed; bottom: 20px; right: 20px; z-index: 1001;
-  background: #0284c7; color: #fff; width: 42px; height: 42px;
-  border-radius: 50%; border: 2px solid #38bdf8; font-size: 16px; font-weight: 900;
-  cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
-  transition: .2s; text-decoration: none;
+/* ===== NAVIGATION & FOOTER ===== */
+.slide-number {
+  position: fixed; top: 14px; right: 24px; z-index: 1001;
+  padding: 4px 12px; border-radius: 20px; background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2); font-size: 12px; font-weight: 800; color: #38bdf8;
 }
-.floating-top-btn:hover { background: #38bdf8; transform: scale(1.1); }
+.navigation { 
+  position: fixed; right: 20px; bottom: 12px; z-index: 1001; display: flex; flex-direction: column; gap: 6px; 
+}
+.navigation button {
+  border: none; background: rgba(255, 255, 255, 0.9); color: #0f172a; width: 34px; height: 34px;
+  border-radius: 50%; font-size: 14px; font-weight: 900; cursor: pointer; transition: .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
+}
+.navigation button:hover { background: #38bdf8; color: #fff; transform: scale(1.1); }
+.progress { position: fixed; left: 0; bottom: 0; height: 3px; width: 16.66%; background: linear-gradient(90deg, #38bdf8, #2563eb); z-index: 1001; transition: width .3s; }
 .footer-text { 
-  text-align: center; padding: 16px; color: #64748b; font-size: 11px; font-weight: 700;
-  background: #020617; border-top: 1px solid rgba(255,255,255,0.05);
+  position: fixed; bottom: 6px; left: 24px; z-index: 1000; color: #64748b; font-size: 10.5px; font-weight: 700;
+  background: rgba(2, 6, 23, 0.7); padding: 2px 8px; border-radius: 4px;
 }
 
 /* ===== RESPONSIVE MOBILE ===== */
@@ -451,29 +458,36 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .header-logo { width: 24px; height: 24px; }
   .header-title { font-size: 13px; letter-spacing: 1px; }
   
-  .slide { padding: 60px 12px 30px; min-height: auto; }
+  .slide { padding: 52px 10px 30px; }
+  .slide-number { top: 10px; right: 10px; font-size: 10px; }
+  .footer-text { display: none; }
   
-  .material-menu { grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+  .material-menu { grid-template-columns: 1fr; gap: 6px; margin-top: 4px; }
+  .menu-col { gap: 6px; }
   .menu-number { width: 36px; height: 36px; flex: 0 0 36px; font-size: 14px; }
   .menu-text { height: 36px; font-size: 12px; }
   
-  .slide5-container { grid-template-columns: 1fr; gap: 10px; }
-  .slide5-target-card img { max-height: 130px; }
+  .slide5-container { grid-template-columns: 1fr; gap: 8px; }
+  .slide5-target-card img { max-height: 100px; }
   
-  .slide6-grid { grid-template-columns: 1fr; gap: 12px; }
-  .koperasi-img-box { height: 140px; }
+  .slide6-grid { grid-template-columns: 1fr; gap: 10px; }
+  .koperasi-img-box { height: 120px; }
   
-  .curve-chart { height: 180px; }
-  .analysis-panel { padding: 10px 12px; }
+  .analysis-panel { padding: 6px 10px; }
+  .analysis-panel .panel-title { font-size: 11px; }
   .notes-list li { font-size: 11px; }
   
-  .ranking-table th, .ranking-table td { padding: 7px 8px; font-size: 11px; }
-  .sdm-note-box { padding: 8px 12px; gap: 8px; }
-  .sdm-note-icon { font-size: 20px; }
-  .sdm-note-content h4 { font-size: 11px; }
-  .sdm-note-content p { font-size: 10.5px; }
+  .ranking-table th, .ranking-table td { padding: 5px 6px; font-size: 9.5px; }
+  .sdm-note-box { padding: 6px 10px; gap: 8px; }
+  .sdm-note-icon { font-size: 18px; }
+  .sdm-note-content h4 { font-size: 10.5px; }
+  .sdm-note-content p { font-size: 9.5px; }
   
-  .floating-top-btn { width: 36px; height: 36px; bottom: 16px; right: 16px; font-size: 14px; }
+  .value-2025, .value-2026, .value-online { font-size: 9px !important; stroke-width: 2px !important; }
+  .curve-panel { padding: 4px 6px; min-height: 100px; }
+  .legend { font-size: 9.5px; gap: 6px; }
+  .navigation { right: 6px; bottom: 6px; }
+  .navigation button { width: 30px; height: 30px; font-size: 12px; }
 }
 </style>
 </head>
@@ -486,29 +500,33 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   </div>
 </header>
 
+<div class="slide-number" id="slideNum">01 / 06</div>
+
 <!-- SLIDE 1: MENU UTAMA -->
-<section id="slide1" class="slide slide1">
+<section class="slide slide1 active">
   <div class="grid-bg"></div>
   <div class="content" style="justify-content: center;">
     <div class="small-title" style="text-align: center;">AGENDA PRESENTASI</div>
     <h1 style="text-align: center; margin-bottom: 10px;">MATERI PRESENTASI</h1>
     <div class="material-menu">
       <div class="menu-col">
-        <a href="#slide2" class="menu-item"><span class="menu-number">1</span><span class="menu-text">PENDAPATAN</span></a>
-        <a href="#slide3" class="menu-item"><span class="menu-number">2</span><span class="menu-text">BELANJA ONLINE</span></a>
-        <a href="#slide4" class="menu-item"><span class="menu-number">3</span><span class="menu-text">PERFORMANCE & ABSENSI SDM</span></a>
+        <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">1</span><span class="menu-text">PENDAPATAN</span></div>
+        <div class="menu-item" onclick="showSlide(1)"><span class="menu-number">2</span><span class="menu-text">PERBANDINGAN PENDAPATAN</span></div>
+        <div class="menu-item" onclick="showSlide(4)"><span class="menu-number">5</span><span class="menu-text">VISI PROKER (ONLINE)</span></div>
+     <div class="menu-item" onclick="showSlide(2)"><span class="menu-number">3</span><span class="menu-text">BELANJA ONLINE</span></div>
       </div>
       <div class="menu-col">
-        <a href="#slide5" class="menu-item"><span class="menu-number">4</span><span class="menu-text">VISI PROKER (ONLINE)</span></a>
-        <a href="#slide6" class="menu-item"><span class="menu-number">5</span><span class="menu-text">KUNJUNGAN KOPERASI & INSTANSI</span></a>
-        <a href="#slide1" class="menu-item"><span class="menu-number">↺</span><span class="menu-text">KEMBALI KE ATAS</span></a>
+        <div class="menu-item" onclick="showSlide(2)"><span class="menu-number">3</span><span class="menu-text">BELANJA ONLINE</span></div>
+        <div class="menu-item" onclick="showSlide(3)"><span class="menu-number">4</span><span class="menu-text">PERFORMANCE & ABSENSI SDM</span></div>
+        <div class="menu-item" onclick="showSlide(5)"><span class="menu-number">6</span><span class="menu-text">KUNJUNGAN KOPERASI & INSTANSI</span></div>
+     <div class="menu-item" onclick="showSlide(5)"><span class="menu-number">6</span><span class="menu-text">Distribusi informasi</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SLIDE 2: GRAFIK PENDAPATAN -->
-<section id="slide2" class="slide slide2">
+<section class="slide slide2">
   <div class="grid-bg"></div>
   <div class="content">
     <div class="slide-header">
@@ -517,6 +535,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     </div>
     
     <div class="chart-layout">
+      <!-- GRAFIK CURVE PENDAPATAN -->
       <div class="curve-panel">
         <div class="curve-head">
           <div class="panel-title">PERTUMBUHAN CURVE REAL (JUTA RUPIAH)</div>
@@ -592,6 +611,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
         </div>
       </div>
 
+      <!-- CATATAN ANALISA SLIDE 2 -->
       <div class="analysis-panel">
         <div class="panel-title">Catatan Highlight Analisa Performa 2026</div>
         <ul class="notes-list">
@@ -605,15 +625,16 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 </section>
 
 <!-- SLIDE 3: BELANJA ONLINE -->
-<section id="slide3" class="slide slide3">
+<section class="slide slide3">
   <div class="grid-bg"></div>
   <div class="content">
     <div class="slide-header">
-      <div class="small-title">MATERI 02 • TREN TRANSAKSI DIGITAL</div>
+      <div class="small-title">MATERI 03 • TREN TRANSAKSI DIGITAL</div>
       <h2>🛒 <span class="highlight">BELANJA ONLINE</span> (COD, OJOL & E-COMMERCE)</h2>
     </div>
 
     <div class="chart-layout">
+      <!-- GRAFIK CURVE BELANJA ONLINE -->
       <div class="curve-panel">
         <div class="curve-head">
           <div class="panel-title">TREN TRANSAKSI ONLINE BULANAN (JUMLAH TRANSAKSI)</div>
@@ -685,6 +706,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
         </div>
       </div>
 
+      <!-- CATATAN ANALISA SLIDE 3 -->
       <div class="analysis-panel">
         <div class="panel-title">Catatan Highlight Analisa Belanja Online</div>
         <ul class="notes-list">
@@ -698,14 +720,15 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 </section>
 
 <!-- SLIDE 4: PERFORMANCE & ABSENSI SDM -->
-<section id="slide4" class="slide slide4">
+<section class="slide slide4">
   <div class="grid-bg"></div>
   <div class="content" style="justify-content: space-around;">
     <div class="slide-header" style="margin-bottom: 0;">
-      <div class="small-title">MATERI 03 • EVALUASI KINERJA & ABSENSI SDM</div>
+      <div class="small-title">MATERI 04 • EVALUASI KINERJA & ABSENSI SDM</div>
       <h2>📋 <span class="highlight">PERINGKAT ABSENSI & KINERJA TIM</span></h2>
     </div>
 
+    <!-- TABEL RANKING ABSENSI -->
     <div class="table-container">
       <table class="ranking-table">
         <thead>
@@ -759,95 +782,1142 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
           <tr>
             <td style="text-align: center;"><span class="rank-badge rank-other">5</span></td>
             <td>Ni Nengah Nastiti Dwiarini</td>
-            <td style="text-align: center;">245,60</td>
-            <td style="text-align: center;">26</td>
+            <td style="text-align: center;">255,63</td>
+            <td style="text-align: center;">25</td>
             <td style="text-align: center;">4x</td>
+            <td style="text-align: center;">2x</td>
+            <td style="text-align: center; color: #4ade80;">-</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="rank-badge rank-other">6</span></td>
+            <td>Apolonaris Antariksa</td>
+            <td style="text-align: center;">251,54</td>
+            <td style="text-align: center;">26</td>
+            <td style="text-align: center;">5x</td>
             <td style="text-align: center;">-</td>
+            <td style="text-align: center; color: #4ade80;">-</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="rank-badge rank-other">7</span></td>
+            <td>I Nengah Wardika</td>
+            <td style="text-align: center;">238,52</td>
+            <td style="text-align: center;">24</td>
+            <td style="text-align: center;">4X</td>
+            <td style="text-align: center;">3X</td>
+            <td style="text-align: center; color: #4ade80;">-</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;"><span class="rank-badge rank-other">8</span></td>
+            <td>I Nengah Budiastawan</td>
+            <td style="text-align: center;">231,68</td>
+            <td style="text-align: center;">23</td>
+            <td style="text-align: center;">5X</td>
+            <td style="text-align: center;">3x</td>
             <td style="text-align: center; color: #4ade80;">-</td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <!-- CATATAN KHUSUS SDM -->
     <div class="sdm-note-box">
-      <div class="sdm-note-icon">💡</div>
+      <div class="sdm-note-icon">✨</div>
       <div class="sdm-note-content">
-        <h4>Catatan Evaluasi SDM & Kedisiplinan</h4>
-        <p>Konsistensi tingkat kehadiran dan kedisiplinan karyawan menjadi fondasi utama dalam menjaga standar kualitas pelayanan toko serta pemenuhan target operasional harian secara keseluruhan.</p>
+        <h4>Catatan Khusus SDM & Lingkungan Kerja</h4>
+        <p>Seluruh anggota tim <strong>NILAI ABSENSI ZERO SAKIT (-)</strong>. Seluruh SDM bekerja dengan penuh kebahagiaan (<i>happy</i>), kompak, harmonis, serta murni tanpa ada rasa benci atau beban di lingkungan kerja.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 5: VISI PROKER -->
-<section id="slide5" class="slide slide5">
+<!-- SLIDE 5: VISI PROKER & TARGET IMAGE -->
+<section class="slide slide5">
   <div class="grid-bg"></div>
-  <div class="content" style="justify-content: space-around;">
-    <div class="slide-header" style="margin-bottom: 0;">
-      <div class="small-title">MATERI 04 • STRATEGI & PENGEMBANGAN</div>
-      <h2>🎯 <span class="highlight">VISI PROKER & TARGET TAHUNAN</span></h2>
-    </div>
-
+  <div class="content" style="justify-content: center; gap: 14px;">
+    
+    <!-- BANNER VISI PROKER -->
     <div class="proker-banner">
-      <h3>Fokus Utama: <span>Ekspansi Pasar Digital & Peningkatan Layanan Pelanggan</span></h3>
+      <h3>VISI PROKER : <span>PENINGKATAN QTY PELANGGAN MENGEDEPANKAN BELANJA ONLINE</span></h3>
     </div>
 
     <div class="slide5-container">
       <div class="slide5-left">
-        <div class="analysis-panel" style="max-width: none;">
-          <div class="panel-title">Langkah Strategis Program Kerja</div>
-          <ul class="notes-list">
-            <li><strong>Digitalisasi Menyeluruh:</strong> Optimalisasi platform e-commerce dan integrasi marketplace untuk memperluas jangkauan area pemasaran di Bali.</li>
-            <li><strong>Peningkatan Kualitas SDM:</strong> Pelatihan berkala terkait pelayanan pelanggan, manajemen inventaris, dan kecepatan respons pesanan online.</li>
-            <li><strong>Sinergi B2B & Korporat:</strong> Memperluas kerja sama pengadaan perangkat komputer dengan instansi pemerintah, koperasi, dan institusi pendidikan.</li>
-          </ul>
+        <div class="slide-header" style="text-align: left; margin-bottom: 2px;">
+          <h2>🎯 <span class="highlight">VISI UTAMA & CAPAIAN</span></h2>
+        </div>
+
+        <!-- TABEL VISI UTAMA & CAPAIAN -->
+        <div class="table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th style="width: 40px; text-align: center;" rowspan="2">No</th>
+                <th style="width: 190px;" rowspan="2">Program Kerja</th>
+                <th rowspan="2">Indikator</th>
+                <th style="width: 60px; text-align: center;" rowspan="2">Baseline</th>
+                <th style="width: 60px; text-align: center;" rowspan="2">Target</th>
+                <th style="text-align: center;" colspan="3">Capaian</th>
+              </tr>
+              <tr>
+                <th style="text-align: center; background: #0369a1;">Juli</th>
+                <th style="text-align: center; background: #0369a1;">Agustus</th>
+                <th style="text-align: center; background: #0369a1;">September</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: center; font-weight: 900;">1</td>
+                <td><strong>Peningkatan Qty pelanggan mengedepankan belanja online</strong></td>
+                <td>Meningkatnya kunjungan</td>
+                <td style="text-align: center; font-weight: 900; color: #38bdf8;">42</td>
+                <td style="text-align: center; font-weight: 900; color: #facc15;">55</td>
+                <td style="text-align: center; font-weight: 900;">43</td>
+                <td style="text-align: center; font-weight: 900;">43</td>
+                <td style="text-align: center; color: #94a3b8;">-</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
+      <!-- KOTAK GAMBAR TARGET.PNG -->
       <div class="slide5-target-card">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Target & Growth">
-        <span>Target Pertumbuhan 2026/2027</span>
+        <img src="target.png" alt="Target Archery" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80'">
+        <span>🎯 TARGET & STRATEGI</span>
       </div>
     </div>
+
+    <!-- FOKUS PERBAIKAN -->
+    <div class="sdm-note-box" style="border-color: rgba(56, 189, 248, 0.5);">
+      <div class="sdm-note-icon">💡</div>
+      <div class="sdm-note-content">
+        <h4 style="color: #38bdf8;">Fokus Perbaikan</h4>
+        <p>Meningkatkan aktivitas belanja online melalui distribusi informasi produk, promo, harga, stok, dan <i>follow-up</i> pelanggan secara lebih aktif agar belanja online dapat meningkatkan jumlah pelanggan sekaligus mengimbangi perubahan perilaku pelanggan yang semakin memilih berbelanja secara digital.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- SLIDE 6: KUNJUNGAN KOPERASI & INSTANSI -->
-<section id="slide6" class="slide slide6">
+<section class="slide slide6">
   <div class="grid-bg"></div>
-  <div class="content" style="justify-content: space-around;">
-    <div class="slide-header" style="margin-bottom: 0;">
-      <div class="small-title">MATERI 05 • RELASI & KEMITRAAN</div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 06 • RELASI B2B & KEMITRAAN</div>
       <h2>🤝 <span class="highlight">KUNJUNGAN KOPERASI & INSTANSI</span></h2>
     </div>
 
     <div class="slide6-grid">
+      <!-- Card 1 -->
       <div class="koperasi-card">
         <div class="koperasi-img-box">
-          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Kunjungan Koperasi">
+          <img src="koperasi2.jpeg" alt="Club Med Bali">
+          <div class="img-overlay"></div>
         </div>
         <div class="koperasi-info">
-          <h3>🏢 Kemitraan Koperasi</h3>
-          <p>Memperkuat jejaring kerja sama pengadaan barang dan sistem pembayaran fleksibel bagi anggota koperasi di wilayah Bali dan sekitarnya.</p>
+          <span class="badge">Resort Partner</span>
+          <h3>🌴 Koperasi Club Med Bali</h3>
+          <p>Kunjungan strategis dalam rangka menjajaki kerja sama penyediaan perangkat IT, komputer, serta pemeliharaan hardware secara berkala bagi karyawan dan fasilitas resort.</p>
         </div>
       </div>
 
+      <!-- Card 2 -->
       <div class="koperasi-card">
         <div class="koperasi-img-box">
-          <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=800&q=80" alt="Kunjungan Instansi">
+          <img src="koperasi.jpeg" alt="Instansi Nata">
+          <div class="img-overlay"></div>
         </div>
         <div class="koperasi-info">
-          <h3>🏛️ Kolaborasi Instansi</h3>
-          <p>Penjajakan peluang pengadaan perangkat keras (hardware) dan pemeliharaan infrastruktur IT instansi pemerintah maupun swasta secara berkala.</p>
+          <span class="badge">Corporate Partner</span>
+          <h3>🏢 Instansi / Koperasi Nata</h3>
+          <p>Diskusi kolaborasi pengadaan inventaris kantor dan solusi perangkat komputer untuk mendukung digitalisasi serta efisiensi operasional administratif instansi.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="footer-text">Norton Bali Computer © 2026 • Executive Presentation</div>
+<!-- CSS KHUSUS SLIDE 6 -->
+<style>
+  .slide6 .slide6-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
 
-<!-- FLOATING TOP BUTTON -->
-<a href="#slide1" class="floating-top-btn" title="Kembali ke Atas">▲</a>
+  .slide6 .koperasi-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
 
+  .slide6 .koperasi-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .slide6 .koperasi-img-box {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .slide6 .koperasi-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .slide6 .koperasi-card:hover .koperasi-img-box img {
+    transform: scale(1.08);
+  }
+
+  .slide6 .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .slide6 .koperasi-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .slide6 .badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.8rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border-radius: 50px;
+  }
+
+  .slide6 .koperasi-info h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .slide6 .koperasi-info p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .slide6 .slide6-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+  <!-- SLIDE 7: DISTRIBUSI INFORMASI & SEKOLAH -->
+<section class="slide slide7">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 07 • DISTRIBUSI & EDUKASI PUBLIK</div>
+      <h2>📢 <span class="highlight">DISTRIBUSI INFORMASI & SEKOLAH</span></h2>
+    </div>
+
+    <div class="slide7-grid">
+      <!-- Card 1: Video -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="video.mp4" autoplay loop muted playsinline></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Penyebaran Brosur
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🚦 Flayering Video di Lampu Merah</h3>
+          <p>Strategi distribusi informasi visual langsung ke masyarakat melalui media videotron/layar di titik-titik strategis lampu merah untuk jangkauan audiens yang luas.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Foto Sekolah -->
+      <div class="media-card">
+        <div class="media-box">
+          <img src="sekolah.jpeg" alt="SMA 1 Kuta">
+          <div class="img-overlay"></div>
+          <div class="media-badge">Edukasi & Sosialisasi</div>
+        </div>
+        <div class="media-info">
+          <h3>🏫 Kunjungan Edukasi ke SMA 1 Kuta</h3>
+          <p>Kegiatan sosialisasi dan pengenalan program langsung kepada siswa-siswi di sekolah guna membangun brand awareness dan edukasi teknologi sejak dini.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 7 (DI PERBAIKI & DIPERCANTIK) -->
+<style>
+  .slide7 .slide7-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 12px;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  .slide7 .media-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.6));
+    border: 1.5px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+  }
+
+  .slide7 .media-card:hover {
+    transform: translateY(-6px);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
+  }
+
+  .slide7 .media-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #020617;
+  }
+
+  .slide7 .media-box img,
+  .slide7 .media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s ease;
+  }
+
+  .slide7 .media-card:hover .media-box img,
+  .slide7 .media-card:hover .media-box video {
+    transform: scale(1.05);
+  }
+
+  .slide7 .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide7 .media-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    color: #38bdf8;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+
+  /* Indikator titik berdenyut untuk kesan live/aktif pada video */
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #38bdf8; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  .slide7 .media-info {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .slide7 .media-info h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide7 .media-info p {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 850px) {
+    .slide7 .slide7-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .slide7 .media-box {
+      height: 160px;
+    }
+    .slide7 .media-info {
+      padding: 12px 14px;
+    }
+  }
+</style>
+<!-- SLIDE 8: NORTON BALI COMPUTER BERTRANSFORMASI -->
+<section class="slide slide8">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 08 • DIGITAL TRANSFORMATION</div>
+      <h2>🚀 <span class="highlight">NORTON BALI COMPUTER BERTRANSFORMASI</span></h2>
+      <p class="slide-subtitle">Evolusi layanan dari konvensional (offline) menuju ekosistem digital untuk kemudahan pelanggan.</p>
+    </div>
+
+    <div class="slide8-grid">
+      <!-- Card 1: Video COD & Setting di Lokasi -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="Video1.mp4" autoplay loop muted playsinline controls></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Layanan Langsung
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🛠️ COD & Setting di Lokasi</h3>
+          <p>Memberikan pengalaman belanja terbaik melalui layanan Cash on Delivery (COD) langsung ke tempat pelanggan, disertai instalasi dan pengaturan perangkat langsung di lokasi.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Video Belanja Online Lewat Ojol -->
+      <div class="media-card">
+        <div class="media-box">
+          <video src="video2.mp4" autoplay loop muted playsinline controls></video>
+          <div class="media-badge">
+            <span class="pulse-dot"></span> Pengiriman Cepat
+          </div>
+        </div>
+        <div class="media-info">
+          <h3>🛵 Belanja Online Lewat Ojol</h3>
+          <p>Integrasi pengiriman instan bekerja sama dengan layanan ojek online untuk memastikan produk pesanan cepat sampai dengan aman dan efisien langsung ke tangan pembeli.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 8 -->
+<style>
+  .slide8 .slide-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .slide8 .slide8-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px; /* Jarak antar kartu diperlebar */
+    margin-top: 16px;
+    width: 100%;
+    max-width: 1350px; /* Lebar keseluruhan grid diperbesar maksimal agar memenuhi layar */
+    margin-inline: auto;
+  }
+
+  .slide8 .media-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.6));
+    border: 1.5px solid rgba(56, 189, 248, 0.25);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+  }
+
+  .slide8 .media-card:hover {
+    transform: translateY(-6px);
+    border-color: #38bdf8;
+    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
+  }
+
+  .slide8 .media-box {
+    position: relative;
+    width: 100%;
+    height: 280px; /* Tinggi video tetap pas */
+    overflow: hidden;
+    background: #020617; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide8 .media-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    object-position: center;
+    z-index: 1;
+  }
+
+  .slide8 .media-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    color: #38bdf8;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    pointer-events: none; 
+  }
+
+  .slide8 .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #38bdf8;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #38bdf8; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  .slide8 .media-info {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .slide8 .media-info h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide8 .media-info p {
+    font-size: 12.5px;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 850px) {
+    .slide8 .slide8-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .slide8 .media-box {
+      height: 210px;
+    }
+    .slide8 .media-info {
+      padding: 14px 16px;
+    }
+  }
+</style>
+<!-- SLIDE 9: SDM UNGGUL (PERBEDAAN SDM MAJU DAN MUNDUR) -->
+<section class="slide slide9">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <div class="slide-header">
+      <div class="small-title">MATERI 09 • HUMAN RESOURCES & MINDSET</div>
+      <h2>💡 <span class="highlight">SDM UNGGUL: MAJU VS MUNDUR</span></h2>
+      <p class="slide-subtitle">Transformasi kualitas sumber daya manusia sebagai fondasi utama kesuksesan bisnis digital.</p>
+    </div>
+
+    <div class="slide9-grid">
+      <!-- Card 1: SDM Maju (Progresif) -->
+      <div class="sdm-card maju">
+        <div class="sdm-img-box">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="SDM Maju Progresif">
+          <div class="sdm-badge maju-badge">
+            <span class="pulse-dot"></span> Progresif & Solutif
+          </div>
+        </div>
+
+        <div class="sdm-content">
+          <div class="sdm-header">
+            <div class="sdm-icon">🌟</div>
+            <h3>SDM Maju (Progresif)</h3>
+          </div>
+          <ul class="sdm-list">
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Growth Mindset:</strong> Selalu haus akan ilmu baru, adaptif terhadap teknologi, dan melihat tantangan sebagai peluang.
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Inisiatif & Solutif:</strong> Proaktif mencari jalan keluar saat menghadapi masalah tanpa harus menunggu instruksi.
+              </div>
+            </li>
+            <li>
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Orientasi Hasil & Kualitas:</strong> Bekerja dengan standar tinggi, efisien, dan bertanggung jawab penuh pada target.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2: SDM Mundur (Stagnan) -->
+      <div class="sdm-card mundur">
+        <div class="sdm-img-box">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="SDM Mundur Stagnan">
+          <div class="sdm-badge mundur-badge">
+            <span class="pulse-dot-red"></span> Stagnan & Pasif
+          </div>
+        </div>
+
+        <div class="sdm-content">
+          <div class="sdm-header">
+            <div class="sdm-icon">⚠️</div>
+            <h3>SDM Mundur (Stagnan)</h3>
+          </div>
+          <ul class="sdm-list">
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Fixed Mindset:</strong> Cepat puas, enggan belajar hal baru, dan menolak perubahan sistem digital yang masuk.
+              </div>
+            </li>
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Pasif & Menunggu:</strong> Hanya bekerja sebatas menggugurkan kewajiban dan minim inisiatif dalam operasional.
+              </div>
+            </li>
+            <li>
+              <span class="cross-icon">✕</span>
+              <div>
+                <strong>Mental Menyalahkan:</strong> Sering mencari alasan, menyalahkan situasi atau rekan kerja saat terjadi kendala.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 9 -->
+<style>
+  .slide9 .slide-subtitle {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .slide9 .slide9-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 14px;
+    width: 100%;
+    max-width: 1250px;
+    margin-inline: auto;
+  }
+
+  .slide9 .sdm-card {
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .slide9 .sdm-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .slide9 .sdm-card.maju {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(14, 116, 144, 0.35));
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+  }
+  .slide9 .sdm-card.maju:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
+  }
+
+  .slide9 .sdm-card.mundur {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(153, 27, 27, 0.25));
+    border: 1.5px solid rgba(248, 113, 113, 0.3);
+  }
+  .slide9 .sdm-card.mundur:hover {
+    border-color: #f87171;
+    box-shadow: 0 15px 35px rgba(248, 113, 113, 0.15);
+  }
+
+  .slide9 .sdm-img-box {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide9 .sdm-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+
+  .slide9 .sdm-card:hover .sdm-img-box img {
+    transform: scale(1.05);
+  }
+
+  .slide9 .sdm-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  .slide9 .maju-badge {
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  .slide9 .mundur-badge {
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+  }
+
+  .slide9 .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #38bdf8;
+  }
+
+  .slide9 .pulse-dot-red {
+    width: 6px;
+    height: 6px;
+    background-color: #f87171;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #f87171;
+  }
+
+  .slide9 .sdm-content {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .slide9 .sdm-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+  }
+
+  .slide9 .sdm-icon {
+    font-size: 20px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .slide9 .sdm-header h3 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .slide9 .sdm-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slide9 .sdm-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  .slide9 .check-icon {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .slide9 .cross-icon {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.15);
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .slide9 .sdm-list strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  @media (max-width: 850px) {
+    .slide9 .slide9-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .slide9 .sdm-img-box {
+      height: 140px;
+    }
+  }
+</style>
+  <!-- SLIDE 10: PENUTUP / TERIMA KASIH -->
+<section class="slide slide10">
+  <div class="grid-bg"></div>
+  <div class="glow-effect"></div>
+  <div class="content closing-content">
+    
+    <!-- Logo NBC Besar di Tengah -->
+    <div class="closing-logo-container">
+      <!-- Ubah src di bawah dengan path logo NBC Anda (misal: logo.png) -->
+      <img src="nbc-removebg-preview.png" alt="NBC Logo" class="closing-logo">
+      <div class="logo-ring"></div>
+    </div>
+
+    <!-- Teks Penutup -->
+    <div class="closing-text">
+      <div class="small-title">THANK YOU • NORTON BALI COMPUTER</div>
+      <h2>Terima <span class="highlight">Kasih</span></h2>
+      <p class="closing-subtitle">Transformasi Digital, Kolaborasi Solid, Menuju Masa Depan Bisnis yang Lebih Unggul.</p>
+    </div>
+
+    <!-- Informasi Kontak / Footer Singkat -->
+    <div class="closing-contact">
+      <div class="contact-item">
+        <span>📍</span> Jimbaran, Badung, Bali
+      </div>
+      <div class="contact-item">
+        <span>🌐</span> www.nortonbalicomputer.com
+      </div>
+      <div class="contact-item">
+        <span>📱</span> Official Support & Partner
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CSS KHUSUS SLIDE 10 -->
+<style>
+  .slide10 {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide10 .closing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+    gap: 24px;
+    z-index: 2;
+  }
+
+  /* Efek Cahaya / Glow di Tengah Belakang Logo */
+  .slide10 .glow-effect {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+    z-index: 1;
+    pointer-events: none;
+    animation: slowGlow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowGlow {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+
+  /* Kontainer Logo NBC Besar */
+  .slide10 .closing-logo-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.7));
+    border: 2px solid rgba(56, 189, 248, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
+    z-index: 2;
+    margin-bottom: 4px;
+  }
+
+  .slide10 .closing-logo {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+
+  /* Lingkaran Animasi Keliling Logo */
+  .slide10 .logo-ring {
+    position: absolute;
+    inset: -8px;
+    border: 2px dashed rgba(56, 189, 248, 0.35);
+    border-radius: 50%;
+    animation: rotateRing 20s linear infinite;
+  }
+
+  @keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Teks Utama */
+  .slide10 .closing-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .slide10 h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .slide10 .closing-subtitle {
+    font-size: 1rem;
+    color: #94a3b8;
+    max-width: 650px;
+    margin: 0 auto;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Baris Kontak / Footer */
+  .slide10 .closing-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+  }
+
+  .slide10 .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    font-weight: 600;
+  }
+
+  .slide10 .contact-item span {
+    font-size: 1rem;
+  }
+
+  /* Responsif Mobile */
+  @media (max-width: 768px) {
+    .slide10 .closing-logo-container {
+      width: 110px;
+      height: 110px;
+    }
+    .slide10 .closing-logo {
+      width: 65px;
+      height: 65px;
+    }
+    .slide10 h2 {
+      font-size: 2rem;
+    }
+    .slide10 .closing-subtitle {
+      font-size: 0.9rem;
+      padding-inline: 16px;
+    }
+    .slide10 .closing-contact {
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 16px;
+      width: 90%;
+    }
+  }
+</style>
+<div class="footer-text">Norton Bali Computer • Bali Global Group</div>
+<div class="navigation">
+  <button onclick="previousSlide()" title="Sebelumnya (Slide Atas)">▲</button>
+  <button onclick="nextSlide()" title="Berikutnya (Slide Bawah)">▼</button>
+</div>
+<div class="progress" id="progress"></div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+const progress = document.getElementById("progress");
+const slideNum = document.getElementById("slideNum");
+
+function showSlide(index) {
+  if (index < 0) index = 0;
+  if (index >= slides.length) index = slides.length - 1;
+  
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+  
+  currentSlide = index;
+  progress.style.width = ((currentSlide + 1) / slides.length * 100) + "%";
+  slideNum.innerText = (currentSlide + 1 < 10 ? "0" : "") + (currentSlide + 1) + " / " + slides.length;
+}
+
+function nextSlide() { 
+  if (currentSlide < slides.length - 1) {
+    showSlide(currentSlide + 1);
+  }
+}
+
+function previousSlide() {
+  if (currentSlide > 0) {
+    showSlide(currentSlide - 1);
+  }
+}
+
+// Keyboard Navigation Support
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown" || e.key === "ArrowRight" || e.key === "PageDown") {
+    nextSlide();
+  } else if (e.key === "ArrowUp" || e.key === "ArrowLeft" || e.key === "PageUp") {
+    previousSlide();
+  }
+});
+
+// Inisialisasi awal
+showSlide(currentSlide);
+</script>
 </body>
 </html>
