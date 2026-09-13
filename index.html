@@ -1605,7 +1605,7 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     }
   }
 </style>
-  <!-- SLIDE 10: PENUTUP / TERIMA KASIH -->
+ <!-- SLIDE 10: PENUTUP / TERIMA KASIH -->
 <section class="slide slide10">
   <div class="grid-bg"></div>
   <div class="glow-effect"></div>
@@ -1613,7 +1613,6 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     
     <!-- Logo NBC Besar di Tengah -->
     <div class="closing-logo-container">
-      <!-- Ubah src di bawah dengan path logo NBC Anda (misal: logo.png) -->
       <img src="nbc-removebg-preview.png" alt="NBC Logo" class="closing-logo">
       <div class="logo-ring"></div>
     </div>
@@ -1628,20 +1627,38 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     <!-- Informasi Kontak / Footer Singkat -->
     <div class="closing-contact">
       <div class="contact-item">
-        <span>📍</span> Jimbaran, Badung, Bali
+        <span>📍</span> Jimbaran Jln. Uluwatu 2, Badung, Bali
       </div>
       <div class="contact-item">
-        <span>🌐</span> www.nortonbalicomputer.com
+        <span>🌐</span> www.nortonbali.com
       </div>
       <div class="contact-item">
-        <span>📱</span> Official Support & Partner
+        <span>📱</span> 0811-3979-127
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- CSS KHUSUS SLIDE 10 -->
+<!-- KOTAK SARAN & KRITIK DI POJOK KANAN BAWAH -->
+<div class="feedback-widget" id="feedbackWidget">
+  <button class="feedback-toggle" onclick="toggleFeedback()" title="Beri Saran & Kritik">
+    💬 <span class="feedback-label">Saran & Kritik</span>
+  </button>
+  <div class="feedback-popup" id="feedbackPopup">
+    <div class="feedback-header">
+      <h4>💡 Masukan Presentasi</h4>
+      <button onclick="toggleFeedback()" class="close-btn">&times;</button>
+    </div>
+    <div class="feedback-body">
+      <p>Bagaimana materi dan tampilan presentasi Norton Bali Computer ini?</p>
+      <textarea id="feedbackText" placeholder="Tuliskan saran, kritik, atau masukan Anda di sini..."></textarea>
+      <button onclick="submitFeedback()" class="feedback-submit-btn">Kirim Masukan</button>
+    </div>
+  </div>
+</div>
+
+<!-- CSS GLOBAL & KOTAK SARAN KRITIK -->
 <style>
   .slide10 {
     position: relative;
@@ -1657,11 +1674,10 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     height: 100%;
     max-width: 900px;
     margin-inline: auto;
-    gap: 24px;
+    gap: 20px;
     z-index: 2;
   }
 
-  /* Efek Cahaya / Glow di Tengah Belakang Logo */
   .slide10 .glow-effect {
     position: absolute;
     top: 40%;
@@ -1680,11 +1696,10 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
   }
 
-  /* Kontainer Logo NBC Besar */
   .slide10 .closing-logo-container {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1693,17 +1708,15 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     border-radius: 50%;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
     z-index: 2;
-    margin-bottom: 4px;
   }
 
   .slide10 .closing-logo {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
   }
 
-  /* Lingkaran Animasi Keliling Logo */
   .slide10 .logo-ring {
     position: absolute;
     inset: -8px;
@@ -1717,16 +1730,15 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     100% { transform: rotate(360deg); }
   }
 
-  /* Teks Utama */
   .slide10 .closing-text {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     z-index: 2;
   }
 
   .slide10 h2 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 900;
     color: #fff;
     margin: 0;
@@ -1734,23 +1746,21 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   }
 
   .slide10 .closing-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #94a3b8;
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
-  /* Baris Kontak / Footer */
   .slide10 .closing-contact {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
-    margin-top: 10px;
-    padding: 12px 24px;
+    padding: 10px 20px;
     background: rgba(15, 23, 42, 0.6);
     border: 1px solid rgba(56, 189, 248, 0.2);
     border-radius: 30px;
@@ -1761,47 +1771,167 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   .slide10 .contact-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
+    gap: 6px;
+    font-size: 0.8rem;
     color: #cbd5e1;
     font-weight: 600;
   }
 
-  .slide10 .contact-item span {
-    font-size: 1rem;
+  /* --- STYLING WIDGET SARAN & KRITIK (POJOK KANAN BAWAH) --- */
+  .feedback-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
   }
 
-  /* Responsif Mobile */
+  .feedback-toggle {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #fff;
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .feedback-toggle:hover {
+    background: linear-gradient(135deg, #0369a1, #0284c7);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(56, 189, 248, 0.3);
+  }
+
+  .feedback-popup {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    width: 300px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    animation: fadeInUp 0.3s ease;
+  }
+
+  .feedback-popup.active {
+    display: block;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .feedback-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(30, 41, 59, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .feedback-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .close-btn:hover { color: #fff; }
+
+  .feedback-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feedback-body p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+
+  .feedback-body textarea {
+    width: 100%;
+    height: 80px;
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 8px;
+    color: #fff;
+    font-size: 0.8rem;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .feedback-body textarea:focus {
+    border-color: #38bdf8;
+  }
+
+  .feedback-submit-btn {
+    background: #38bdf8;
+    color: #020617;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .feedback-submit-btn:hover {
+    background: #7dd3fc;
+  }
+
   @media (max-width: 768px) {
-    .slide10 .closing-logo-container {
-      width: 110px;
-      height: 110px;
+    .feedback-widget {
+      bottom: 16px;
+      right: 16px;
     }
-    .slide10 .closing-logo {
-      width: 65px;
-      height: 65px;
+    .feedback-label {
+      display: none; /* Sembunyikan teks di HP, tampilkan ikon saja agar rapi */
     }
-    .slide10 h2 {
-      font-size: 2rem;
+    .feedback-toggle {
+      padding: 10px;
+      border-radius: 50%;
     }
-    .slide10 .closing-subtitle {
-      font-size: 0.9rem;
-      padding-inline: 16px;
-    }
-    .slide10 .closing-contact {
-      flex-direction: column;
-      gap: 10px;
-      border-radius: 16px;
-      width: 90%;
+    .feedback-popup {
+      width: 260px;
+      right: -20px;
     }
   }
 </style>
+
+<!-- Footer & Navigasi Bawaan -->
 <div class="footer-text">Norton Bali Computer • Bali Global Group</div>
 <div class="navigation">
   <button onclick="previousSlide()" title="Sebelumnya (Slide Atas)">▲</button>
   <button onclick="nextSlide()" title="Berikutnya (Slide Bawah)">▼</button>
 </div>
 <div class="progress" id="progress"></div>
+<!-- Tambahan elemen slideNum agar JS berfungsi normal -->
+<div id="slideNum" style="display:none;"></div>
 
 <script>
 let currentSlide = 0;
@@ -1818,7 +1948,9 @@ function showSlide(index) {
   
   currentSlide = index;
   progress.style.width = ((currentSlide + 1) / slides.length * 100) + "%";
-  slideNum.innerText = (currentSlide + 1 < 10 ? "0" : "") + (currentSlide + 1) + " / " + slides.length;
+  if(slideNum) {
+    slideNum.innerText = (currentSlide + 1 < 10 ? "0" : "") + (currentSlide + 1) + " / " + slides.length;
+  }
 }
 
 function nextSlide() { 
@@ -1831,6 +1963,23 @@ function previousSlide() {
   if (currentSlide > 0) {
     showSlide(currentSlide - 1);
   }
+}
+
+// Fungsi Interaktif Kotak Saran & Kritik
+function toggleFeedback() {
+  const popup = document.getElementById("feedbackPopup");
+  popup.classList.toggle("active");
+}
+
+function submitFeedback() {
+  const text = document.getElementById("feedbackText").value.trim();
+  if(!text) {
+    alert("Silakan tuliskan masukan Anda terlebih dahulu.");
+    return;
+  }
+  alert("Terima kasih! Saran & kritik Anda telah direkam.");
+  document.getElementById("feedbackText").value = "";
+  toggleFeedback();
 }
 
 // Keyboard Navigation Support
