@@ -1381,82 +1381,45 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 <!-- SLIDE 9: SDM SURVIVE & ADAPTIF -->
 <section class="slide slide9">
   <div class="grid-bg"></div>
-  <div class="content">
-    <div class="slide-header">
+  <div class="content" style="justify-content: center;">
+    <div class="slide-header" style="margin-bottom: 12px;">
       <div class="small-title">MATERI 09 • HUMAN RESOURCES & MINDSET</div>
       <h2>💡 <span class="highlight">SDM SURVIVE & ADAPTIF DI ERA DIGITAL</span></h2>
-      <p class="slide-subtitle">Transformasi kualitas sumber daya manusia agar tidak hanya bertahan, tetapi juga berkembang pesat.</p>
+      <p class="slide-subtitle">Fondasi kualitas sumber daya manusia agar tidak hanya bertahan, tetapi juga berkembang pesat.</p>
     </div>
 
-    <div class="slide9-grid">
-      <!-- Card 1: SDM Survive & Unggul (Progresif) -->
+    <div class="slide9-single-grid">
+      <!-- Card: SDM Survive & Unggul (Progresif) -->
       <div class="sdm-card maju">
         <div class="sdm-img-box">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="SDM Survive & Adaptif">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="SDM Survive & Adaptif">
           <div class="sdm-badge maju-badge">
-            <span class="pulse-dot"></span> Survive & Unggul
+            <span class="pulse-dot"></span> Standar SDM Unggul & Survive
           </div>
         </div>
 
         <div class="sdm-content">
           <div class="sdm-header">
             <div class="sdm-icon">🌟</div>
-            <h3>SDM Siap Survive (Progresif)</h3>
+            <h3>Karakter Utama SDM Survive & Progresif</h3>
           </div>
           <ul class="sdm-list">
             <li>
               <span class="check-icon">✓</span>
               <div>
-                <strong>Belajar Sepanjang Hidup:</strong> Meneladani filosofi Mahatma Gandhi, selalu haus akan ilmu baru, rendah hati untuk terus belajar, dan mengembangkan diri tanpa henti.
+                <strong>Belajar Sepanjang Hidup:</strong> Meneladani filosofi Mahatma Gandhi, selalu haus akan ilmu baru, rendah hati untuk terus belajar, dan mengembangkan kapasitas diri tanpa henti.
               </div>
             </li>
             <li>
               <span class="check-icon">✓</span>
               <div>
-                <strong>Siap Menghadapi Tekanan:</strong> Memandang pressure/tekanan kerja bukan sebagai beban, melainkan sebagai kawah candradimuka untuk menempa mental dan skill menjadi lebih matang.
+                <strong>Siap Menghadapi Tekanan:</strong> Memandang pressure/tekanan kerja bukan sebagai beban, melainkan sebagai kawah candradimuka untuk menempa mental dan skill menjadi lebih matang dan tangguh.
               </div>
             </li>
             <li>
               <span class="check-icon">✓</span>
               <div>
                 <strong>Mengikuti Tren & Adaptif:</strong> Sigap membaca perubahan pasar, menguasai tren teknologi baru, serta cepat menyesuaikan diri dengan sistem bisnis digital yang dinamis.
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Card 2: SDM Stagnan (Tertinggal) -->
-      <div class="sdm-card mundur">
-        <div class="sdm-img-box">
-          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="SDM Stagnan Tertinggal">
-          <div class="sdm-badge mundur-badge">
-            <span class="pulse-dot-red"></span> Stagnan & Tertinggal
-          </div>
-        </div>
-
-        <div class="sdm-content">
-          <div class="sdm-header">
-            <div class="sdm-icon">⚠️</div>
-            <h3>SDM Tertinggal (Stagnan)</h3>
-          </div>
-          <ul class="sdm-list">
-            <li>
-              <span class="cross-icon">✕</span>
-              <div>
-                <strong>Merasa Cepat Puas:</strong> Enggan menambah wawasan baru dan merasa ilmu yang dimiliki saat ini sudah cukup untuk selamanya.
-              </div>
-            </li>
-            <li>
-              <span class="cross-icon">✕</span>
-              <div>
-                <strong>Anti Tekanan & Mudah Menyerah:</strong> Cepat stres atau mengeluh saat menghadapi target tinggi, serta menghindari tantangan operasional.
-              </div>
-            </li>
-            <li>
-              <span class="cross-icon">✕</span>
-              <div>
-                <strong>Gagal Mengikuti Tren:</strong> Acuh tak acuh terhadap perkembangan teknologi dan tren pasar, sehingga tertinggal dari ritme kompetisi bisnis.
               </div>
             </li>
           </ul>
@@ -1469,29 +1432,28 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 <!-- CSS KHUSUS SLIDE 9 -->
 <style>
   .slide9 .slide-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #94a3b8;
     margin-top: 6px;
     font-weight: 500;
   }
 
-  .slide9 .slide9-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 14px;
+  .slide9 .slide9-single-grid {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    max-width: 1250px;
-    margin-inline: auto;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .slide9 .sdm-card {
+    width: 100%;
     border-radius: 18px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease;
   }
 
@@ -1500,27 +1462,18 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   }
 
   .slide9 .sdm-card.maju {
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(14, 116, 144, 0.35));
-    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(14, 116, 144, 0.35));
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
   }
   .slide9 .sdm-card.maju:hover {
     border-color: #38bdf8;
-    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
-  }
-
-  .slide9 .sdm-card.mundur {
-    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(153, 27, 27, 0.25));
-    border: 1.5px solid rgba(248, 113, 113, 0.3);
-  }
-  .slide9 .sdm-card.mundur:hover {
-    border-color: #f87171;
-    box-shadow: 0 15px 35px rgba(248, 113, 113, 0.15);
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);
   }
 
   .slide9 .sdm-img-box {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 180px;
     overflow: hidden;
     background: #020617;
     display: flex;
@@ -1542,13 +1495,13 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
 
   .slide9 .sdm-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 10.5px;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     background: rgba(2, 6, 23, 0.85);
     backdrop-filter: blur(8px);
     border-radius: 20px;
@@ -1564,51 +1517,38 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     border: 1px solid rgba(56, 189, 248, 0.3);
   }
 
-  .slide9 .mundur-badge {
-    color: #f87171;
-    border: 1px solid rgba(248, 113, 113, 0.3);
-  }
-
   .slide9 .pulse-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     background-color: #38bdf8;
     border-radius: 50%;
-    box-shadow: 0 0 6px #38bdf8;
-  }
-
-  .slide9 .pulse-dot-red {
-    width: 6px;
-    height: 6px;
-    background-color: #f87171;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #f87171;
+    box-shadow: 0 0 8px #38bdf8;
   }
 
   .slide9 .sdm-content {
-    padding: 16px 20px;
+    padding: 22px 26px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
   }
 
   .slide9 .sdm-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 8px;
+    padding-bottom: 10px;
   }
 
   .slide9 .sdm-icon {
-    font-size: 18px;
-    padding: 6px;
+    font-size: 20px;
+    padding: 8px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
   }
 
   .slide9 .sdm-header h3 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 900;
     color: #fff;
     margin: 0;
@@ -1621,16 +1561,16 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
   }
 
   .slide9 .sdm-list li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 11.5px;
+    gap: 12px;
+    font-size: 13px;
     color: #cbd5e1;
-    line-height: 1.4;
+    line-height: 1.5;
     font-weight: 500;
   }
 
@@ -1638,28 +1578,13 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.15);
     font-weight: bold;
-    min-width: 18px;
-    height: 18px;
+    min-width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
-    margin-top: 1px;
-    flex-shrink: 0;
-  }
-
-  .slide9 .cross-icon {
-    color: #f87171;
-    background: rgba(248, 113, 113, 0.15);
-    font-weight: bold;
-    min-width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
+    font-size: 11px;
     margin-top: 1px;
     flex-shrink: 0;
   }
@@ -1670,12 +1595,14 @@ h2 { font-size: clamp(18px, 2.1vw, 26px); font-weight: 900; line-height: 1.2; ma
   }
 
   @media (max-width: 850px) {
-    .slide9 .slide9-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
     .slide9 .sdm-img-box {
-      height: 130px;
+      height: 140px;
+    }
+    .slide9 .sdm-content {
+      padding: 16px;
+    }
+    .slide9 .sdm-list li {
+      font-size: 12px;
     }
   }
 </style>
