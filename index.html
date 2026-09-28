@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Customer Service AI</title>
+<title>AI Customer Service</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -14,116 +15,236 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background:
+    radial-gradient(circle at top left, #3b82f6, transparent 35%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.app {
-  width: 450px;
-  max-width: 95%;
-  height: 700px;
-  background: white;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px #0005;
-  display: flex;
-  flex-direction: column;
-}
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header {
-  background: #2563eb;
-  color: white;
-  padding: 20px;
-  text-align: center;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  background: rgba(15,23,42,.75);
+  border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-.header h2 {
-  margin: 0;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.header p {
-  margin: 5px 0 0;
-  opacity: .85;
-  font-size: 13px;
-}
-
-/* CHAT */
-
-#chat {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: #f8fafc;
-}
-
-.message {
-  padding: 12px 15px;
-  margin-bottom: 12px;
-  border-radius: 16px;
-  max-width: 85%;
-  line-height: 1.5;
+.online {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 14px;
 }
 
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #22c55e;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+  height: calc(100vh - 75px);
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.avatar-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-container {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #60a5fa 0%, #2563eb 45%, #1d4ed8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 50px rgba(59,130,246,.5),
+    inset 0 0 40px rgba(255,255,255,.15);
+  transition: .3s;
+}
+
+.avatar-container.listening {
+  animation: listening 1s infinite;
+}
+
+.avatar-container.speaking {
+  animation: speaking .5s infinite alternate;
+}
+
+
+/* AVATAR SVG */
+
+.avatar {
+  width: 280px;
+  height: 280px;
+}
+
+
+/* AVATAR MULUT */
+
+.mouth {
+  transform-origin: center;
+}
+
+.speaking .mouth {
+  animation: mouth 0.25s infinite alternate;
+}
+
+
+/* =========================
+   AVATAR INFO
+========================= */
+
+.avatar-name {
+  margin-top: 25px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.avatar-status {
+  margin-top: 8px;
+  color: #cbd5e1;
+  font-size: 15px;
+}
+
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: rgba(15,23,42,.55);
+  border-left: 1px solid rgba(255,255,255,.1);
+}
+
+.chat-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#chat {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.message {
+  padding: 14px 18px;
+  margin-bottom: 15px;
+  border-radius: 18px;
+  max-width: 85%;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
 .bot {
-  background: #e2e8f0;
-  color: #1e293b;
+  background: #334155;
   border-bottom-left-radius: 5px;
 }
 
 .user {
   background: #2563eb;
-  color: white;
   margin-left: auto;
   border-bottom-right-radius: 5px;
 }
 
-/* INPUT */
 
-.bottom {
-  padding: 15px;
-  border-top: 1px solid #ddd;
-  background: white;
-}
+/* =========================
+   INPUT
+========================= */
 
 .input-area {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 #textInput {
   flex: 1;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  padding: 12px 15px;
+  padding: 16px;
+  border: none;
   outline: none;
+  border-radius: 15px;
+  background: #334155;
+  color: white;
+  font-size: 15px;
+}
+
+#textInput::placeholder {
+  color: #94a3b8;
 }
 
 #send {
+  padding: 0 22px;
   border: none;
+  border-radius: 15px;
   background: #2563eb;
   color: white;
-  border-radius: 20px;
-  padding: 0 18px;
   cursor: pointer;
+  font-size: 15px;
+}
+
+
+/* =========================
+   MIC
+========================= */
+
+.mic-area {
+  text-align: center;
+  margin-top: 15px;
 }
 
 #mic {
-  display: block;
-  margin: 15px auto 5px;
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
   border: none;
   border-radius: 50%;
   background: #2563eb;
   color: white;
-  font-size: 27px;
+  font-size: 30px;
   cursor: pointer;
+  transition: .2s;
+}
+
+#mic:hover {
+  transform: scale(1.08);
 }
 
 #mic.active {
@@ -132,49 +253,291 @@ body {
 }
 
 #status {
-  text-align: center;
-  font-size: 12px;
-  color: #64748b;
+  margin-top: 10px;
+  color: #94a3b8;
+  font-size: 13px;
 }
 
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes pulse {
+
   0% {
-    box-shadow: 0 0 0 0 #dc262688;
+    box-shadow: 0 0 0 0 rgba(220,38,38,.6);
   }
 
   70% {
-    box-shadow: 0 0 0 15px #dc262600;
+    box-shadow: 0 0 0 20px rgba(220,38,38,0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 #dc262600;
+    box-shadow: 0 0 0 0 rgba(220,38,38,0);
   }
+
 }
+
+@keyframes listening {
+
+  0% {
+    box-shadow: 0 0 30px #3b82f6;
+  }
+
+  50% {
+    box-shadow: 0 0 80px #60a5fa;
+  }
+
+  100% {
+    box-shadow: 0 0 30px #3b82f6;
+  }
+
+}
+
+@keyframes speaking {
+
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.04);
+  }
+
+}
+
+@keyframes mouth {
+
+  from {
+    transform: scaleY(1);
+  }
+
+  to {
+    transform: scaleY(.35);
+  }
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+  .main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .avatar-area {
+    padding: 40px 20px;
+  }
+
+  .avatar-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .chat-area {
+    height: 600px;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="app">
 
-  <div class="header">
-    <h2>🎧 Customer Service</h2>
-    <p>Tanya melalui suara atau tulisan</p>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="logo">
+    🤖 AI Customer Service
   </div>
 
+  <div class="online">
+    <span class="dot"></span>
+    Online
+  </div>
 
-  <div id="chat">
+</header>
 
-    <div class="message bot">
-      Halo 👋 Saya Customer Service.
-      Silakan tanyakan apa saja mengenai perusahaan,
-      produk, harga, alamat, atau layanan kami.
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+  <!-- =======================
+       AVATAR
+  ======================== -->
+
+  <section class="avatar-area">
+
+    <div
+      id="avatarContainer"
+      class="avatar-container"
+    >
+
+      <!-- AVATAR SVG -->
+
+      <svg
+        class="avatar"
+        viewBox="0 0 300 300"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <!-- rambut -->
+
+        <path
+          d="M70 130
+             C65 60 105 25 150 25
+             C205 25 235 70 230 135
+             L210 115
+             C205 70 180 55 150 55
+             C115 55 90 80 85 120Z"
+          fill="#3b2416"
+        />
+
+        <!-- kepala -->
+
+        <ellipse
+          cx="150"
+          cy="145"
+          rx="78"
+          ry="90"
+          fill="#f4c7a1"
+        />
+
+        <!-- rambut depan -->
+
+        <path
+          d="M75 115
+             C70 55 110 35 150 35
+             C195 35 225 70 220 115
+             C195 85 180 75 160 80
+             C135 90 105 75 75 115Z"
+          fill="#432818"
+        />
+
+        <!-- mata -->
+
+        <ellipse
+          cx="120"
+          cy="145"
+          rx="8"
+          ry="10"
+          fill="#1e293b"
+        />
+
+        <ellipse
+          cx="180"
+          cy="145"
+          rx="8"
+          ry="10"
+          fill="#1e293b"
+        />
+
+        <!-- hidung -->
+
+        <path
+          d="M150 150 L143 170 L155 170"
+          fill="none"
+          stroke="#c08457"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+
+        <!-- mulut -->
+
+        <ellipse
+          id="mouth"
+          class="mouth"
+          cx="150"
+          cy="195"
+          rx="22"
+          ry="7"
+          fill="#7f1d1d"
+        />
+
+        <!-- baju -->
+
+        <path
+          d="M90 235
+             C110 215 190 215 210 235
+             L235 300
+             L65 300Z"
+          fill="#2563eb"
+        />
+
+        <!-- kerah -->
+
+        <path
+          d="M120 230 L150 265 L180 230"
+          fill="white"
+        />
+
+      </svg>
+
     </div>
 
-  </div>
+
+    <div class="avatar-name">
+      Sarah
+    </div>
+
+    <div
+      id="avatarStatus"
+      class="avatar-status"
+    >
+      Siap membantu Anda
+    </div>
+
+  </section>
 
 
-  <div class="bottom">
+
+  <!-- =======================
+       CHAT
+  ======================== -->
+
+  <section class="chat-area">
+
+    <div class="chat-title">
+      💬 Percakapan
+    </div>
+
+
+    <div id="chat">
+
+      <div class="message bot">
+        Halo 👋 Saya Sarah, Customer Service Anda.
+        
+        Silakan tanyakan tentang produk, harga,
+        alamat, jam operasional, pengiriman,
+        atau layanan kami.
+      </div>
+
+    </div>
+
 
     <div class="input-area">
 
@@ -191,29 +554,34 @@ body {
     </div>
 
 
-    <button id="mic">
-      🎤
-    </button>
+    <div class="mic-area">
 
-    <div id="status">
-      Tekan mikrofon untuk berbicara
+      <button id="mic">
+        🎤
+      </button>
+
+      <div id="status">
+        Tekan mikrofon untuk berbicara
+      </div>
+
     </div>
 
-  </div>
+  </section>
 
-</div>
+</main>
+
 
 
 <script>
 
+
 /*
-====================================================
+==================================================
  DATA CUSTOMER SERVICE
-====================================================
+==================================================
 
-UBAH INFORMASI DI BAGIAN INI.
-
-Tidak perlu mengubah kode lainnya.
+UBAH DATA DI SINI.
+==================================================
 */
 
 
@@ -233,10 +601,7 @@ const DATA = {
       "customer@tokoabc.com",
 
     jam:
-      "Senin sampai Sabtu, pukul 08.00 sampai 17.00",
-
-    website:
-      "www.tokoabc.com"
+      "Senin sampai Sabtu, pukul 08.00 sampai 17.00"
 
   },
 
@@ -288,31 +653,41 @@ const DATA = {
   faq: [
 
     {
-      pertanyaan: "cara pesan",
+      kata: [
+        "cara",
+        "pesan"
+      ],
 
       jawaban:
-        "Untuk melakukan pemesanan, silakan pilih produk kemudian hubungi customer service kami."
+        "Untuk melakukan pemesanan, silakan pilih produk dan hubungi customer service kami."
     },
 
     {
-      pertanyaan: "cara pembayaran",
+      kata: [
+        "cara",
+        "bayar"
+      ],
 
       jawaban:
-        "Kami menerima pembayaran melalui transfer bank dan metode pembayaran digital."
+        "Kami menerima pembayaran melalui transfer bank dan pembayaran digital."
     },
 
     {
-      pertanyaan: "pengiriman",
+      kata: [
+        "pengiriman"
+      ],
 
       jawaban:
         "Kami melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan."
     },
 
     {
-      pertanyaan: "refund",
+      kata: [
+        "refund"
+      ],
 
       jawaban:
-        "Pengajuan refund dapat dilakukan dengan menghubungi customer service kami."
+        "Untuk pengajuan refund, silakan hubungi customer service kami."
     }
 
   ]
@@ -320,48 +695,15 @@ const DATA = {
 };
 
 
-/*
-====================================================
- SISTEM VOICE
-====================================================
-*/
-
-const SpeechRecognition =
-  window.SpeechRecognition ||
-  window.webkitSpeechRecognition;
-
-
-const recognition =
-  SpeechRecognition
-    ? new SpeechRecognition()
-    : null;
-
-
-if (recognition) {
-
-  recognition.lang = "id-ID";
-
-  recognition.continuous = false;
-
-  recognition.interimResults = false;
-
-}
-
 
 /*
-====================================================
+==================================================
  ELEMENT
-====================================================
+==================================================
 */
 
 const chat =
   document.getElementById("chat");
-
-const mic =
-  document.getElementById("mic");
-
-const status =
-  document.getElementById("status");
 
 const input =
   document.getElementById("textInput");
@@ -369,11 +711,24 @@ const input =
 const send =
   document.getElementById("send");
 
+const mic =
+  document.getElementById("mic");
+
+const status =
+  document.getElementById("status");
+
+const avatarContainer =
+  document.getElementById("avatarContainer");
+
+const avatarStatus =
+  document.getElementById("avatarStatus");
+
+
 
 /*
-====================================================
- TAMPILKAN PESAN
-====================================================
+==================================================
+ CHAT
+==================================================
 */
 
 function addMessage(text, type) {
@@ -395,21 +750,20 @@ function addMessage(text, type) {
 }
 
 
+
 /*
-====================================================
- PROSES PERTANYAAN
-====================================================
+==================================================
+ JAWAB PERTANYAAN
+==================================================
 */
 
-function jawabPertanyaan(question) {
+function jawab(question) {
 
   const q =
-    question.toLowerCase().trim();
+    question.toLowerCase();
 
 
-  /*
-  SALAM
-  */
+  // SALAM
 
   if (
     q.includes("halo") ||
@@ -422,9 +776,7 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  ALAMAT
-  */
+  // ALAMAT
 
   if (
     q.includes("alamat") ||
@@ -438,9 +790,7 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  TELEPON
-  */
+  // TELEPON
 
   if (
     q.includes("telepon") ||
@@ -454,9 +804,7 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  EMAIL
-  */
+  // EMAIL
 
   if (q.includes("email")) {
 
@@ -465,9 +813,7 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  JAM BUKA
-  */
+  // JAM
 
   if (
     q.includes("jam") ||
@@ -481,28 +827,13 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  WEBSITE
-  */
-
-  if (
-    q.includes("website") ||
-    q.includes("situs")
-  ) {
-
-    return `Website kami adalah ${DATA.perusahaan.website}.`;
-
-  }
-
-
-  /*
-  CARI PRODUK
-  */
+  // PRODUK
 
   for (const produk of DATA.produk) {
 
     const nama =
       produk.nama.toLowerCase();
+
 
     if (q.includes(nama)) {
 
@@ -518,64 +849,69 @@ function jawabPertanyaan(question) {
 
       if (
         q.includes("stok") ||
-        q.includes("tersedia") ||
-        q.includes("ada")
+        q.includes("ada") ||
+        q.includes("tersedia")
       ) {
 
-        return `Untuk ${produk.nama}, status stok saat ini adalah ${produk.stok}.`;
+        return `Untuk ${produk.nama}, stok saat ini ${produk.stok}.`;
 
       }
 
 
-      return `${produk.nama}: ${produk.deskripsi} Harganya ${produk.harga}. Stok: ${produk.stok}.`;
+      return `${produk.nama}: ${produk.deskripsi} Harganya ${produk.harga}. Stok ${produk.stok}.`;
 
     }
 
   }
 
 
-  /*
-  PERTANYAAN HARGA UMUM
-  */
+  // HARGA
 
   if (
     q.includes("harga") ||
     q.includes("berapa")
   ) {
 
-    let jawaban =
-      "Berikut informasi produk kami:\n\n";
+    let hasil =
+      "Berikut daftar harga produk kami:\n\n";
 
-    DATA.produk.forEach(produk => {
 
-      jawaban +=
-        `${produk.nama}: ${produk.harga}\n`;
+    DATA.produk.forEach(p => {
+
+      hasil +=
+        `${p.nama}: ${p.harga}\n`;
 
     });
 
-    return jawaban;
+
+    return hasil;
 
   }
 
 
-  /*
-  FAQ
-  */
+  // FAQ
 
   for (const faq of DATA.faq) {
 
-    const kata =
-      faq.pertanyaan
-        .toLowerCase()
-        .split(" ");
-
-    let cocok =
-      kata.filter(k =>
-        q.includes(k)
-      ).length;
+    let jumlah =
+      0;
 
 
-    if (cocok >= Math.ceil(kata.length / 2)) {
+    faq.kata.forEach(kata => {
+
+      if (q.includes(kata)) {
+
+        jumlah++;
+
+      }
+
+    });
+
+
+    if (
+      jumlah >=
+      Math.ceil(faq.kata.length / 2)
+    ) {
 
       return faq.jawaban;
 
@@ -584,9 +920,7 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  TERIMA KASIH
-  */
+  // TERIMA KASIH
 
   if (
     q.includes("terima kasih") ||
@@ -598,52 +932,41 @@ function jawabPertanyaan(question) {
   }
 
 
-  /*
-  SELAMAT TINGGAL
-  */
-
-  if (
-    q.includes("sampai jumpa") ||
-    q.includes("dadah")
-  ) {
-
-    return "Sampai jumpa kembali. Terima kasih telah menghubungi kami.";
-
-  }
-
-
-  /*
-  DEFAULT
-  */
+  // DEFAULT
 
   return `
-Maaf, saya belum menemukan informasi mengenai pertanyaan tersebut.
+Maaf, saya belum menemukan informasi tersebut.
 
-Anda bisa menanyakan:
-• alamat
-• jam operasional
-• nomor telepon
-• email
-• harga produk
-• stok produk
-• cara pesan
-• pembayaran
-• pengiriman
-• refund
-  `;
+Anda dapat menanyakan:
+• Harga produk
+• Stok produk
+• Alamat
+• Jam operasional
+• Nomor telepon
+• Email
+• Cara pemesanan
+• Pembayaran
+• Pengiriman
+• Refund
+`;
 
 }
 
 
+
 /*
-====================================================
- KIRIM PERTANYAAN
-====================================================
+==================================================
+ PROSES PERTANYAAN
+==================================================
 */
 
-function prosesPertanyaan(text) {
+function proses(text) {
 
-  if (!text.trim()) return;
+  if (!text.trim()) {
+
+    return;
+
+  }
 
 
   addMessage(
@@ -653,58 +976,65 @@ function prosesPertanyaan(text) {
 
 
   status.innerText =
-    "Customer Service sedang menjawab...";
+    "Sarah sedang berpikir...";
+
+
+  avatarStatus.innerText =
+    "Sedang menjawab...";
+
+
+  avatarContainer.classList.add(
+    "speaking"
+  );
 
 
   setTimeout(() => {
 
-    const jawaban =
-      jawabPertanyaan(text);
+    const answer =
+      jawab(text);
 
 
     addMessage(
-      jawaban,
+      answer,
       "bot"
     );
 
 
-    speak(jawaban);
+    speak(answer);
 
-
-    status.innerText =
-      "Tekan mikrofon untuk berbicara lagi";
-
-  }, 400);
+  }, 500);
 
 }
 
 
+
 /*
-====================================================
- TOMBOL KIRIM
-====================================================
+==================================================
+ TEXT INPUT
+==================================================
 */
 
 send.onclick = () => {
 
-  prosesPertanyaan(
-    input.value
-  );
+  const text =
+    input.value;
+
 
   input.value = "";
+
+
+  proses(text);
 
 };
 
 
-/*
- ENTER
-*/
-
 input.addEventListener(
   "keydown",
-  function(event) {
+  event => {
 
-    if (event.key === "Enter") {
+    if (
+      event.key === "Enter"
+    ) {
 
       send.click();
 
@@ -714,13 +1044,35 @@ input.addEventListener(
 );
 
 
+
 /*
-====================================================
- MICROPHONE
-====================================================
+==================================================
+ VOICE RECOGNITION
+==================================================
 */
 
-if (recognition) {
+const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
+
+
+if (SpeechRecognition) {
+
+  const recognition =
+    new SpeechRecognition();
+
+
+  recognition.lang =
+    "id-ID";
+
+
+  recognition.continuous =
+    false;
+
+
+  recognition.interimResults =
+    false;
+
 
   mic.onclick = () => {
 
@@ -728,12 +1080,25 @@ if (recognition) {
 
       recognition.start();
 
-      mic.classList.add("active");
+      mic.classList.add(
+        "active"
+      );
 
-      mic.innerHTML = "🔴";
+      mic.innerHTML =
+        "🔴";
+
 
       status.innerText =
         "Mendengarkan...";
+
+
+      avatarStatus.innerText =
+        "Saya sedang mendengarkan...";
+
+
+      avatarContainer.classList.add(
+        "listening"
+      );
 
     }
 
@@ -747,53 +1112,87 @@ if (recognition) {
 
 
   recognition.onresult =
-    function(event) {
+    event => {
 
       const text =
         event.results[0][0].transcript;
 
 
-      mic.classList.remove("active");
+      mic.classList.remove(
+        "active"
+      );
 
-      mic.innerHTML = "🎤";
+
+      mic.innerHTML =
+        "🎤";
 
 
-      prosesPertanyaan(text);
+      avatarContainer.classList.remove(
+        "listening"
+      );
+
+
+      proses(text);
 
     };
 
 
   recognition.onend =
-    function() {
+    () => {
 
-      mic.classList.remove("active");
+      mic.classList.remove(
+        "active"
+      );
 
-      mic.innerHTML = "🎤";
+      mic.innerHTML =
+        "🎤";
+
+
+      avatarContainer.classList.remove(
+        "listening"
+      );
 
     };
 
 
   recognition.onerror =
-    function(event) {
+    event => {
 
-      console.log(event.error);
+      console.log(
+        event.error
+      );
 
-      mic.classList.remove("active");
 
-      mic.innerHTML = "🎤";
+      mic.classList.remove(
+        "active"
+      );
+
+
+      mic.innerHTML =
+        "🎤";
+
+
+      avatarContainer.classList.remove(
+        "listening"
+      );
+
 
       status.innerText =
         "Tidak terdengar. Silakan coba lagi.";
+
+      avatarStatus.innerText =
+        "Siap membantu Anda";
 
     };
 
 }
 
 
+
 /*
-====================================================
+==================================================
  TEXT TO SPEECH
-====================================================
+==================================================
 */
 
 function speak(text) {
@@ -802,7 +1201,9 @@ function speak(text) {
 
 
   const voice =
-    new SpeechSynthesisUtterance(text);
+    new SpeechSynthesisUtterance(
+      text
+    );
 
 
   voice.lang =
@@ -817,11 +1218,39 @@ function speak(text) {
     1;
 
 
+  avatarContainer.classList.add(
+    "speaking"
+  );
+
+
+  avatarStatus.innerText =
+    "Sarah sedang berbicara...";
+
+
+  voice.onend =
+    () => {
+
+      avatarContainer.classList.remove(
+        "speaking"
+      );
+
+
+      avatarStatus.innerText =
+        "Siap membantu Anda";
+
+
+      status.innerText =
+        "Tekan mikrofon untuk berbicara lagi";
+
+    };
+
+
   speechSynthesis.speak(
     voice
   );
 
 }
+
 
 </script>
 
