@@ -1,230 +1,829 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Shooter Arcade - GitHub Pages</title>
-    <style>
-        body {
-            margin: 0;
-            background-color: #050510;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        h1 {
-            margin: 5px 0;
-            font-size: 24px;
-            color: #00ffcc;
-            text-shadow: 0 0 10px #00ffcc;
-        }
-        canvas {
-            border: 4px solid #333;
-            background: radial-gradient(circle, #111122 0%, #050510 100%);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
-        }
-        .instruksi {
-            margin-top: 10px;
-            color: #aaa;
-            font-size: 14px;
-            text-align: center;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Service AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  width: 450px;
+  max-width: 95%;
+  height: 700px;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px #0005;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+
+.header {
+  background: #2563eb;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header p {
+  margin: 5px 0 0;
+  opacity: .85;
+  font-size: 13px;
+}
+
+/* CHAT */
+
+#chat {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.message {
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  max-width: 85%;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.bot {
+  background: #e2e8f0;
+  color: #1e293b;
+  border-bottom-left-radius: 5px;
+}
+
+.user {
+  background: #2563eb;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+/* INPUT */
+
+.bottom {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.input-area {
+  display: flex;
+  gap: 8px;
+}
+
+#textInput {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 12px 15px;
+  outline: none;
+}
+
+#send {
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 20px;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+#mic {
+  display: block;
+  margin: 15px auto 5px;
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+#mic.active {
+  background: #dc2626;
+  animation: pulse 1s infinite;
+}
+
+#status {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #dc262688;
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px #dc262600;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 #dc262600;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>SPACE SHOOTER</h1>
-    <canvas id="gameCanvas" width="480" height="600"></canvas>
-    <div class="instruksi">
-        Gunakan tombol <b>Panah Kiri / Kanan</b> untuk bergerak.<br>
-        Tekan tombol <b>Spasi (Spacebar)</b> untuk menembak.
+<div class="app">
+
+  <div class="header">
+    <h2>🎧 Customer Service</h2>
+    <p>Tanya melalui suara atau tulisan</p>
+  </div>
+
+
+  <div id="chat">
+
+    <div class="message bot">
+      Halo 👋 Saya Customer Service.
+      Silakan tanyakan apa saja mengenai perusahaan,
+      produk, harga, alamat, atau layanan kami.
     </div>
 
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
+  </div>
 
-        // Status Game
-        let skor = 0;
-        let nyawa = 100; // Fitur Baru: Nyawa Pemain (Persentase)
-        let gameOver = false;
 
-        // Kontrol Keyboard
-        let tombol = {};
-        document.addEventListener("keydown", (e) => tombol[e.key] = true);
-        document.addEventListener("keyup", (e) => tombol[e.key] = false);
+  <div class="bottom">
 
-        // Objek Pesawat Pemain
-        const pemain = {
-            x: canvas.width / 2 - 20,
-            y: canvas.height - 60,
-            lebar: 40,
-            tinggi: 30,
-            kecepatan: 6,
-            warna: "#00ffcc",
-            gambar() {
-                ctx.fillStyle = this.warna;
-                // Menggambar pesawat tempur bentuk segitiga
-                ctx.beginPath();
-                ctx.moveTo(this.x + this.lebar / 2, this.y);
-                ctx.lineTo(this.x, this.y + this.tinggi);
-                ctx.lineTo(this.x + this.lebar, this.y + this.tinggi);
-                ctx.closePath();
-                ctx.fill();
-                
-                // Efek mesin roket belakang
-                ctx.fillStyle = "#ff3300";
-                ctx.fillRect(this.x + this.lebar/2 - 4, this.y + this.tinggi, 8, 5);
-            }
-        };
+    <div class="input-area">
 
-        // Wadah List Tembakan & Musuh
-        let listTembakan = [];
-        let listMusuh = [];
-        let delayTembak = 0;
+      <input
+        id="textInput"
+        type="text"
+        placeholder="Tulis pertanyaan..."
+      >
 
-        // Fungsi Membuat Musuh Baru
-        function munculkanMusuh() {
-            // Tingkat kemunculan musuh diatur konstan agar seimbang
-            if (Math.random() < 0.03 && listMusuh.length < 8) {
-                let ukuran = Math.random() * 20 + 20; // Ukuran acak antara 20-40
-                
-                // Fitur Baru: Musuh bertambah cepat seiring skor meningkat
-                let bonusKecepatan = skor / 100; 
-                
-                listMusuh.push({
-                    x: Math.random() * (canvas.width - ukuran),
-                    y: -ukuran,
-                    lebar: ukuran,
-                    tinggi: ukuran,
-                    kecepatan: (Math.random() * 2 + 1.5) + bonusKecepatan,
-                    warna: `hsl(${Math.random() * 360}, 100%, 50%)`
-                });
-            }
-        }
+      <button id="send">
+        Kirim
+      </button>
 
-        // Deteksi Tabrakan (Collision Detection)
-        function apakahTabrakan(obj1, obj2) {
-            return obj1.x < obj2.x + obj2.lebar &&
-                   obj1.x + obj1.lebar > obj2.x &&
-                   obj1.y < obj2.y + obj2.tinggi &&
-                   obj1.y + obj1.tinggi > obj2.y;
-        }
+    </div>
 
-        // Loop Utama Game (Berjalan terus menerus)
-        function updateGame() {
-            if (gameOver) {
-                ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = "#ff3333";
-                ctx.font = "bold 36px Courier New";
-                ctx.textAlign = "center";
-                ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 20);
-                
-                ctx.fillStyle = "white";
-                ctx.font = "18px Courier New";
-                ctx.fillText(`Skor Akhir Anda: ${skor}`, canvas.width / 2, canvas.height / 2 + 20);
-                ctx.fillText("Muat Ulang Halaman (F5) untuk Main Lagi", canvas.width / 2, canvas.height / 2 + 60);
-                return;
-            }
 
-            // 1. Bersihkan Layar
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    <button id="mic">
+      🎤
+    </button>
 
-            // 2. Gambar & Gerakkan Pesawat Pemain
-            if (tombol["ArrowLeft"] && pemain.x > 0) pemain.x -= pemain.kecepatan;
-            if (tombol["ArrowRight"] && pemain.x < canvas.width - pemain.lebar) pemain.x += pemain.kecepatan;
-            pemain.gambar();
+    <div id="status">
+      Tekan mikrofon untuk berbicara
+    </div>
 
-            // 3. Mekanisme Menembak (Spasi)
-            if (delayTembak > 0) delayTembak--;
-            if (tombol[" "] && delayTembak === 0) {
-                listTembakan.push({
-                    x: pemain.x + pemain.lebar / 2 - 2,
-                    y: pemain.y,
-                    lebar: 4,
-                    tinggi: 15,
-                    kecepatan: 8
-                });
-                delayTembak = 12; // Jeda waktu jeda tembak
-            }
+  </div>
 
-            // 4. Update Posisi Tembakan
-            for (let i = listTembakan.length - 1; i >= 0; i--) {
-                let t = listTembakan[i];
-                t.y -= t.kecepatan;
-                
-                // Gambar Tembakan Laser
-                ctx.fillStyle = "#ffff00";
-                ctx.fillRect(t.x, t.y, t.lebar, t.tinggi);
+</div>
 
-                // Hapus jika keluar layar atas
-                if (t.y < 0) listTembakan.splice(i, 1);
-            }
 
-            // 5. Update Posisi Musuh & Cek Tabrakan
-            munculkanMusuh();
-            for (let i = listMusuh.length - 1; i >= 0; i--) {
-                let m = listMusuh[i];
-                m.y += m.kecepatan;
+<script>
 
-                // Gambar Musuh berbentuk meteor/kotak
-                ctx.fillStyle = m.warna;
-                ctx.fillRect(m.x, m.y, m.lebar, m.tinggi);
+/*
+====================================================
+ DATA CUSTOMER SERVICE
+====================================================
 
-                // Cek jika musuh menabrak pemain
-                if (apakahTabrakan(m, pemain)) {
-                    listMusuh.splice(i, 1);
-                    nyawa -= 25; // Mengurangi nyawa jika tertabrak
-                    if (nyawa <= 0) {
-                        nyawa = 0;
-                        gameOver = true;
-                    }
-                    continue;
-                }
+UBAH INFORMASI DI BAGIAN INI.
 
-                // Cek jika musuh hancur tertembak laser
-                for (let j = listTembakan.length - 1; j >= 0; j--) {
-                    let t = listTembakan[j];
-                    if (apakahTabrakan(t, m)) {
-                        listMusuh.splice(i, 1);
-                        listTembakan.splice(j, 1);
-                        skor += 10;
-                        break;
-                    }
-                }
+Tidak perlu mengubah kode lainnya.
+*/
 
-                // Hapus jika musuh lolos ke batas bawah layar
-                if (m.y > canvas.height) {
-                    listMusuh.splice(i, 1);
-                    skor -= 5; // Hukuman skor berkurang
-                }
-            }
 
-            // 6. UI: Tampilkan Skor di Layar atas
-            ctx.fillStyle = "white";
-            ctx.font = "20px Courier New";
-            ctx.textAlign = "left";
-            ctx.fillText(`Skor: ${skor}`, 15, 30);
+const DATA = {
 
-            // UI: Bar Indikator Nyawa Pemain
-            ctx.fillStyle = "#333";
-            ctx.fillRect(15, 45, 120, 12); // Background Bar abu-abu
-            ctx.fillStyle = nyawa > 40 ? "#00ff33" : "#ff3333"; // Berubah merah jika kritis
-            ctx.fillRect(15, 45, (nyawa / 100) * 120, 12); // Isian Bar Nyawa
+  perusahaan: {
 
-            // Jalankan loop animasi secara stabil
-            requestAnimationFrame(updateGame);
-        }
+    nama: "Toko ABC",
 
-        // Mulai Game otomatis saat dibuka
-        updateGame();
-    </script>
+    alamat:
+      "Jl. Contoh No. 123, Denpasar, Bali",
+
+    telepon:
+      "08123456789",
+
+    email:
+      "customer@tokoabc.com",
+
+    jam:
+      "Senin sampai Sabtu, pukul 08.00 sampai 17.00",
+
+    website:
+      "www.tokoabc.com"
+
+  },
+
+
+  produk: [
+
+    {
+      nama: "Produk A",
+
+      harga: "Rp100.000",
+
+      deskripsi:
+        "Produk berkualitas untuk kebutuhan sehari-hari.",
+
+      stok:
+        "Tersedia"
+
+    },
+
+    {
+      nama: "Produk B",
+
+      harga: "Rp150.000",
+
+      deskripsi:
+        "Produk premium dengan kualitas terbaik.",
+
+      stok:
+        "Tersedia"
+
+    },
+
+    {
+      nama: "Produk C",
+
+      harga: "Rp200.000",
+
+      deskripsi:
+        "Produk pilihan untuk kebutuhan keluarga.",
+
+      stok:
+        "Habis"
+
+    }
+
+  ],
+
+
+  faq: [
+
+    {
+      pertanyaan: "cara pesan",
+
+      jawaban:
+        "Untuk melakukan pemesanan, silakan pilih produk kemudian hubungi customer service kami."
+    },
+
+    {
+      pertanyaan: "cara pembayaran",
+
+      jawaban:
+        "Kami menerima pembayaran melalui transfer bank dan metode pembayaran digital."
+    },
+
+    {
+      pertanyaan: "pengiriman",
+
+      jawaban:
+        "Kami melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan."
+    },
+
+    {
+      pertanyaan: "refund",
+
+      jawaban:
+        "Pengajuan refund dapat dilakukan dengan menghubungi customer service kami."
+    }
+
+  ]
+
+};
+
+
+/*
+====================================================
+ SISTEM VOICE
+====================================================
+*/
+
+const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
+
+
+const recognition =
+  SpeechRecognition
+    ? new SpeechRecognition()
+    : null;
+
+
+if (recognition) {
+
+  recognition.lang = "id-ID";
+
+  recognition.continuous = false;
+
+  recognition.interimResults = false;
+
+}
+
+
+/*
+====================================================
+ ELEMENT
+====================================================
+*/
+
+const chat =
+  document.getElementById("chat");
+
+const mic =
+  document.getElementById("mic");
+
+const status =
+  document.getElementById("status");
+
+const input =
+  document.getElementById("textInput");
+
+const send =
+  document.getElementById("send");
+
+
+/*
+====================================================
+ TAMPILKAN PESAN
+====================================================
+*/
+
+function addMessage(text, type) {
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "message " + type;
+
+  div.innerText =
+    text;
+
+  chat.appendChild(div);
+
+  chat.scrollTop =
+    chat.scrollHeight;
+
+}
+
+
+/*
+====================================================
+ PROSES PERTANYAAN
+====================================================
+*/
+
+function jawabPertanyaan(question) {
+
+  const q =
+    question.toLowerCase().trim();
+
+
+  /*
+  SALAM
+  */
+
+  if (
+    q.includes("halo") ||
+    q.includes("hai") ||
+    q.includes("hello")
+  ) {
+
+    return `Halo 👋 Selamat datang di ${DATA.perusahaan.nama}. Ada yang bisa saya bantu?`;
+
+  }
+
+
+  /*
+  ALAMAT
+  */
+
+  if (
+    q.includes("alamat") ||
+    q.includes("lokasi") ||
+    q.includes("dimana") ||
+    q.includes("di mana")
+  ) {
+
+    return `Alamat kami adalah ${DATA.perusahaan.alamat}.`;
+
+  }
+
+
+  /*
+  TELEPON
+  */
+
+  if (
+    q.includes("telepon") ||
+    q.includes("nomor") ||
+    q.includes("whatsapp") ||
+    q.includes("wa")
+  ) {
+
+    return `Nomor customer service kami adalah ${DATA.perusahaan.telepon}.`;
+
+  }
+
+
+  /*
+  EMAIL
+  */
+
+  if (q.includes("email")) {
+
+    return `Email kami adalah ${DATA.perusahaan.email}.`;
+
+  }
+
+
+  /*
+  JAM BUKA
+  */
+
+  if (
+    q.includes("jam") ||
+    q.includes("buka") ||
+    q.includes("tutup") ||
+    q.includes("operasional")
+  ) {
+
+    return `Jam operasional kami adalah ${DATA.perusahaan.jam}.`;
+
+  }
+
+
+  /*
+  WEBSITE
+  */
+
+  if (
+    q.includes("website") ||
+    q.includes("situs")
+  ) {
+
+    return `Website kami adalah ${DATA.perusahaan.website}.`;
+
+  }
+
+
+  /*
+  CARI PRODUK
+  */
+
+  for (const produk of DATA.produk) {
+
+    const nama =
+      produk.nama.toLowerCase();
+
+    if (q.includes(nama)) {
+
+      if (
+        q.includes("harga") ||
+        q.includes("berapa")
+      ) {
+
+        return `${produk.nama} harganya ${produk.harga}.`;
+
+      }
+
+
+      if (
+        q.includes("stok") ||
+        q.includes("tersedia") ||
+        q.includes("ada")
+      ) {
+
+        return `Untuk ${produk.nama}, status stok saat ini adalah ${produk.stok}.`;
+
+      }
+
+
+      return `${produk.nama}: ${produk.deskripsi} Harganya ${produk.harga}. Stok: ${produk.stok}.`;
+
+    }
+
+  }
+
+
+  /*
+  PERTANYAAN HARGA UMUM
+  */
+
+  if (
+    q.includes("harga") ||
+    q.includes("berapa")
+  ) {
+
+    let jawaban =
+      "Berikut informasi produk kami:\n\n";
+
+    DATA.produk.forEach(produk => {
+
+      jawaban +=
+        `${produk.nama}: ${produk.harga}\n`;
+
+    });
+
+    return jawaban;
+
+  }
+
+
+  /*
+  FAQ
+  */
+
+  for (const faq of DATA.faq) {
+
+    const kata =
+      faq.pertanyaan
+        .toLowerCase()
+        .split(" ");
+
+    let cocok =
+      kata.filter(k =>
+        q.includes(k)
+      ).length;
+
+
+    if (cocok >= Math.ceil(kata.length / 2)) {
+
+      return faq.jawaban;
+
+    }
+
+  }
+
+
+  /*
+  TERIMA KASIH
+  */
+
+  if (
+    q.includes("terima kasih") ||
+    q.includes("makasih")
+  ) {
+
+    return "Sama-sama 😊 Senang bisa membantu Anda.";
+
+  }
+
+
+  /*
+  SELAMAT TINGGAL
+  */
+
+  if (
+    q.includes("sampai jumpa") ||
+    q.includes("dadah")
+  ) {
+
+    return "Sampai jumpa kembali. Terima kasih telah menghubungi kami.";
+
+  }
+
+
+  /*
+  DEFAULT
+  */
+
+  return `
+Maaf, saya belum menemukan informasi mengenai pertanyaan tersebut.
+
+Anda bisa menanyakan:
+• alamat
+• jam operasional
+• nomor telepon
+• email
+• harga produk
+• stok produk
+• cara pesan
+• pembayaran
+• pengiriman
+• refund
+  `;
+
+}
+
+
+/*
+====================================================
+ KIRIM PERTANYAAN
+====================================================
+*/
+
+function prosesPertanyaan(text) {
+
+  if (!text.trim()) return;
+
+
+  addMessage(
+    text,
+    "user"
+  );
+
+
+  status.innerText =
+    "Customer Service sedang menjawab...";
+
+
+  setTimeout(() => {
+
+    const jawaban =
+      jawabPertanyaan(text);
+
+
+    addMessage(
+      jawaban,
+      "bot"
+    );
+
+
+    speak(jawaban);
+
+
+    status.innerText =
+      "Tekan mikrofon untuk berbicara lagi";
+
+  }, 400);
+
+}
+
+
+/*
+====================================================
+ TOMBOL KIRIM
+====================================================
+*/
+
+send.onclick = () => {
+
+  prosesPertanyaan(
+    input.value
+  );
+
+  input.value = "";
+
+};
+
+
+/*
+ ENTER
+*/
+
+input.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+
+      send.click();
+
+    }
+
+  }
+);
+
+
+/*
+====================================================
+ MICROPHONE
+====================================================
+*/
+
+if (recognition) {
+
+  mic.onclick = () => {
+
+    try {
+
+      recognition.start();
+
+      mic.classList.add("active");
+
+      mic.innerHTML = "🔴";
+
+      status.innerText =
+        "Mendengarkan...";
+
+    }
+
+    catch(error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+
+  recognition.onresult =
+    function(event) {
+
+      const text =
+        event.results[0][0].transcript;
+
+
+      mic.classList.remove("active");
+
+      mic.innerHTML = "🎤";
+
+
+      prosesPertanyaan(text);
+
+    };
+
+
+  recognition.onend =
+    function() {
+
+      mic.classList.remove("active");
+
+      mic.innerHTML = "🎤";
+
+    };
+
+
+  recognition.onerror =
+    function(event) {
+
+      console.log(event.error);
+
+      mic.classList.remove("active");
+
+      mic.innerHTML = "🎤";
+
+      status.innerText =
+        "Tidak terdengar. Silakan coba lagi.";
+
+    };
+
+}
+
+
+/*
+====================================================
+ TEXT TO SPEECH
+====================================================
+*/
+
+function speak(text) {
+
+  speechSynthesis.cancel();
+
+
+  const voice =
+    new SpeechSynthesisUtterance(text);
+
+
+  voice.lang =
+    "id-ID";
+
+
+  voice.rate =
+    0.95;
+
+
+  voice.pitch =
+    1;
+
+
+  speechSynthesis.speak(
+    voice
+  );
+
+}
+
+</script>
+
 </body>
 </html>
