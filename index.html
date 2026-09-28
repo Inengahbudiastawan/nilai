@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Customer Service</title>
+<title>Live AI Customer Service</title>
 
 <style>
 
@@ -12,343 +12,781 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  width: 100%;
+  height: 100%;
   font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top left, #3b82f6, transparent 35%),
-    linear-gradient(135deg, #0f172a, #1e293b);
-  color: #fff;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
 
-/* =========================
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+body {
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #2563eb 0,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a
+    );
+
+  color: white;
+
+}
+
+
+/* ==================================================
+   APP
+================================================== */
+
+.app {
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 .header {
-  height: 75px;
+
+  height: 70px;
+
+  padding: 0 30px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
-  padding: 0 35px;
-  background: rgba(15,23,42,.75);
-  border-bottom: 1px solid rgba(255,255,255,.1);
+
+  background:
+    rgba(2,6,23,.85);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.1);
+
+  z-index: 10;
+
 }
 
 .logo {
-  font-size: 22px;
+
+  font-size: 21px;
+
   font-weight: bold;
+
 }
 
-.online {
+.status-online {
+
   display: flex;
+
   align-items: center;
+
   gap: 8px;
-  font-size: 14px;
+
+  font-size: 13px;
+
+  color: #cbd5e1;
+
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #22c55e;
+.online-dot {
+
+  width: 9px;
+
+  height: 9px;
+
   border-radius: 50%;
-  box-shadow: 0 0 12px #22c55e;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 12px #22c55e;
+
 }
 
 
-/* =========================
+/* ==================================================
    MAIN
-========================= */
+================================================== */
 
 .main {
-  height: calc(100vh - 75px);
+
+  flex: 1;
+
   display: grid;
-  grid-template-columns: 55% 45%;
+
+  grid-template-columns:
+    42% 58%;
+
+  min-height: 0;
+
 }
 
 
-/* =========================
-   AVATAR
-========================= */
+/* ==================================================
+   LEFT AVATAR AREA
+================================================== */
 
-.avatar-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.avatar-section {
+
   position: relative;
-}
 
-.avatar-container {
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, #60a5fa 0%, #2563eb 45%, #1d4ed8 100%);
+  overflow: hidden;
+
   display: flex;
+
   justify-content: center;
+
+}
+
+
+/* garis tengah */
+
+.avatar-section::after {
+
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+
+  width: 1px;
+
+  height: 100%;
+
+  background:
+    rgba(255,255,255,.08);
+
+}
+
+
+/* ==================================================
+   AVATAR TRACK
+================================================== */
+
+.avatar-track {
+
+  position: absolute;
+
+  top: 40px;
+
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/*
+Avatar akan bergerak turun
+setiap kali percakapan bertambah.
+*/
+
+.avatar-track.move-1 {
+  transform: translateY(45px);
+}
+
+.avatar-track.move-2 {
+  transform: translateY(90px);
+}
+
+.avatar-track.move-3 {
+  transform: translateY(135px);
+}
+
+.avatar-track.move-4 {
+  transform: translateY(180px);
+}
+
+.avatar-track.move-5 {
+  transform: translateY(225px);
+}
+
+
+/* ==================================================
+   AVATAR
+================================================== */
+
+.avatar-wrapper {
+
+  width: 330px;
+
+  height: 330px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
   align-items: center;
+
+  background:
+    radial-gradient(
+      circle,
+      #60a5fa,
+      #2563eb 50%,
+      #1e40af
+    );
+
   box-shadow:
-    0 0 50px rgba(59,130,246,.5),
-    inset 0 0 40px rgba(255,255,255,.15);
-  transition: .3s;
-}
+    0 0 50px
+    rgba(37,99,235,.5);
 
-.avatar-container.listening {
-  animation: listening 1s infinite;
-}
+  transition:
+    transform .3s,
+    box-shadow .3s;
 
-.avatar-container.speaking {
-  animation: speaking .5s infinite alternate;
 }
 
 
-/* AVATAR SVG */
+/* mendengarkan */
+
+.avatar-wrapper.listening {
+
+  animation:
+    listening 1s infinite;
+
+}
+
+
+/* berbicara */
+
+.avatar-wrapper.speaking {
+
+  animation:
+    talking .45s infinite alternate;
+
+}
+
+
+/* ==================================================
+   SVG
+================================================== */
 
 .avatar {
-  width: 280px;
-  height: 280px;
+
+  width: 255px;
+
+  height: 255px;
+
 }
 
 
-/* AVATAR MULUT */
+/* mulut */
 
 .mouth {
-  transform-origin: center;
+
+  transform-origin:
+    150px 195px;
+
 }
+
+
+/* animasi mulut */
 
 .speaking .mouth {
-  animation: mouth 0.25s infinite alternate;
+
+  animation:
+    mouthMove .22s infinite alternate;
+
 }
 
 
-/* =========================
-   AVATAR INFO
-========================= */
+/* ==================================================
+   INFO
+================================================== */
+
+.avatar-info {
+
+  position: absolute;
+
+  top: 390px;
+
+  width: 100%;
+
+  text-align: center;
+
+  transition:
+    top .8s;
+
+}
 
 .avatar-name {
-  margin-top: 25px;
-  font-size: 25px;
+
+  font-size: 24px;
+
   font-weight: bold;
+
 }
 
-.avatar-status {
-  margin-top: 8px;
-  color: #cbd5e1;
-  font-size: 15px;
+.avatar-role {
+
+  margin-top: 6px;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+
 }
 
 
-/* =========================
-   CHAT
-========================= */
+/* ==================================================
+   RIGHT CHAT
+================================================== */
 
-.chat-area {
+.chat-section {
+
   display: flex;
+
   flex-direction: column;
-  padding: 30px;
-  background: rgba(15,23,42,.55);
-  border-left: 1px solid rgba(255,255,255,.1);
+
+  min-height: 0;
+
+  background:
+    rgba(15,23,42,.65);
+
 }
 
-.chat-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
+
+/* ==================================================
+   CHAT HEADER
+================================================== */
+
+.chat-header {
+
+  padding: 22px 28px;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.08);
+
 }
+
+.chat-header h2 {
+
+  margin: 0;
+
+  font-size: 20px;
+
+}
+
+.chat-header p {
+
+  margin: 5px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 13px;
+
+}
+
+
+/* ==================================================
+   CHAT MESSAGES
+================================================== */
 
 #chat {
+
   flex: 1;
+
   overflow-y: auto;
-  padding-right: 10px;
+
+  padding: 25px;
+
+  scroll-behavior: smooth;
+
 }
+
+
+/* scrollbar */
+
+#chat::-webkit-scrollbar {
+
+  width: 7px;
+
+}
+
+#chat::-webkit-scrollbar-thumb {
+
+  background: #475569;
+
+  border-radius: 10px;
+
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
 
 .message {
+
+  max-width: 75%;
+
   padding: 14px 18px;
-  margin-bottom: 15px;
+
+  margin-bottom: 18px;
+
   border-radius: 18px;
-  max-width: 85%;
-  line-height: 1.5;
+
+  line-height: 1.55;
+
   white-space: pre-line;
+
+  animation:
+    messageIn .35s ease;
+
 }
+
+
+/* bot */
 
 .bot {
+
   background: #334155;
+
   border-bottom-left-radius: 5px;
+
 }
+
+
+/* user */
 
 .user {
-  background: #2563eb;
+
   margin-left: auto;
+
+  background: #2563eb;
+
   border-bottom-right-radius: 5px;
+
 }
 
 
-/* =========================
+/* ==================================================
    INPUT
-========================= */
+================================================== */
+
+.bottom {
+
+  padding: 15px 25px 20px;
+
+  border-top:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+
+/* input */
 
 .input-area {
+
   display: flex;
+
   gap: 10px;
-  margin-top: 15px;
+
 }
 
 #textInput {
+
   flex: 1;
-  padding: 16px;
+
+  padding: 15px;
+
   border: none;
+
   outline: none;
-  border-radius: 15px;
+
+  border-radius: 14px;
+
   background: #334155;
+
   color: white;
-  font-size: 15px;
+
+  font-size: 14px;
+
 }
 
 #textInput::placeholder {
+
   color: #94a3b8;
+
 }
+
+
+/* send */
 
 #send {
-  padding: 0 22px;
+
   border: none;
-  border-radius: 15px;
+
+  padding: 0 22px;
+
+  border-radius: 14px;
+
   background: #2563eb;
+
   color: white;
+
   cursor: pointer;
-  font-size: 15px;
+
+  font-weight: bold;
+
 }
 
 
-/* =========================
-   MIC
-========================= */
+/* microphone */
 
-.mic-area {
+.mic-row {
+
   text-align: center;
-  margin-top: 15px;
+
+  margin-top: 12px;
+
 }
 
 #mic {
-  width: 70px;
-  height: 70px;
-  border: none;
-  border-radius: 50%;
-  background: #2563eb;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  transition: .2s;
-}
 
-#mic:hover {
-  transform: scale(1.08);
+  width: 58px;
+
+  height: 58px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
 }
 
 #mic.active {
+
   background: #dc2626;
-  animation: pulse 1s infinite;
+
+  animation:
+    pulse 1s infinite;
+
 }
 
 #status {
-  margin-top: 10px;
+
+  margin-top: 7px;
+
+  text-align: center;
+
+  font-size: 12px;
+
   color: #94a3b8;
-  font-size: 13px;
+
 }
 
 
-/* =========================
+/* ==================================================
    ANIMATION
-========================= */
-
-@keyframes pulse {
-
-  0% {
-    box-shadow: 0 0 0 0 rgba(220,38,38,.6);
-  }
-
-  70% {
-    box-shadow: 0 0 0 20px rgba(220,38,38,0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(220,38,38,0);
-  }
-
-}
+================================================== */
 
 @keyframes listening {
 
   0% {
-    box-shadow: 0 0 30px #3b82f6;
+
+    box-shadow:
+      0 0 25px #3b82f6;
+
   }
 
   50% {
-    box-shadow: 0 0 80px #60a5fa;
+
+    box-shadow:
+      0 0 80px #60a5fa;
+
   }
 
   100% {
-    box-shadow: 0 0 30px #3b82f6;
+
+    box-shadow:
+      0 0 25px #3b82f6;
+
   }
 
 }
 
-@keyframes speaking {
+
+@keyframes talking {
 
   from {
-    transform: scale(1);
+
+    transform:
+      scale(1);
+
   }
 
   to {
-    transform: scale(1.04);
+
+    transform:
+      scale(1.035);
+
   }
 
 }
 
-@keyframes mouth {
+
+@keyframes mouthMove {
 
   from {
-    transform: scaleY(1);
+
+    transform:
+      scaleY(1);
+
   }
 
   to {
-    transform: scaleY(.35);
+
+    transform:
+      scaleY(.25);
+
   }
 
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+@keyframes pulse {
+
+  0% {
+
+    box-shadow:
+      0 0 0 0
+      rgba(220,38,38,.6);
+
+  }
+
+  70% {
+
+    box-shadow:
+      0 0 0 18px
+      rgba(220,38,38,0);
+
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 0 0
+      rgba(220,38,38,0);
+
+  }
+
+}
+
+
+@keyframes messageIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
 
 @media(max-width: 900px) {
 
+  body {
+
+    overflow: auto;
+
+  }
+
   .main {
+
     grid-template-columns: 1fr;
+
     height: auto;
+
   }
 
-  .avatar-area {
-    padding: 40px 20px;
+  .avatar-section {
+
+    height: 430px;
+
   }
 
-  .avatar-container {
+  .avatar-wrapper {
+
     width: 250px;
+
     height: 250px;
+
   }
 
   .avatar {
-    width: 200px;
-    height: 200px;
+
+    width: 195px;
+
+    height: 195px;
+
   }
 
-  .chat-area {
+  .avatar-info {
+
+    top: 300px;
+
+  }
+
+  .chat-section {
+
     height: 600px;
-    border-left: none;
-    border-top: 1px solid rgba(255,255,255,.1);
+
   }
 
 }
@@ -360,9 +798,12 @@ body {
 <body>
 
 
-<!-- =========================
+<div class="app">
+
+
+<!-- ==================================================
      HEADER
-========================= -->
+================================================== -->
 
 <header class="header">
 
@@ -370,34 +811,44 @@ body {
     🤖 AI Customer Service
   </div>
 
-  <div class="online">
-    <span class="dot"></span>
-    Online
+  <div class="status-online">
+
+    <span class="online-dot"></span>
+
+    Sarah Online
+
   </div>
 
 </header>
 
 
 
-<!-- =========================
+<!-- ==================================================
      MAIN
-========================= -->
+================================================== -->
 
 <main class="main">
 
 
-  <!-- =======================
-       AVATAR
-  ======================== -->
+<!-- ==================================================
+     AVATAR
+================================================== -->
 
-  <section class="avatar-area">
+<section class="avatar-section">
+
+
+  <div
+    id="avatarTrack"
+    class="avatar-track"
+  >
 
     <div
-      id="avatarContainer"
-      class="avatar-container"
+      id="avatarWrapper"
+      class="avatar-wrapper"
     >
 
-      <!-- AVATAR SVG -->
+
+      <!-- AVATAR -->
 
       <svg
         class="avatar"
@@ -408,16 +859,19 @@ body {
         <!-- rambut -->
 
         <path
-          d="M70 130
-             C65 60 105 25 150 25
-             C205 25 235 70 230 135
-             L210 115
-             C205 70 180 55 150 55
-             C115 55 90 80 85 120Z"
+          d="
+          M70 130
+          C65 60 105 25 150 25
+          C205 25 235 70 230 135
+          L210 115
+          C205 70 180 55 150 55
+          C115 55 90 80 85 120
+          Z"
           fill="#3b2416"
         />
 
-        <!-- kepala -->
+
+        <!-- wajah -->
 
         <ellipse
           cx="150"
@@ -427,16 +881,20 @@ body {
           fill="#f4c7a1"
         />
 
+
         <!-- rambut depan -->
 
         <path
-          d="M75 115
-             C70 55 110 35 150 35
-             C195 35 225 70 220 115
-             C195 85 180 75 160 80
-             C135 90 105 75 75 115Z"
+          d="
+          M75 115
+          C70 55 110 35 150 35
+          C195 35 225 70 220 115
+          C195 85 180 75 160 80
+          C135 90 105 75 75 115
+          Z"
           fill="#432818"
         />
+
 
         <!-- mata -->
 
@@ -456,15 +914,19 @@ body {
           fill="#1e293b"
         />
 
+
         <!-- hidung -->
 
         <path
-          d="M150 150 L143 170 L155 170"
+          d="
+          M150 150
+          L143 170
+          L155 170"
           fill="none"
           stroke="#c08457"
           stroke-width="4"
-          stroke-linecap="round"
         />
+
 
         <!-- mulut -->
 
@@ -478,20 +940,28 @@ body {
           fill="#7f1d1d"
         />
 
+
         <!-- baju -->
 
         <path
-          d="M90 235
-             C110 215 190 215 210 235
-             L235 300
-             L65 300Z"
+          d="
+          M90 235
+          C110 215 190 215 210 235
+          L235 300
+          L65 300
+          Z"
           fill="#2563eb"
         />
+
 
         <!-- kerah -->
 
         <path
-          d="M120 230 L150 265 L180 230"
+          d="
+          M120 230
+          L150 265
+          L180 230
+          Z"
           fill="white"
         />
 
@@ -499,6 +969,13 @@ body {
 
     </div>
 
+  </div>
+
+
+  <div
+    id="avatarInfo"
+    class="avatar-info"
+  >
 
     <div class="avatar-name">
       Sarah
@@ -506,37 +983,55 @@ body {
 
     <div
       id="avatarStatus"
-      class="avatar-status"
+      class="avatar-role"
     >
-      Siap membantu Anda
+      Customer Service
     </div>
 
-  </section>
+  </div>
+
+
+</section>
 
 
 
-  <!-- =======================
-       CHAT
-  ======================== -->
+<!-- ==================================================
+     CHAT
+================================================== -->
 
-  <section class="chat-area">
+<section class="chat-section">
 
-    <div class="chat-title">
-      💬 Percakapan
+
+  <div class="chat-header">
+
+    <h2>
+      Percakapan
+    </h2>
+
+    <p>
+      Berbicara langsung dengan Sarah
+    </p>
+
+  </div>
+
+
+  <div id="chat">
+
+    <div class="message bot">
+
+      Halo 👋 Saya Sarah,
+      Customer Service Anda.
+
+      Silakan tanyakan tentang
+      produk, harga, alamat,
+      pengiriman, atau layanan kami.
+
     </div>
 
+  </div>
 
-    <div id="chat">
 
-      <div class="message bot">
-        Halo 👋 Saya Sarah, Customer Service Anda.
-        
-        Silakan tanyakan tentang produk, harga,
-        alamat, jam operasional, pengiriman,
-        atau layanan kami.
-      </div>
-
-    </div>
+  <div class="bottom">
 
 
     <div class="input-area">
@@ -544,7 +1039,7 @@ body {
       <input
         id="textInput"
         type="text"
-        placeholder="Tulis pertanyaan..."
+        placeholder="Tulis pesan..."
       >
 
       <button id="send">
@@ -554,7 +1049,7 @@ body {
     </div>
 
 
-    <div class="mic-area">
+    <div class="mic-row">
 
       <button id="mic">
         🎤
@@ -566,24 +1061,24 @@ body {
 
     </div>
 
-  </section>
+  </div>
+
+
+</section>
+
 
 </main>
+
+</div>
 
 
 
 <script>
 
 
-/*
-==================================================
- DATA CUSTOMER SERVICE
-==================================================
-
-UBAH DATA DI SINI.
-==================================================
-*/
-
+/* ==================================================
+   DATA CUSTOMER SERVICE
+================================================== */
 
 const DATA = {
 
@@ -653,38 +1148,28 @@ const DATA = {
   faq: [
 
     {
-      kata: [
-        "cara",
-        "pesan"
-      ],
+      kata: ["cara", "pesan"],
 
       jawaban:
         "Untuk melakukan pemesanan, silakan pilih produk dan hubungi customer service kami."
     },
 
     {
-      kata: [
-        "cara",
-        "bayar"
-      ],
+      kata: ["cara", "bayar"],
 
       jawaban:
         "Kami menerima pembayaran melalui transfer bank dan pembayaran digital."
     },
 
     {
-      kata: [
-        "pengiriman"
-      ],
+      kata: ["pengiriman"],
 
       jawaban:
         "Kami melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan."
     },
 
     {
-      kata: [
-        "refund"
-      ],
+      kata: ["refund"],
 
       jawaban:
         "Untuk pengajuan refund, silakan hubungi customer service kami."
@@ -696,11 +1181,9 @@ const DATA = {
 
 
 
-/*
-==================================================
- ELEMENT
-==================================================
-*/
+/* ==================================================
+   ELEMENT
+================================================== */
 
 const chat =
   document.getElementById("chat");
@@ -717,19 +1200,29 @@ const mic =
 const status =
   document.getElementById("status");
 
-const avatarContainer =
-  document.getElementById("avatarContainer");
+const avatarTrack =
+  document.getElementById("avatarTrack");
+
+const avatarWrapper =
+  document.getElementById("avatarWrapper");
 
 const avatarStatus =
   document.getElementById("avatarStatus");
 
 
-
 /*
-==================================================
- CHAT
-==================================================
+Jumlah percakapan.
+Digunakan untuk membuat avatar
+bergerak turun mengikuti dialog.
 */
+
+let conversationCount = 0;
+
+
+
+/* ==================================================
+   TAMBAH PESAN
+================================================== */
 
 function addMessage(text, type) {
 
@@ -744,18 +1237,53 @@ function addMessage(text, type) {
 
   chat.appendChild(div);
 
-  chat.scrollTop =
-    chat.scrollHeight;
+
+  /*
+  Scroll otomatis ke pesan terbaru
+  */
+
+  chat.scrollTo({
+
+    top: chat.scrollHeight,
+
+    behavior: "smooth"
+
+  });
+
+
+  /*
+  Avatar ikut bergerak turun.
+
+  Setelah 5 langkah, posisinya
+  kembali agar tidak keluar layar.
+  */
+
+  conversationCount++;
+
+
+  const step =
+    conversationCount % 6;
+
+
+  avatarTrack.className =
+    "avatar-track";
+
+
+  if (step > 0) {
+
+    avatarTrack.classList.add(
+      "move-" + step
+    );
+
+  }
 
 }
 
 
 
-/*
-==================================================
- JAWAB PERTANYAAN
-==================================================
-*/
+/* ==================================================
+   JAWAB
+================================================== */
 
 function jawab(question) {
 
@@ -763,7 +1291,7 @@ function jawab(question) {
     question.toLowerCase();
 
 
-  // SALAM
+  /* salam */
 
   if (
     q.includes("halo") ||
@@ -776,7 +1304,7 @@ function jawab(question) {
   }
 
 
-  // ALAMAT
+  /* alamat */
 
   if (
     q.includes("alamat") ||
@@ -790,7 +1318,7 @@ function jawab(question) {
   }
 
 
-  // TELEPON
+  /* telepon */
 
   if (
     q.includes("telepon") ||
@@ -804,16 +1332,18 @@ function jawab(question) {
   }
 
 
-  // EMAIL
+  /* email */
 
-  if (q.includes("email")) {
+  if (
+    q.includes("email")
+  ) {
 
     return `Email kami adalah ${DATA.perusahaan.email}.`;
 
   }
 
 
-  // JAM
+  /* jam */
 
   if (
     q.includes("jam") ||
@@ -827,15 +1357,20 @@ function jawab(question) {
   }
 
 
-  // PRODUK
+  /* produk */
 
-  for (const produk of DATA.produk) {
+  for (
+    const produk of DATA.produk
+  ) {
 
     const nama =
       produk.nama.toLowerCase();
 
 
-    if (q.includes(nama)) {
+    if (
+      q.includes(nama)
+    ) {
+
 
       if (
         q.includes("harga") ||
@@ -858,59 +1393,77 @@ function jawab(question) {
       }
 
 
-      return `${produk.nama}: ${produk.deskripsi} Harganya ${produk.harga}. Stok ${produk.stok}.`;
+      return `
+${produk.nama}
+
+${produk.deskripsi}
+
+Harga: ${produk.harga}
+
+Stok: ${produk.stok}
+`;
 
     }
 
   }
 
 
-  // HARGA
+  /* semua harga */
 
   if (
     q.includes("harga") ||
     q.includes("berapa")
   ) {
 
-    let hasil =
+    let result =
       "Berikut daftar harga produk kami:\n\n";
 
 
-    DATA.produk.forEach(p => {
+    DATA.produk.forEach(
+      p => {
 
-      hasil +=
-        `${p.nama}: ${p.harga}\n`;
+        result +=
+          `${p.nama}: ${p.harga}\n`;
 
-    });
+      }
+    );
 
 
-    return hasil;
+    return result;
 
   }
 
 
-  // FAQ
+  /* FAQ */
 
-  for (const faq of DATA.faq) {
+  for (
+    const faq of DATA.faq
+  ) {
 
-    let jumlah =
+    let cocok =
       0;
 
 
-    faq.kata.forEach(kata => {
+    faq.kata.forEach(
+      kata => {
 
-      if (q.includes(kata)) {
+        if (
+          q.includes(kata)
+        ) {
 
-        jumlah++;
+          cocok++;
+
+        }
 
       }
-
-    });
+    );
 
 
     if (
-      jumlah >=
-      Math.ceil(faq.kata.length / 2)
+      cocok >=
+      Math.ceil(
+        faq.kata.length / 2
+      )
     ) {
 
       return faq.jawaban;
@@ -920,7 +1473,7 @@ function jawab(question) {
   }
 
 
-  // TERIMA KASIH
+  /* terima kasih */
 
   if (
     q.includes("terima kasih") ||
@@ -932,12 +1485,13 @@ function jawab(question) {
   }
 
 
-  // DEFAULT
+  /* default */
 
   return `
 Maaf, saya belum menemukan informasi tersebut.
 
 Anda dapat menanyakan:
+
 • Harga produk
 • Stok produk
 • Alamat
@@ -954,15 +1508,15 @@ Anda dapat menanyakan:
 
 
 
-/*
-==================================================
- PROSES PERTANYAAN
-==================================================
-*/
+/* ==================================================
+   PROSES
+================================================== */
 
 function proses(text) {
 
-  if (!text.trim()) {
+  if (
+    !text.trim()
+  ) {
 
     return;
 
@@ -983,49 +1537,47 @@ function proses(text) {
     "Sedang menjawab...";
 
 
-  avatarContainer.classList.add(
-    "speaking"
+  setTimeout(
+    () => {
+
+      const answer =
+        jawab(text);
+
+
+      addMessage(
+        answer,
+        "bot"
+      );
+
+
+      speak(answer);
+
+    },
+    500
   );
-
-
-  setTimeout(() => {
-
-    const answer =
-      jawab(text);
-
-
-    addMessage(
-      answer,
-      "bot"
-    );
-
-
-    speak(answer);
-
-  }, 500);
 
 }
 
 
 
-/*
-==================================================
- TEXT INPUT
-==================================================
-*/
+/* ==================================================
+   KIRIM TEXT
+================================================== */
 
-send.onclick = () => {
+send.onclick =
+  () => {
 
-  const text =
-    input.value;
-
-
-  input.value = "";
+    const text =
+      input.value;
 
 
-  proses(text);
+    input.value =
+      "";
 
-};
+
+    proses(text);
+
+  };
 
 
 input.addEventListener(
@@ -1045,18 +1597,18 @@ input.addEventListener(
 
 
 
-/*
-==================================================
- VOICE RECOGNITION
-==================================================
-*/
+/* ==================================================
+   VOICE RECOGNITION
+================================================== */
 
 const SpeechRecognition =
   window.SpeechRecognition ||
   window.webkitSpeechRecognition;
 
 
-if (SpeechRecognition) {
+if (
+  SpeechRecognition
+) {
 
   const recognition =
     new SpeechRecognition();
@@ -1074,41 +1626,44 @@ if (SpeechRecognition) {
     false;
 
 
-  mic.onclick = () => {
+  mic.onclick =
+    () => {
 
-    try {
+      try {
 
-      recognition.start();
-
-      mic.classList.add(
-        "active"
-      );
-
-      mic.innerHTML =
-        "🔴";
+        recognition.start();
 
 
-      status.innerText =
-        "Mendengarkan...";
+        mic.classList.add(
+          "active"
+        );
 
 
-      avatarStatus.innerText =
-        "Saya sedang mendengarkan...";
+        mic.innerHTML =
+          "🔴";
 
 
-      avatarContainer.classList.add(
-        "listening"
-      );
+        status.innerText =
+          "Mendengarkan...";
 
-    }
 
-    catch(error) {
+        avatarStatus.innerText =
+          "Sarah sedang mendengarkan...";
 
-      console.log(error);
 
-    }
+        avatarWrapper.classList.add(
+          "listening"
+        );
 
-  };
+      }
+
+      catch(error) {
+
+        console.log(error);
+
+      }
+
+    };
 
 
   recognition.onresult =
@@ -1127,7 +1682,7 @@ if (SpeechRecognition) {
         "🎤";
 
 
-      avatarContainer.classList.remove(
+      avatarWrapper.classList.remove(
         "listening"
       );
 
@@ -1144,11 +1699,12 @@ if (SpeechRecognition) {
         "active"
       );
 
+
       mic.innerHTML =
         "🎤";
 
 
-      avatarContainer.classList.remove(
+      avatarWrapper.classList.remove(
         "listening"
       );
 
@@ -1172,13 +1728,14 @@ if (SpeechRecognition) {
         "🎤";
 
 
-      avatarContainer.classList.remove(
+      avatarWrapper.classList.remove(
         "listening"
       );
 
 
       status.innerText =
-        "Tidak terdengar. Silakan coba lagi.";
+        "Silakan coba lagi.";
+
 
       avatarStatus.innerText =
         "Siap membantu Anda";
@@ -1189,11 +1746,9 @@ if (SpeechRecognition) {
 
 
 
-/*
-==================================================
- TEXT TO SPEECH
-==================================================
-*/
+/* ==================================================
+   TEXT TO SPEECH
+================================================== */
 
 function speak(text) {
 
@@ -1211,14 +1766,14 @@ function speak(text) {
 
 
   voice.rate =
-    0.95;
+    .95;
 
 
   voice.pitch =
     1;
 
 
-  avatarContainer.classList.add(
+  avatarWrapper.classList.add(
     "speaking"
   );
 
@@ -1230,14 +1785,13 @@ function speak(text) {
   voice.onend =
     () => {
 
-      avatarContainer.classList.remove(
+      avatarWrapper.classList.remove(
         "speaking"
       );
 
 
       avatarStatus.innerText =
-        "Siap membantu Anda";
-
+        "Customer Service";
 
       status.innerText =
         "Tekan mikrofon untuk berbicara lagi";
@@ -1250,7 +1804,6 @@ function speak(text) {
   );
 
 }
-
 
 </script>
 
