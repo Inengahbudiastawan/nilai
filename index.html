@@ -22,8 +22,17 @@ body {
 
 body {
   background:
-    radial-gradient(circle at 20% 20%, #2563eb 0, transparent 35%),
-    linear-gradient(135deg, #020617, #0f172a);
+    radial-gradient(
+      circle at 20% 20%,
+      #2563eb 0,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a
+    );
+
   color: white;
 }
 
@@ -34,15 +43,20 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
+
 .header {
   height: 70px;
   padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(2,6,23,.88);
+
+  background: rgba(2,6,23,.85);
   border-bottom: 1px solid rgba(255,255,255,.1);
+
   z-index: 10;
 }
 
@@ -67,7 +81,10 @@ body {
   box-shadow: 0 0 12px #22c55e;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
 .main {
   flex: 1;
   display: grid;
@@ -75,7 +92,10 @@ body {
   min-height: 0;
 }
 
-/* AVATAR */
+/* =========================
+   AVATAR
+========================= */
+
 .avatar-section {
   position: relative;
   overflow: hidden;
@@ -98,28 +118,58 @@ body {
   top: 40px;
   left: 0;
   width: 100%;
+
   display: flex;
   justify-content: center;
-  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+
+  transition:
+    transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
-.avatar-track.move-1 { transform: translateY(35px); }
-.avatar-track.move-2 { transform: translateY(70px); }
-.avatar-track.move-3 { transform: translateY(105px); }
-.avatar-track.move-4 { transform: translateY(140px); }
-.avatar-track.move-5 { transform: translateY(175px); }
+.avatar-track.move-1 {
+  transform: translateY(35px);
+}
+
+.avatar-track.move-2 {
+  transform: translateY(70px);
+}
+
+.avatar-track.move-3 {
+  transform: translateY(105px);
+}
+
+.avatar-track.move-4 {
+  transform: translateY(140px);
+}
+
+.avatar-track.move-5 {
+  transform: translateY(175px);
+}
 
 .avatar-wrapper {
   width: 330px;
   height: 330px;
+
   border-radius: 50%;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   background:
-    radial-gradient(circle, #60a5fa, #2563eb 50%, #1e40af);
-  box-shadow: 0 0 50px rgba(37,99,235,.5);
-  transition: transform .3s, box-shadow .3s;
+    radial-gradient(
+      circle,
+      #60a5fa,
+      #2563eb 50%,
+      #1e40af
+    );
+
+  box-shadow:
+    0 0 50px rgba(37,99,235,.5);
+
+  transition:
+    transform .3s,
+    box-shadow .3s;
 }
 
 .avatar-wrapper.listening {
@@ -143,6 +193,10 @@ body {
   animation: mouthMove .22s infinite alternate;
 }
 
+/* =========================
+   AVATAR INFO
+========================= */
+
 .avatar-info {
   position: absolute;
   top: 390px;
@@ -161,7 +215,10 @@ body {
   font-size: 14px;
 }
 
-/* CHAT */
+/* =========================
+   CHAT
+========================= */
+
 .chat-section {
   display: flex;
   flex-direction: column;
@@ -201,13 +258,20 @@ body {
   border-radius: 10px;
 }
 
+/* =========================
+   MESSAGE
+========================= */
+
 .message {
-  max-width: 78%;
+  max-width: 80%;
   padding: 14px 18px;
   margin-bottom: 18px;
+
   border-radius: 18px;
+
   line-height: 1.55;
   white-space: pre-line;
+
   animation: messageIn .35s ease;
 }
 
@@ -222,10 +286,15 @@ body {
   border-bottom-right-radius: 5px;
 }
 
-/* INPUT */
+/* =========================
+   BOTTOM
+========================= */
+
 .bottom {
   padding: 15px 25px 20px;
-  border-top: 1px solid rgba(255,255,255,.08);
+
+  border-top:
+    1px solid rgba(255,255,255,.08);
 }
 
 .input-area {
@@ -235,12 +304,17 @@ body {
 
 #textInput {
   flex: 1;
+
   padding: 15px;
+
   border: none;
   outline: none;
+
   border-radius: 14px;
+
   background: #334155;
   color: white;
+
   font-size: 14px;
 }
 
@@ -251,10 +325,14 @@ body {
 #send {
   border: none;
   padding: 0 22px;
+
   border-radius: 14px;
+
   background: #2563eb;
   color: white;
+
   cursor: pointer;
+
   font-weight: bold;
 }
 
@@ -262,50 +340,113 @@ body {
   background: #1d4ed8;
 }
 
+/* =========================
+   MICROPHONE
+========================= */
+
 .mic-row {
   text-align: center;
   margin-top: 12px;
 }
 
+.voice-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+#mic,
+#stopSpeaking {
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 #mic {
   width: 58px;
   height: 58px;
-  border: none;
+
   border-radius: 50%;
+
   background: #2563eb;
-  color: white;
+
   font-size: 25px;
-  cursor: pointer;
+}
+
+#mic:hover {
+  background: #1d4ed8;
 }
 
 #mic.active {
   background: #dc2626;
-  animation: pulse 1s infinite;
+
+  animation:
+    pulse 1s infinite;
+}
+
+/*
+TOMBOL STOP BICARA
+*/
+
+#stopSpeaking {
+  min-height: 48px;
+  padding: 0 18px;
+
+  border-radius: 14px;
+
+  background: #dc2626;
+
+  font-size: 13px;
+}
+
+#stopSpeaking:hover {
+  background: #b91c1c;
+}
+
+#stopSpeaking:disabled {
+  background: #475569;
+  color: #94a3b8;
+  cursor: not-allowed;
+  animation: none;
 }
 
 #status {
   margin-top: 7px;
+
   text-align: center;
+
   font-size: 12px;
+
   color: #94a3b8;
 }
 
-/* ANIMATION */
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes listening {
+
   0% {
-    box-shadow: 0 0 25px #3b82f6;
+    box-shadow:
+      0 0 25px #3b82f6;
   }
 
   50% {
-    box-shadow: 0 0 80px #60a5fa;
+    box-shadow:
+      0 0 80px #60a5fa;
   }
 
   100% {
-    box-shadow: 0 0 25px #3b82f6;
+    box-shadow:
+      0 0 25px #3b82f6;
   }
+
 }
 
 @keyframes talking {
+
   from {
     transform: scale(1);
   }
@@ -313,9 +454,11 @@ body {
   to {
     transform: scale(1.035);
   }
+
 }
 
 @keyframes mouthMove {
+
   from {
     transform: scaleY(1);
   }
@@ -323,23 +466,33 @@ body {
   to {
     transform: scaleY(.25);
   }
+
 }
 
 @keyframes pulse {
+
   0% {
-    box-shadow: 0 0 0 0 rgba(220,38,38,.6);
+    box-shadow:
+      0 0 0 0
+      rgba(220,38,38,.6);
   }
 
   70% {
-    box-shadow: 0 0 0 18px rgba(220,38,38,0);
+    box-shadow:
+      0 0 0 18px
+      rgba(220,38,38,0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(220,38,38,0);
+    box-shadow:
+      0 0 0 0
+      rgba(220,38,38,0);
   }
+
 }
 
 @keyframes messageIn {
+
   from {
     opacity: 0;
     transform: translateY(15px);
@@ -349,9 +502,13 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width: 900px) {
 
   body {
@@ -384,7 +541,21 @@ body {
   .chat-section {
     height: 600px;
   }
+
+  .header {
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .voice-buttons {
+    flex-wrap: wrap;
+  }
+
 }
+
 </style>
 </head>
 
@@ -392,30 +563,57 @@ body {
 
 <div class="app">
 
+<!-- ==================================================
+     HEADER
+================================================== -->
+
 <header class="header">
+
   <div class="logo">
-    💻 Norton Bali Computer
+    🤖 Norton Bali Computer
   </div>
 
   <div class="status-online">
+
     <span class="online-dot"></span>
+
     Sarah Online
+
   </div>
+
 </header>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
 
 <main class="main">
 
+
+<!-- ==================================================
+     AVATAR
+================================================== -->
+
 <section class="avatar-section">
 
-  <div id="avatarTrack" class="avatar-track">
+  <div
+    id="avatarTrack"
+    class="avatar-track"
+  >
 
-    <div id="avatarWrapper" class="avatar-wrapper">
+    <div
+      id="avatarWrapper"
+      class="avatar-wrapper"
+    >
 
       <svg
         class="avatar"
         viewBox="0 0 300 300"
         xmlns="http://www.w3.org/2000/svg"
       >
+
+        <!-- rambut -->
 
         <path
           d="
@@ -429,6 +627,8 @@ body {
           fill="#3b2416"
         />
 
+        <!-- wajah -->
+
         <ellipse
           cx="150"
           cy="145"
@@ -436,6 +636,8 @@ body {
           ry="90"
           fill="#f4c7a1"
         />
+
+        <!-- rambut depan -->
 
         <path
           d="
@@ -447,6 +649,8 @@ body {
           Z"
           fill="#432818"
         />
+
+        <!-- mata -->
 
         <ellipse
           cx="120"
@@ -464,6 +668,8 @@ body {
           fill="#1e293b"
         />
 
+        <!-- hidung -->
+
         <path
           d="
           M150 150
@@ -473,6 +679,8 @@ body {
           stroke="#c08457"
           stroke-width="4"
         />
+
+        <!-- mulut -->
 
         <ellipse
           id="mouth"
@@ -484,6 +692,8 @@ body {
           fill="#7f1d1d"
         />
 
+        <!-- baju -->
+
         <path
           d="
           M90 235
@@ -493,6 +703,8 @@ body {
           Z"
           fill="#2563eb"
         />
+
+        <!-- kerah -->
 
         <path
           d="
@@ -506,15 +718,23 @@ body {
       </svg>
 
     </div>
+
   </div>
 
-  <div id="avatarInfo" class="avatar-info">
+
+  <div
+    id="avatarInfo"
+    class="avatar-info"
+  >
 
     <div class="avatar-name">
       Sarah
     </div>
 
-    <div id="avatarStatus" class="avatar-role">
+    <div
+      id="avatarStatus"
+      class="avatar-role"
+    >
       Customer Service
     </div>
 
@@ -522,11 +742,18 @@ body {
 
 </section>
 
+
+<!-- ==================================================
+     CHAT
+================================================== -->
+
 <section class="chat-section">
 
   <div class="chat-header">
 
-    <h2>Percakapan</h2>
+    <h2>
+      Percakapan
+    </h2>
 
     <p>
       Customer Service Norton Bali Computer
@@ -534,29 +761,23 @@ body {
 
   </div>
 
+
   <div id="chat">
 
     <div class="message bot">
-      Halo 👋 Saya Sarah, Customer Service Norton Bali Computer.
 
-      Saya bisa membantu mencari:
-      • Harga laptop
-      • Harga keyboard
-      • Harga headset
-      • Harga flashdisk
-      • Kabel & hard disk
-      • Gamepad
-      • Stok produk
-      • Produk berdasarkan budget
+      Halo 👋 Saya Sarah,
+      Customer Service Norton Bali Computer.
 
-      Contoh:
-      "Laptop Asus berapa?"
-      "Laptop di bawah 7 juta"
-      "Keyboard paling murah"
-      "Harga Sandisk"
+      Silakan tanyakan tentang produk,
+      harga, stok, laptop, keyboard,
+      headset, flashdisk, kabel,
+      gamepad, pengiriman, atau layanan kami.
+
     </div>
 
   </div>
+
 
   <div class="bottom">
 
@@ -565,8 +786,7 @@ body {
       <input
         id="textInput"
         type="text"
-        placeholder="Tulis pertanyaan tentang produk..."
-        autocomplete="off"
+        placeholder="Contoh: harga laptop Asus?"
       >
 
       <button id="send">
@@ -575,11 +795,23 @@ body {
 
     </div>
 
+
     <div class="mic-row">
 
-      <button id="mic">
-        🎤
-      </button>
+      <div class="voice-buttons">
+
+        <button id="mic">
+          🎤
+        </button>
+
+        <button
+          id="stopSpeaking"
+          disabled
+        >
+          ⏹ Selesai Bicara
+        </button>
+
+      </div>
 
       <div id="status">
         Tekan mikrofon untuk berbicara
@@ -595,637 +827,886 @@ body {
 
 </div>
 
+
 <script>
 
-/* =========================================================
-   DATA NORTON BALI COMPUTER
-========================================================= */
+/* ==================================================
+   DATA CUSTOMER SERVICE
+   NORTON BALI COMPUTER
+================================================== */
 
 const DATA = {
 
   perusahaan: {
+
     nama: "Norton Bali Computer",
+
     alamat: "Denpasar, Bali",
+
     telepon: "",
+
     email: "",
+
     jam: "Senin sampai Sabtu, pukul 08.00 sampai 17.00"
+
   },
+
 
   produk: [
 
-    /* LAPTOP */
+    /* =========================
+       LAPTOP
+    ========================= */
 
     {
       nama: "Acer 5 AL14-51M Ci5 8/512GB",
       kategori: "Laptop",
       harga: 8850000,
-      harga_display: "Rp8.850.000"
+      harga_display: "Rp8.850.000",
+      deskripsi:
+        "Laptop Acer 5 AL14-51M dengan Intel Core i5, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AL1-14M Ci3 8/512GB",
       kategori: "Laptop",
       harga: 7045000,
-      harga_display: "Rp7.045.000"
+      harga_display: "Rp7.045.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Core i3, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AL14-31P Celeron N100 8/256GB",
       kategori: "Laptop",
       harga: 4900000,
-      harga_display: "Rp4.900.000"
+      harga_display: "Rp4.900.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Celeron N100, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AL14-31P N100 8/512GB",
       kategori: "Laptop",
       harga: 5215000,
-      harga_display: "Rp5.215.000"
+      harga_display: "Rp5.215.000",
+      deskripsi:
+        "Laptop Acer dengan Intel N100, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer Nitro V15 Core-i5 8/512GB",
       kategori: "Laptop Gaming",
       harga: 10800000,
-      harga_display: "Rp10.800.000"
+      harga_display: "Rp10.800.000",
+      deskripsi:
+        "Laptop gaming Acer Nitro V15 dengan Intel Core i5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Advan Soul Plus Ryzen 5 8/256GB",
       kategori: "Laptop",
       harga: 4250000,
-      harga_display: "Rp4.250.000"
+      harga_display: "Rp4.250.000",
+      deskripsi:
+        "Laptop Advan Soul Plus dengan AMD Ryzen 5, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus A1400KA DC 8/512GB",
       kategori: "Laptop",
       harga: 5375000,
-      harga_display: "Rp5.375.000"
+      harga_display: "Rp5.375.000",
+      deskripsi:
+        "Laptop Asus A1400KA dengan RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus A1404VA Core-i7 8/512GB",
       kategori: "Laptop",
       harga: 11450000,
-      harga_display: "Rp11.450.000"
+      harga_display: "Rp11.450.000",
+      deskripsi:
+        "Laptop Asus A1404VA dengan Intel Core i7, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus A1404ZA Core-i5 16/512GB",
       kategori: "Laptop",
       harga: 8995000,
-      harga_display: "Rp8.995.000"
+      harga_display: "Rp8.995.000",
+      deskripsi:
+        "Laptop Asus A1404ZA dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus E1404FA Ryzen 3 8/512GB",
       kategori: "Laptop",
       harga: 6495000,
-      harga_display: "Rp6.495.000"
+      harga_display: "Rp6.495.000",
+      deskripsi:
+        "Laptop Asus dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus E1404FA Ryzen 5 16/512GB",
       kategori: "Laptop",
       harga: 8695000,
-      harga_display: "Rp8.695.000"
+      harga_display: "Rp8.695.000",
+      deskripsi:
+        "Laptop Asus dengan AMD Ryzen 5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Asus E1404GA Core-i3 8/256GB",
       kategori: "Laptop",
       harga: 6150000,
-      harga_display: "Rp6.150.000"
+      harga_display: "Rp6.150.000",
+      deskripsi:
+        "Laptop Asus dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 245 G10 Ryzen 5 8/512GB",
       kategori: "Laptop",
       harga: 6700000,
-      harga_display: "Rp6.700.000"
+      harga_display: "Rp6.700.000",
+      deskripsi:
+        "Laptop HP 245 G10 dengan AMD Ryzen 5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s-dq5568TU Core-i3 8/512GB",
       kategori: "Laptop",
       harga: 6496000,
-      harga_display: "Rp6.496.000"
+      harga_display: "Rp6.496.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s-DQ5152TU Core-i5 8/512GB",
       kategori: "Laptop",
       harga: 8750000,
-      harga_display: "Rp8.750.000"
+      harga_display: "Rp8.750.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s FQ1009AU Ryzen 3 8/512GB",
       kategori: "Laptop",
       harga: 5875000,
-      harga_display: "Rp5.875.000"
+      harga_display: "Rp5.875.000",
+      deskripsi:
+        "Laptop HP 14s dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s DQ5115TU Core-i3 8/512GB",
       kategori: "Laptop",
       harga: 6399000,
-      harga_display: "Rp6.399.000"
+      harga_display: "Rp6.399.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s dq3888TU Celeron 8/512GB",
       kategori: "Laptop",
       harga: 5425000,
-      harga_display: "Rp5.425.000"
+      harga_display: "Rp5.425.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Celeron, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo V14G4 AMD Athlon 8/256GB",
       kategori: "Laptop",
       harga: 4550000,
-      harga_display: "Rp4.550.000"
+      harga_display: "Rp4.550.000",
+      deskripsi:
+        "Laptop Lenovo V14G4 dengan AMD Athlon, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo LOQ 15IAX9 Core-i5 12/512GB",
       kategori: "Laptop Gaming",
       harga: 11299000,
-      harga_display: "Rp11.299.000"
+      harga_display: "Rp11.299.000",
+      deskripsi:
+        "Laptop gaming Lenovo LOQ dengan Intel Core i5, RAM 12GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo IPS3 14IAH8 Core-i5 16/512GB",
       kategori: "Laptop",
       harga: 9375000,
-      harga_display: "Rp9.375.000"
+      harga_display: "Rp9.375.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo IPS 3 14AMN8 Ryzen 3 8/512GB",
       kategori: "Laptop",
       harga: 6695000,
-      harga_display: "Rp6.695.000"
+      harga_display: "Rp6.695.000",
+      deskripsi:
+        "Laptop Lenovo dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo IP3 14IAU7 Core-i3 8/512GB",
       kategori: "Laptop",
       harga: 6475000,
-      harga_display: "Rp6.475.000"
+      harga_display: "Rp6.475.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo IP3 14IAU7 Core-i3 8/256GB",
       kategori: "Laptop",
       harga: 6099000,
-      harga_display: "Rp6.099.000"
+      harga_display: "Rp6.099.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lenovo IP3 14abr8 Ryzen 5 8/512GB",
       kategori: "Laptop",
       harga: 8325000,
-      harga_display: "Rp8.325.000"
+      harga_display: "Rp8.325.000",
+      deskripsi:
+        "Laptop Lenovo dengan AMD Ryzen 5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AG14-31P i3-N305 8/512GB",
       kategori: "Laptop",
       harga: 6299000,
-      harga_display: "Rp6.299.000"
+      harga_display: "Rp6.299.000",
+      deskripsi:
+        "Laptop Acer dengan prosesor i3-N305, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AL14-51M Ci3 8/256GB",
       kategori: "Laptop",
       harga: 6225000,
-      harga_display: "Rp6.225.000"
+      harga_display: "Rp6.225.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acer AL14-52M Ci5 16/512GB",
       kategori: "Laptop",
       harga: 9085000,
-      harga_display: "Rp9.085.000"
+      harga_display: "Rp9.085.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14 EM0222AU Athlon 8/512G",
       kategori: "Laptop",
       harga: 5149000,
-      harga_display: "Rp5.149.000"
+      harga_display: "Rp5.149.000",
+      deskripsi:
+        "Laptop HP dengan AMD Athlon, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 14s Dq5154 i7 16/512GB",
       kategori: "Laptop",
       harga: 11625000,
-      harga_display: "Rp11.625.000"
+      harga_display: "Rp11.625.000",
+      deskripsi:
+        "Laptop HP dengan Intel Core i7, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP EM0332AU R3 8/512GB",
       kategori: "Laptop",
       harga: 6375000,
-      harga_display: "Rp6.375.000"
+      harga_display: "Rp6.375.000",
+      deskripsi:
+        "Laptop HP dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
     },
 
-    /* KEYBOARD */
+
+    /* =========================
+       KEYBOARD
+    ========================= */
 
     {
       nama: "Logitech MK240",
       kategori: "Keyboard",
       harga: 355000,
-      harga_display: "Rp355.000"
+      harga_display: "Rp355.000",
+      deskripsi: "Keyboard Logitech MK240.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Fantech Atom 81 Gaming",
       kategori: "Keyboard Gaming",
       harga: 295000,
-      harga_display: "Rp295.000"
+      harga_display: "Rp295.000",
+      deskripsi: "Keyboard gaming Fantech Atom 81.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Fantech Atom 96 Gaming",
       kategori: "Keyboard Gaming",
       harga: 295000,
-      harga_display: "Rp295.000"
+      harga_display: "Rp295.000",
+      deskripsi: "Keyboard gaming Fantech Atom 96.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Rexus RX-KX3",
       kategori: "Keyboard",
       harga: 285000,
-      harga_display: "Rp285.000"
+      harga_display: "Rp285.000",
+      deskripsi: "Keyboard Rexus RX-KX3.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Cliptec RZK 300 Keyboard + Mouse",
       kategori: "Keyboard & Mouse",
       harga: 105000,
-      harga_display: "Rp105.000"
+      harga_display: "Rp105.000",
+      deskripsi: "Paket keyboard dan mouse Cliptec RZK 300.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HP 150 Kabel Keyboard + Mouse",
       kategori: "Keyboard & Mouse",
       harga: 175000,
-      harga_display: "Rp175.000"
+      harga_display: "Rp175.000",
+      deskripsi: "Paket keyboard dan mouse HP 150.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Robot KM3500 Keyboard + Mouse",
       kategori: "Keyboard & Mouse",
       harga: 160000,
-      harga_display: "Rp160.000"
+      harga_display: "Rp160.000",
+      deskripsi: "Paket keyboard dan mouse Robot KM3500.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Rapoo NX1500 Keyboard + Mouse",
       kategori: "Keyboard & Mouse",
       harga: 95000,
-      harga_display: "Rp95.000"
+      harga_display: "Rp95.000",
+      deskripsi: "Paket keyboard dan mouse Rapoo NX1500.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Acome AKM2000 Wireless Keyboard + Mouse",
       kategori: "Keyboard & Mouse",
       harga: 195000,
-      harga_display: "Rp195.000"
+      harga_display: "Rp195.000",
+      deskripsi: "Paket keyboard dan mouse wireless Acome AKM2000.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Cyborg USB K180",
       kategori: "Keyboard",
       harga: 160000,
-      harga_display: "Rp160.000"
+      harga_display: "Rp160.000",
+      deskripsi: "Keyboard Cyborg USB K180.",
+      stok: "Tersedia"
     },
 
     {
       nama: "NYK KR-201 Plat Gaming",
       kategori: "Keyboard Gaming",
       harga: 185000,
-      harga_display: "Rp185.000"
+      harga_display: "Rp185.000",
+      deskripsi: "Keyboard gaming NYK KR-201.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Genius KB7200",
       kategori: "Keyboard",
       harga: 200000,
-      harga_display: "Rp200.000"
+      harga_display: "Rp200.000",
+      deskripsi: "Keyboard Genius KB7200.",
+      stok: "Tersedia"
     },
 
-    /* HEADSET */
+
+    /* =========================
+       HEADSET
+    ========================= */
 
     {
       nama: "Baseus Bass 30 Max Wireless",
       kategori: "Headset",
       harga: 400000,
-      harga_display: "Rp400.000"
+      harga_display: "Rp400.000",
+      deskripsi: "Wireless headphone Baseus Bass 30 Max.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE SA1 Bluetooth",
       kategori: "Headset",
       harga: 210000,
-      harga_display: "Rp210.000"
+      harga_display: "Rp210.000",
+      deskripsi: "Bluetooth headphone JETE SA1.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE SX1 Bluetooth",
       kategori: "Headset",
       harga: 315000,
-      harga_display: "Rp315.000"
+      harga_display: "Rp315.000",
+      deskripsi: "Bluetooth headphone JETE SX1.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE SX3 Bluetooth",
       kategori: "Headset",
       harga: 350000,
-      harga_display: "Rp350.000"
+      harga_display: "Rp350.000",
+      deskripsi: "Bluetooth headphone JETE SX3.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE-08 Pro Bluetooth",
       kategori: "Headset",
       harga: 315000,
-      harga_display: "Rp315.000"
+      harga_display: "Rp315.000",
+      deskripsi: "Bluetooth headphone JETE-08 Pro.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE-11 Bluetooth",
       kategori: "Headset",
       harga: 160000,
-      harga_display: "Rp160.000"
+      harga_display: "Rp160.000",
+      deskripsi: "Bluetooth headphone JETE-11.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE-12 Bluetooth",
       kategori: "Headset",
       harga: 260000,
-      harga_display: "Rp260.000"
+      harga_display: "Rp260.000",
+      deskripsi: "Bluetooth headphone JETE-12.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JETE-13 Pro Bluetooth",
       kategori: "Headset",
       harga: 265000,
-      harga_display: "Rp265.000"
+      harga_display: "Rp265.000",
+      deskripsi: "Bluetooth headphone JETE-13 Pro.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JBL Live 460 NC",
       kategori: "Headset",
       harga: 1500000,
-      harga_display: "Rp1.500.000"
+      harga_display: "Rp1.500.000",
+      deskripsi: "Headphone JBL Live 460 NC.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JBL T720 Bluetooth",
       kategori: "Headset",
       harga: 1300000,
-      harga_display: "Rp1.300.000"
+      harga_display: "Rp1.300.000",
+      deskripsi: "Bluetooth headphone JBL T720.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Gamen Shadow RGB Bluetooth",
       kategori: "Headset Gaming",
       harga: 380000,
-      harga_display: "Rp380.000"
+      harga_display: "Rp380.000",
+      deskripsi: "Headset gaming Gamen Shadow RGB Bluetooth.",
+      stok: "Tersedia"
     },
 
-    /* FLASHDISK */
+
+    /* =========================
+       FLASHDISK
+    ========================= */
 
     {
       nama: "Kingston Kyson 128GB",
       kategori: "Flashdisk",
       harga: 215000,
-      harga_display: "Rp215.000"
+      harga_display: "Rp215.000",
+      deskripsi: "Flashdisk Kingston Kyson kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk Ultra 128GB",
       kategori: "Flashdisk",
       harga: 195000,
-      harga_display: "Rp195.000"
+      harga_display: "Rp195.000",
+      deskripsi: "Flashdisk Sandisk Ultra kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk SDDDC3 Dual 128GB",
       kategori: "Flashdisk",
       harga: 215000,
-      harga_display: "Rp215.000"
+      harga_display: "Rp215.000",
+      deskripsi: "Flashdisk Sandisk SDDDC3 Dual kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk 128GB for iPhone",
       kategori: "Flashdisk",
       harga: 510000,
-      harga_display: "Rp510.000"
+      harga_display: "Rp510.000",
+      deskripsi: "Flashdisk Sandisk 128GB untuk iPhone.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Kingston Exodia 128GB",
       kategori: "Flashdisk",
       harga: 165000,
-      harga_display: "Rp165.000"
+      harga_display: "Rp165.000",
+      deskripsi: "Flashdisk Kingston Exodia kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lexar JumpDrive S80 128GB",
       kategori: "Flashdisk",
       harga: 195000,
-      harga_display: "Rp195.000"
+      harga_display: "Rp195.000",
+      deskripsi: "Flashdisk Lexar JumpDrive S80 kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk Luxe CZ74 128GB",
       kategori: "Flashdisk",
       harga: 215000,
-      harga_display: "Rp215.000"
+      harga_display: "Rp215.000",
+      deskripsi: "Flashdisk Sandisk Luxe CZ74 kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk Blade 128GB",
       kategori: "Flashdisk",
       harga: 180000,
-      harga_display: "Rp180.000"
+      harga_display: "Rp180.000",
+      deskripsi: "Flashdisk Sandisk Blade kapasitas 128GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Lexar V400 16GB 3.0",
       kategori: "Flashdisk",
       harga: 140000,
-      harga_display: "Rp140.000"
+      harga_display: "Rp140.000",
+      deskripsi: "Flashdisk Lexar V400 USB 3.0 kapasitas 16GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Sandisk Blade 64GB",
       kategori: "Flashdisk",
       harga: 235000,
-      harga_display: "Rp235.000"
+      harga_display: "Rp235.000",
+      deskripsi: "Flashdisk Sandisk Blade kapasitas 64GB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Olike OFP264 64GB",
       kategori: "Flashdisk",
       harga: 155000,
-      harga_display: "Rp155.000"
+      harga_display: "Rp155.000",
+      deskripsi: "Flashdisk Olike OFP264 kapasitas 64GB.",
+      stok: "Tersedia"
     },
 
-    /* KABEL & HARD DISK */
+
+    /* =========================
+       KABEL / HDD
+    ========================= */
 
     {
       nama: "Ugreen HDMI 80401 8K 1M",
       kategori: "Kabel",
       harga: 12500,
-      harga_display: "Rp12.500"
+      harga_display: "Rp12.500",
+      deskripsi: "Kabel HDMI Ugreen 80401 8K panjang 1 meter.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HDMI 25M Jaring",
       kategori: "Kabel",
       harga: 210000,
-      harga_display: "Rp210.000"
+      harga_display: "Rp210.000",
+      deskripsi: "Kabel HDMI panjang 25 meter dengan jaring.",
+      stok: "Tersedia"
     },
 
     {
       nama: "M-Tech HDMI 5/10/15M 2.0 4K",
       kategori: "Kabel",
       harga: 75000,
-      harga_display: "Rp75.000"
+      harga_display: "Rp75.000",
+      deskripsi: "Kabel HDMI M-Tech versi 2.0 dengan dukungan 4K.",
+      stok: "Tersedia"
     },
 
     {
       nama: "AISEN HDMI 1.5/10/15M 4K/8K",
       kategori: "Kabel",
       harga: 50000,
-      harga_display: "Rp50.000"
+      harga_display: "Rp50.000",
+      deskripsi: "Kabel HDMI AISEN dengan dukungan 4K/8K.",
+      stok: "Tersedia"
     },
 
     {
       nama: "HDD Caddy SATA 9MM",
       kategori: "HDD Caddy",
       harga: 45000,
-      harga_display: "Rp45.000"
+      harga_display: "Rp45.000",
+      deskripsi: "HDD Caddy SATA ukuran 9mm.",
+      stok: "Tersedia"
     },
 
     {
       nama: "Seagate Expansion External HDD 1TB/4TB",
       kategori: "External HDD",
       harga: 1725000,
-      harga_display: "Rp1.725.000"
+      harga_display: "Rp1.725.000",
+      deskripsi: "External HDD Seagate Expansion dengan pilihan kapasitas 1TB/4TB.",
+      stok: "Tersedia"
     },
 
     {
       nama: "OSMOUS Slim Plus External HDD 500GB/1TB",
       kategori: "External HDD",
       harga: 620000,
-      harga_display: "Rp620.000"
+      harga_display: "Rp620.000",
+      deskripsi: "External HDD OSMOUS Slim Plus dengan pilihan kapasitas 500GB/1TB.",
+      stok: "Tersedia"
     },
 
-    /* GAMEPAD */
+
+    /* =========================
+       GAMEPAD
+    ========================= */
 
     {
       nama: "Rexus Gladius GX2",
       kategori: "Gamepad",
       harga: 205000,
-      harga_display: "Rp205.000"
+      harga_display: "Rp205.000",
+      deskripsi: "Gamepad Rexus Gladius GX2.",
+      stok: "Tersedia"
     },
 
     {
       nama: "JSX1 JETE",
       kategori: "Gamepad",
       harga: 275000,
-      harga_display: "Rp275.000"
+      harga_display: "Rp275.000",
+      deskripsi: "Gamepad JETE JSX1.",
+      stok: "Tersedia"
     }
+
+  ],
+
+
+  /* =========================
+     FAQ
+  ========================= */
+
+  faq: [
+
+    {
+      kata: ["cara", "pesan"],
+      jawaban:
+        "Untuk melakukan pemesanan, silakan pilih produk yang diinginkan dan hubungi customer service Norton Bali Computer."
+    },
+
+    {
+      kata: ["cara", "bayar"],
+      jawaban:
+        "Kami menerima pembayaran melalui transfer bank dan pembayaran digital. Untuk metode pembayaran yang tersedia, silakan hubungi customer service."
+    },
+
+    {
+      kata: ["pengiriman"],
+      jawaban:
+        "Norton Bali Computer melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan dan layanan ekspedisi yang dipilih."
+    },
+
+    {
+      kata: ["refund"],
+      jawaban:
+        "Untuk pengajuan refund, silakan hubungi customer service Norton Bali Computer."
+    },
+
+    {
+      kata: ["alamat", "lokasi"],
+      jawaban:
+        "Norton Bali Computer berada di Denpasar, Bali."
+    },
+
+    {
+      kata: ["harga", "laptop"],
+      jawaban:
+        "Kami menyediakan berbagai laptop Acer, Asus, HP, Lenovo, Advan dan lainnya. Silakan sebutkan budget atau merek yang Anda cari."
+    },
+
+    {
+      kata: ["laptop", "murah"],
+      jawaban:
+        "Untuk laptop dengan harga terjangkau, tersedia beberapa pilihan mulai dari kisaran Rp4 jutaan. Silakan sebutkan budget Anda."
+    },
+
+    {
+      kata: ["keyboard"],
+      jawaban:
+        "Kami menyediakan berbagai keyboard seperti Logitech, Fantech, Rexus, HP, Robot, Rapoo, Acome, NYK dan Genius."
+    },
+
+    {
+      kata: ["flashdisk"],
+      jawaban:
+        "Kami menyediakan flashdisk Kingston, Sandisk, Lexar, Olike dan berbagai kapasitas."
+    },
+
+    {
+      kata: ["headset", "headphone"],
+      jawaban:
+        "Kami menyediakan headset dan headphone dari Baseus, JETE, JBL dan Gamen."
+    }
+
   ]
+
 };
 
 
-/* =========================================================
+/* ==================================================
    ELEMENT
-========================================================= */
+================================================== */
 
-const chat = document.getElementById("chat");
-const input = document.getElementById("textInput");
-const send = document.getElementById("send");
-const mic = document.getElementById("mic");
-const status = document.getElementById("status");
-const avatarTrack = document.getElementById("avatarTrack");
-const avatarWrapper = document.getElementById("avatarWrapper");
-const avatarStatus = document.getElementById("avatarStatus");
+const chat =
+  document.getElementById("chat");
+
+const input =
+  document.getElementById("textInput");
+
+const send =
+  document.getElementById("send");
+
+const mic =
+  document.getElementById("mic");
+
+const stopSpeakingButton =
+  document.getElementById("stopSpeaking");
+
+const status =
+  document.getElementById("status");
+
+const avatarTrack =
+  document.getElementById("avatarTrack");
+
+const avatarWrapper =
+  document.getElementById("avatarWrapper");
+
+const avatarStatus =
+  document.getElementById("avatarStatus");
+
 
 let conversationCount = 0;
 
+let recognition = null;
 
-/* =========================================================
-   UTILITAS
-========================================================= */
-
-function normalisasi(text) {
-  return text
-    .toLowerCase()
-    .replace(/[.,!?;:()]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function formatRupiah(angka) {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    maximumFractionDigits: 0
-  }).format(angka);
-}
-
-function angkaDariTeks(text) {
-
-  const q = normalisasi(text);
-
-  let match = q.match(/(\d+(?:[.,]\d+)?)\s*(juta|jt)/);
-
-  if (match) {
-    return Math.round(
-      parseFloat(match[1].replace(",", ".")) *
-      1000000
-    );
-  }
-
-  match = q.match(/(\d+(?:[.,]\d+)?)\s*(ribu|rb)/);
-
-  if (match) {
-    return Math.round(
-      parseFloat(match[1].replace(",", ".")) *
-      1000
-    );
-  }
-
-  return null;
-}
-
-function produkText(p) {
-  return (
-    p.nama + " " +
-    p.kategori
-  ).toLowerCase();
-}
+let isSpeaking = false;
 
 
-/* =========================================================
+/* ==================================================
    TAMBAH PESAN
-========================================================= */
+================================================== */
 
 function addMessage(text, type) {
 
-  const div = document.createElement("div");
+  const div =
+    document.createElement("div");
 
-  div.className = "message " + type;
+  div.className =
+    "message " + type;
 
-  div.innerText = text;
+  div.innerText =
+    text;
 
   chat.appendChild(div);
 
@@ -1236,168 +1717,130 @@ function addMessage(text, type) {
 
   conversationCount++;
 
-  const step = conversationCount % 6;
+  const step =
+    conversationCount % 6;
 
-  avatarTrack.className = "avatar-track";
+  avatarTrack.className =
+    "avatar-track";
 
   if (step > 0) {
-    avatarTrack.classList.add("move-" + step);
+
+    avatarTrack.classList.add(
+      "move-" + step
+    );
+
   }
+
 }
 
 
-/* =========================================================
-   CARI PRODUK BERDASARKAN KATA
-========================================================= */
+/* ==================================================
+   CARI PRODUK
+================================================== */
 
-function cariProduk(q) {
+function cariProduk(question) {
 
-  const hasil = DATA.produk.filter(p => {
+  const q =
+    question.toLowerCase();
 
-    const teks = produkText(p);
+  return DATA.produk.filter(
+    produk => {
 
-    const kata = q
-      .split(" ")
-      .filter(k => k.length >= 3)
-      .filter(k =>
-        ![
-          "harga",
-          "berapa",
-          "produk",
-          "barang",
-          "yang",
-          "untuk",
-          "dengan",
-          "ada",
-          "stok",
-          "dong",
-          "tolong",
-          "mau",
-          "cari",
-          "cariin"
-        ].includes(k)
-      );
+      const nama =
+        produk.nama.toLowerCase();
 
-    if (!kata.length) {
-      return false;
+      return q.includes(nama);
+
     }
+  );
 
-    return kata.some(k => teks.includes(k));
-  });
+}
+
+
+/* ==================================================
+   CARI BERDASARKAN KATA
+================================================== */
+
+function cariProdukBerdasarkanKata(question) {
+
+  const q =
+    question.toLowerCase();
+
+  const hasil =
+    DATA.produk.filter(
+      produk => {
+
+        const teks =
+          (
+            produk.nama +
+            " " +
+            produk.kategori +
+            " " +
+            produk.deskripsi
+          ).toLowerCase();
+
+        const kata =
+          q.split(/\s+/);
+
+        return kata.some(
+          k =>
+            k.length >= 3 &&
+            teks.includes(k)
+        );
+
+      }
+    );
 
   return hasil;
+
 }
 
 
-/* =========================================================
-   DETEKSI KATEGORI
-========================================================= */
-
-function kategoriDariPertanyaan(q) {
-
-  if (q.includes("laptop") || q.includes("notebook")) {
-    return ["Laptop", "Laptop Gaming"];
-  }
-
-  if (
-    q.includes("keyboard") ||
-    q.includes("keybord")
-  ) {
-    return [
-      "Keyboard",
-      "Keyboard Gaming",
-      "Keyboard & Mouse"
-    ];
-  }
-
-  if (
-    q.includes("mouse") &&
-    !q.includes("keyboard")
-  ) {
-    return ["Keyboard & Mouse"];
-  }
-
-  if (
-    q.includes("headset") ||
-    q.includes("headphone")
-  ) {
-    return ["Headset", "Headset Gaming"];
-  }
-
-  if (
-    q.includes("flashdisk") ||
-    q.includes("flash disk") ||
-    q.includes("usb")
-  ) {
-    return ["Flashdisk"];
-  }
-
-  if (
-    q.includes("kabel") ||
-    q.includes("hdmi")
-  ) {
-    return ["Kabel"];
-  }
-
-  if (
-    q.includes("hard disk") ||
-    q.includes("harddisk") ||
-    q.includes("hdd")
-  ) {
-    return [
-      "External HDD",
-      "HDD Caddy"
-    ];
-  }
-
-  if (
-    q.includes("gamepad") ||
-    q.includes("joystick")
-  ) {
-    return ["Gamepad"];
-  }
-
-  return [];
-}
-
-
-/* =========================================================
+/* ==================================================
    JAWAB
-========================================================= */
+================================================== */
 
 function jawab(question) {
 
-  const q = normalisasi(question);
+  const q =
+    question.toLowerCase().trim();
 
 
-  /* SALAM */
+  /* salam */
 
   if (
-    /^(halo|hai|hello|hi|pagi|siang|sore|malam)\b/.test(q)
+    q.includes("halo") ||
+    q.includes("hai") ||
+    q.includes("hello") ||
+    q.includes("selamat pagi") ||
+    q.includes("selamat siang") ||
+    q.includes("selamat sore") ||
+    q.includes("selamat malam")
   ) {
 
-    return `
-Halo 👋 Selamat datang di Norton Bali Computer.
+    return `Halo 👋 Selamat datang di ${DATA.perusahaan.nama}.
 
-Saya Sarah, Customer Service virtual.
+Saya Sarah, Customer Service Anda.
 
-Silakan tanyakan produk atau harga yang Anda cari 😊
-`;
+Ada yang bisa saya bantu?`;
+
   }
 
 
-  /* TERIMA KASIH */
+  /* terima kasih */
 
   if (
     q.includes("terima kasih") ||
     q.includes("makasih") ||
     q.includes("thanks")
   ) {
+
     return "Sama-sama 😊 Senang bisa membantu Anda.";
+
   }
 
 
-  /* ALAMAT */
+  /* alamat */
 
   if (
     q.includes("alamat") ||
@@ -1405,15 +1848,54 @@ Silakan tanyakan produk atau harga yang Anda cari 😊
     q.includes("dimana") ||
     q.includes("di mana")
   ) {
-    return `
-Norton Bali Computer berada di:
 
-📍 Denpasar, Bali
-`;
+    return `Alamat ${DATA.perusahaan.nama} adalah ${DATA.perusahaan.alamat}.`;
+
   }
 
 
-  /* JAM */
+  /* telepon */
+
+  if (
+    q.includes("telepon") ||
+    q.includes("nomor") ||
+    q.includes("whatsapp") ||
+    q.includes("wa")
+  ) {
+
+    if (
+      DATA.perusahaan.telepon
+    ) {
+
+      return `Nomor customer service kami adalah ${DATA.perusahaan.telepon}.`;
+
+    }
+
+    return "Nomor telepon atau WhatsApp belum dimasukkan ke dalam data sistem.";
+
+  }
+
+
+  /* email */
+
+  if (
+    q.includes("email")
+  ) {
+
+    if (
+      DATA.perusahaan.email
+    ) {
+
+      return `Email kami adalah ${DATA.perusahaan.email}.`;
+
+    }
+
+    return "Alamat email belum dimasukkan ke dalam data sistem.";
+
+  }
+
+
+  /* jam */
 
   if (
     q.includes("jam") ||
@@ -1421,595 +1903,897 @@ Norton Bali Computer berada di:
     q.includes("tutup") ||
     q.includes("operasional")
   ) {
-    return `
-Jam operasional:
 
-Senin - Sabtu
-08.00 - 17.00
-`;
+    return `Jam operasional ${DATA.perusahaan.nama} adalah ${DATA.perusahaan.jam}.`;
+
   }
 
 
-  /* KONTAK */
+  /* =========================
+     PRODUK SPESIFIK
+  ========================= */
+
+  const produkDitemukan =
+    cariProduk(q);
 
   if (
-    q.includes("telepon") ||
-    q.includes("nomor") ||
-    q.includes("whatsapp") ||
-    q === "wa"
+    produkDitemukan.length > 0
   ) {
 
-    return `
-Informasi nomor telepon/WhatsApp belum dimasukkan ke database ini.
+    const produk =
+      produkDitemukan[0];
 
-Silakan tambahkan nomor resmi Norton Bali Computer pada bagian DATA.perusahaan jika Anda ingin AI menampilkannya.
-`;
-  }
-
-
-  if (q.includes("email")) {
-
-    return `
-Informasi email belum dimasukkan ke database ini.
-
-Silakan tambahkan email resmi Norton Bali Computer pada DATA.perusahaan.
-`;
-  }
-
-
-  /* PENGIRIMAN */
-
-  if (
-    q.includes("pengiriman") ||
-    q.includes("kirim") ||
-    q.includes("ekspedisi")
-  ) {
-
-    return `
-Norton Bali Computer melayani pengiriman ke berbagai wilayah.
-
-Lama pengiriman tergantung lokasi tujuan dan layanan ekspedisi yang digunakan.
-`;
-  }
-
-
-  /* CARA PESAN */
-
-  if (
-    q.includes("cara pesan") ||
-    q.includes("cara order") ||
-    q.includes("cara beli") ||
-    q.includes("pesan barang") ||
-    q.includes("mau beli")
-  ) {
-
-    return `
-Untuk melakukan pemesanan:
-
-1. Pilih produk yang Anda inginkan.
-2. Konfirmasi harga dan ketersediaan.
-3. Hubungi customer service Norton Bali Computer untuk proses pemesanan.
-
-Silakan sebutkan nama produk yang Anda cari dan saya akan bantu cek datanya.
-`;
-  }
-
-
-  /* PEMBAYARAN */
-
-  if (
-    q.includes("cara bayar") ||
-    q.includes("pembayaran") ||
-    q.includes("bayar")
-  ) {
-
-    return `
-Untuk informasi metode pembayaran yang tersedia, silakan hubungi customer service Norton Bali Computer.
-`;
-  }
-
-
-  /* REFUND */
-
-  if (
-    q.includes("refund") ||
-    q.includes("retur") ||
-    q.includes("kembali barang")
-  ) {
-
-    return `
-Untuk pengajuan refund atau retur, silakan hubungi customer service Norton Bali Computer.
-`;
-  }
-
-
-  /* =====================================================
-     HARGA BERDASARKAN BUDGET
-  ===================================================== */
-
-  const budget = angkaDariTeks(q);
-
-  if (
-    budget &&
-    (
-      q.includes("dibawah") ||
-      q.includes("di bawah") ||
-      q.includes("kurang") ||
-      q.includes("maksimal") ||
-      q.includes("max") ||
-      q.includes("sampai")
-    )
-  ) {
-
-    let hasil = DATA.produk
-      .filter(p => p.harga <= budget);
-
-    const kategori = kategoriDariPertanyaan(q);
-
-    if (kategori.length) {
-      hasil = hasil.filter(
-        p => kategori.includes(p.kategori)
-      );
-    }
-
-    hasil.sort(
-      (a,b) => a.harga - b.harga
-    );
-
-    if (!hasil.length) {
-      return `
-Maaf, saya tidak menemukan produk dengan harga maksimal ${formatRupiah(budget)} pada data yang tersedia.
-`;
-    }
-
-    const tampil = hasil.slice(0, 12);
-
-    let jawaban =
-      `Produk dengan harga maksimal ${formatRupiah(budget)}:\n\n`;
-
-    tampil.forEach((p, i) => {
-      jawaban +=
-        `${i + 1}. ${p.nama}\n` +
-        `   ${p.harga_display}\n\n`;
-    });
-
-    if (hasil.length > tampil.length) {
-      jawaban +=
-        `Masih ada ${hasil.length - tampil.length} produk lainnya dalam rentang harga tersebut.`;
-    }
-
-    return jawaban;
-  }
-
-
-  /* =====================================================
-     HARGA KATEGORI
-  ===================================================== */
-
-  const kategori = kategoriDariPertanyaan(q);
-
-  if (
-    kategori.length &&
-    (
+    if (
       q.includes("harga") ||
       q.includes("berapa") ||
-      q.includes("daftar") ||
-      q.includes("produk") ||
-      q.includes("tersedia")
-    )
-  ) {
+      q.includes("price")
+    ) {
 
-    let hasil = DATA.produk.filter(
-      p => kategori.includes(p.kategori)
-    );
+      return `${produk.nama}
 
-    hasil.sort(
-      (a,b) => a.harga - b.harga
-    );
+Harga: ${produk.harga_display}
 
-    let jawaban =
-      `Daftar produk ${kategori.join(" / ")}:\n\n`;
+Stok: ${produk.stok}`;
 
-    hasil.forEach((p, i) => {
+    }
 
-      jawaban +=
-        `${i + 1}. ${p.nama}\n` +
-        `   ${p.harga_display}\n\n`;
-    });
-
-    return jawaban;
-  }
-
-
-  /* =====================================================
-     CARI NAMA / BRAND PRODUK
-  ===================================================== */
-
-  const hasilCari = cariProduk(q);
-
-  if (
-    hasilCari.length &&
-    (
-      q.includes("harga") ||
-      q.includes("berapa") ||
-      q.includes("produk") ||
+    if (
       q.includes("stok") ||
       q.includes("ada") ||
-      q.includes("cari") ||
-      q.includes("mau")
+      q.includes("tersedia")
+    ) {
+
+      return `${produk.nama}
+
+Stok saat ini: ${produk.stok}
+
+Harga: ${produk.harga_display}`;
+
+    }
+
+    return `${produk.nama}
+
+${produk.deskripsi}
+
+Harga: ${produk.harga_display}
+
+Stok: ${produk.stok}`;
+
+  }
+
+
+  /* =========================
+     CARI BERDASARKAN MEREK
+  ========================= */
+
+  const merek = [
+    "acer",
+    "asus",
+    "hp",
+    "lenovo",
+    "advan",
+    "logitech",
+    "fantech",
+    "rexus",
+    "jbl",
+    "jete",
+    "baseus",
+    "sandisk",
+    "kingston",
+    "lexar",
+    "olike",
+    "seagate",
+    "ugreen",
+    "robot",
+    "rapoo",
+    "a​​come",
+    "a​​isen",
+    "gamen"
+  ];
+
+
+  const ditemukanMerek =
+    merek.some(
+      m => q.includes(m)
+    );
+
+
+  if (
+    ditemukanMerek &&
+    (
+      q.includes("harga") ||
+      q.includes("produk") ||
+      q.includes("laptop") ||
+      q.includes("keyboard") ||
+      q.includes("headset") ||
+      q.includes("flashdisk")
     )
   ) {
 
-    const hasil = hasilCari.slice(0, 10);
+    const hasil =
+      cariProdukBerdasarkanKata(q)
+        .slice(0, 10);
 
-    let jawaban =
-      "Saya menemukan produk berikut:\n\n";
+    if (
+      hasil.length
+    ) {
 
-    hasil.forEach((p, i) => {
+      return (
+        "Produk yang sesuai:\n\n" +
+        hasil.map(
+          p =>
+            `${p.nama} — ${p.harga_display}`
+        ).join("\n")
+      );
 
-      jawaban +=
-        `${i + 1}. ${p.nama}\n` +
-        `   Harga: ${p.harga_display}\n` +
-        `   Kategori: ${p.kategori}\n` +
-        `   Stok: Tersedia\n\n`;
-    });
-
-    if (hasilCari.length > hasil.length) {
-      jawaban +=
-        `Ada ${hasilCari.length - hasil.length} produk lainnya yang cocok.`;
     }
 
-    return jawaban;
   }
 
 
-  /* =====================================================
-     PRODUK PALING MURAH
-  ===================================================== */
+  /* =========================
+     LAPTOP MURAH
+  ========================= */
 
   if (
-    q.includes("paling murah") ||
-    q.includes("termurah") ||
-    q.includes("harga terendah")
+    q.includes("laptop") &&
+    (
+      q.includes("murah") ||
+      q.includes("termurah") ||
+      q.includes("budget")
+    )
   ) {
 
-    let hasil = [...DATA.produk];
+    const laptop =
+      DATA.produk
+        .filter(
+          p =>
+            p.kategori.includes("Laptop")
+        )
+        .sort(
+          (a,b) =>
+            a.harga - b.harga
+        )
+        .slice(0, 8);
 
-    const kategoriMurah = kategoriDariPertanyaan(q);
-
-    if (kategoriMurah.length) {
-      hasil = hasil.filter(
-        p => kategoriMurah.includes(p.kategori)
-      );
-    }
-
-    hasil.sort(
-      (a,b) => a.harga - b.harga
+    return (
+      "Beberapa laptop dengan harga terjangkau:\n\n" +
+      laptop.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
     );
 
-    const tampil = hasil.slice(0, 5);
-
-    let jawaban =
-      "Produk dengan harga paling murah:\n\n";
-
-    tampil.forEach((p, i) => {
-
-      jawaban +=
-        `${i + 1}. ${p.nama} — ${p.harga_display}\n`;
-    });
-
-    return jawaban;
   }
 
 
-  /* =====================================================
-     SEMUA HARGA
-  ===================================================== */
+  /* =========================
+     KATEGORI
+  ========================= */
+
+  if (
+    q.includes("keyboard")
+  ) {
+
+    const hasil =
+      DATA.produk.filter(
+        p =>
+          p.kategori.includes("Keyboard")
+      );
+
+    return (
+      "Daftar keyboard:\n\n" +
+      hasil.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
+    );
+
+  }
+
+
+  if (
+    q.includes("headset") ||
+    q.includes("headphone")
+  ) {
+
+    const hasil =
+      DATA.produk.filter(
+        p =>
+          p.kategori.includes("Headset")
+      );
+
+    return (
+      "Daftar headset/headphone:\n\n" +
+      hasil.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
+    );
+
+  }
+
+
+  if (
+    q.includes("flashdisk") ||
+    q.includes("flash disk")
+  ) {
+
+    const hasil =
+      DATA.produk.filter(
+        p =>
+          p.kategori === "Flashdisk"
+      );
+
+    return (
+      "Daftar flashdisk:\n\n" +
+      hasil.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
+    );
+
+  }
+
+
+  if (
+    q.includes("gamepad")
+  ) {
+
+    const hasil =
+      DATA.produk.filter(
+        p =>
+          p.kategori === "Gamepad"
+      );
+
+    return (
+      "Daftar gamepad:\n\n" +
+      hasil.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
+    );
+
+  }
+
+
+  if (
+    q.includes("kabel") ||
+    q.includes("hdmi")
+  ) {
+
+    const hasil =
+      DATA.produk.filter(
+        p =>
+          p.kategori === "Kabel"
+      );
+
+    return (
+      "Daftar kabel:\n\n" +
+      hasil.map(
+        p =>
+          `${p.nama} — ${p.harga_display}`
+      ).join("\n")
+    );
+
+  }
+
+
+  /* =========================
+     HARGA SEMUA
+  ========================= */
 
   if (
     q.includes("semua harga") ||
-    q.includes("daftar harga") ||
     q.includes("price list") ||
-    q.includes("pricelist")
+    q.includes("daftar harga") ||
+    q.includes("list harga")
   ) {
 
-    let jawaban =
-      "Price list Norton Bali Computer:\n\n";
+    let result =
+      "PRICE LIST NORTON BALI COMPUTER\n\n";
 
-    DATA.produk.forEach((p, i) => {
+    DATA.produk.forEach(
+      p => {
 
-      jawaban +=
-        `${i + 1}. ${p.nama} — ${p.harga_display}\n`;
-    });
+        result +=
+          `${p.nama} — ${p.harga_display}\n`;
 
-    return jawaban;
+      }
+    );
+
+    return result;
+
   }
 
 
-  /* =====================================================
-     STOK
-  ===================================================== */
+  /* =========================
+     FAQ
+  ========================= */
 
-  if (
-    q.includes("stok") ||
-    q.includes("stock")
+  for (
+    const faq of DATA.faq
   ) {
 
-    const hasil = hasilCari.length
-      ? hasilCari
-      : DATA.produk;
+    let cocok = 0;
 
-    let jawaban =
-      "Informasi stok produk:\n\n";
+    faq.kata.forEach(
+      kata => {
 
-    hasil.slice(0, 10).forEach((p, i) => {
+        if (
+          q.includes(kata)
+        ) {
 
-      jawaban +=
-        `${i + 1}. ${p.nama}\n` +
-        `   Harga: ${p.harga_display}\n` +
-        `   Stok: Tersedia\n\n`;
-    });
+          cocok++;
 
-    if (hasil.length > 10) {
-      jawaban +=
-        "Silakan sebutkan nama produk untuk pengecekan yang lebih spesifik.";
+        }
+
+      }
+    );
+
+    if (
+      cocok >=
+      Math.ceil(
+        faq.kata.length / 2
+      )
+    ) {
+
+      return faq.jawaban;
+
     }
 
-    return jawaban;
   }
 
 
-  /* =====================================================
-     DEFAULT
-  ===================================================== */
+  /* default */
 
   return `
 Maaf, saya belum menemukan informasi tersebut.
 
-Saya bisa membantu mencari:
+Anda dapat menanyakan:
 
-• Harga laptop
-• Harga Asus / Acer / HP / Lenovo
-• Laptop berdasarkan budget
+• Harga produk
+• Nama produk
+• Stok produk
+• Laptop Acer / Asus / HP / Lenovo / Advan
 • Keyboard
 • Headset / headphone
 • Flashdisk
 • Kabel HDMI
-• Hard disk
+• External HDD
 • Gamepad
-• Produk termurah
-• Stok produk
 • Alamat
 • Jam operasional
-• Pengiriman
 • Cara pemesanan
-
-Contoh pertanyaan:
-
-"Berapa harga laptop Asus?"
-
-"Carikan laptop di bawah 7 juta"
-
-"Keyboard paling murah"
-
-"Harga Sandisk"
-
-"Apakah ada JBL?"
-
-"Berapa harga Lenovo?"
+• Pembayaran
+• Pengiriman
+• Refund
 `;
+
 }
 
 
-/* =========================================================
-   PROSES PESAN
-========================================================= */
+/* ==================================================
+   STOP SEMUA SUARA
+================================================== */
 
-function proses(text) {
+function stopSpeaking() {
 
-  if (!text.trim()) {
-    return;
+  /*
+  Hentikan suara yang sedang dimainkan
+  */
+
+  if (
+    "speechSynthesis" in window
+  ) {
+
+    window.speechSynthesis.cancel();
+
   }
 
-  addMessage(text, "user");
 
-  input.disabled = true;
-  send.disabled = true;
+  isSpeaking = false;
 
-  status.innerText =
-    "Sarah sedang berpikir...";
+
+  avatarWrapper.classList.remove(
+    "speaking"
+  );
+
 
   avatarStatus.innerText =
-    "Sedang menjawab...";
+    "Customer Service";
 
-  setTimeout(() => {
-
-    const answer = jawab(text);
-
-    addMessage(answer, "bot");
-
-    input.disabled = false;
-    send.disabled = false;
-
-    input.focus();
-
-    speak(answer);
-
-  }, 450);
-}
-
-
-/* =========================================================
-   KIRIM
-========================================================= */
-
-send.onclick = () => {
-
-  const text = input.value.trim();
-
-  input.value = "";
-
-  proses(text);
-};
-
-
-input.addEventListener("keydown", event => {
-
-  if (event.key === "Enter") {
-    event.preventDefault();
-    send.click();
-  }
-
-});
-
-
-/* =========================================================
-   VOICE RECOGNITION
-========================================================= */
-
-const SpeechRecognition =
-  window.SpeechRecognition ||
-  window.webkitSpeechRecognition;
-
-if (SpeechRecognition) {
-
-  const recognition =
-    new SpeechRecognition();
-
-  recognition.lang = "id-ID";
-  recognition.continuous = false;
-  recognition.interimResults = false;
-
-  mic.onclick = () => {
-
-    try {
-
-      recognition.start();
-
-      mic.classList.add("active");
-
-      mic.innerHTML = "🔴";
-
-      status.innerText =
-        "Mendengarkan...";
-
-      avatarStatus.innerText =
-        "Sarah sedang mendengarkan...";
-
-      avatarWrapper.classList.add(
-        "listening"
-      );
-
-    } catch(error) {
-
-      console.log(error);
-
-    }
-
-  };
-
-
-  recognition.onresult = event => {
-
-    const text =
-      event.results[0][0].transcript;
-
-    mic.classList.remove("active");
-
-    mic.innerHTML = "🎤";
-
-    avatarWrapper.classList.remove(
-      "listening"
-    );
-
-    proses(text);
-  };
-
-
-  recognition.onend = () => {
-
-    mic.classList.remove("active");
-
-    mic.innerHTML = "🎤";
-
-    avatarWrapper.classList.remove(
-      "listening"
-    );
-
-  };
-
-
-  recognition.onerror = event => {
-
-    console.log(event.error);
-
-    mic.classList.remove("active");
-
-    mic.innerHTML = "🎤";
-
-    avatarWrapper.classList.remove(
-      "listening"
-    );
-
-    status.innerText =
-      "Silakan coba lagi.";
-
-    avatarStatus.innerText =
-      "Customer Service";
-
-  };
-
-} else {
-
-  mic.disabled = true;
 
   status.innerText =
-    "Voice tidak didukung browser ini.";
+    "Suara dihentikan.";
+
+
+  stopSpeakingButton.disabled =
+    true;
 
 }
 
 
-/* =========================================================
+/* ==================================================
    TEXT TO SPEECH
-========================================================= */
+================================================== */
 
 function speak(text) {
 
-  if (!("speechSynthesis" in window)) {
+  /*
+  Jika browser tidak mendukung
+  text-to-speech
+  */
+
+  if (
+    !("speechSynthesis" in window)
+  ) {
+
+    status.innerText =
+      "Browser tidak mendukung suara.";
+
     return;
+
   }
 
-  speechSynthesis.cancel();
+
+  /*
+  Hentikan suara sebelumnya
+  */
+
+  window.speechSynthesis.cancel();
+
 
   const voice =
-    new SpeechSynthesisUtterance(text);
+    new SpeechSynthesisUtterance(
+      text
+    );
 
-  voice.lang = "id-ID";
-  voice.rate = .95;
-  voice.pitch = 1;
+
+  voice.lang =
+    "id-ID";
+
+  voice.rate =
+    0.95;
+
+  voice.pitch =
+    1;
+
+
+  isSpeaking =
+    true;
+
+
+  stopSpeakingButton.disabled =
+    false;
+
 
   avatarWrapper.classList.add(
     "speaking"
   );
 
+
   avatarStatus.innerText =
     "Sarah sedang berbicara...";
 
-  voice.onend = () => {
 
-    avatarWrapper.classList.remove(
-      "speaking"
-    );
+  status.innerText =
+    "Sarah sedang berbicara. Tekan ⏹ Selesai Bicara untuk menghentikan.";
 
-    avatarStatus.innerText =
-      "Customer Service";
 
-    status.innerText =
-      "Tekan mikrofon untuk berbicara lagi";
+  voice.onend =
+    () => {
+
+      isSpeaking =
+        false;
+
+      avatarWrapper.classList.remove(
+        "speaking"
+      );
+
+      avatarStatus.innerText =
+        "Customer Service";
+
+      status.innerText =
+        "Tekan mikrofon untuk berbicara lagi";
+
+      stopSpeakingButton.disabled =
+        true;
+
+    };
+
+
+  voice.onerror =
+    () => {
+
+      isSpeaking =
+        false;
+
+      avatarWrapper.classList.remove(
+        "speaking"
+      );
+
+      avatarStatus.innerText =
+        "Customer Service";
+
+      status.innerText =
+        "Suara selesai.";
+
+      stopSpeakingButton.disabled =
+        true;
+
+    };
+
+
+  window.speechSynthesis.speak(
+    voice
+  );
+
+}
+
+
+/* ==================================================
+   PROSES PESAN
+================================================== */
+
+function proses(text) {
+
+  if (
+    !text.trim()
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+  Jika Sarah sedang bicara,
+  hentikan dulu.
+  */
+
+  stopSpeaking();
+
+
+  addMessage(
+    text,
+    "user"
+  );
+
+
+  status.innerText =
+    "Sarah sedang berpikir...";
+
+
+  avatarStatus.innerText =
+    "Sedang menjawab...";
+
+
+  setTimeout(
+    () => {
+
+      const answer =
+        jawab(text);
+
+
+      addMessage(
+        answer,
+        "bot"
+      );
+
+
+      speak(answer);
+
+    },
+    500
+  );
+
+}
+
+
+/* ==================================================
+   KIRIM TEXT
+================================================== */
+
+send.onclick =
+  () => {
+
+    const text =
+      input.value;
+
+    input.value =
+      "";
+
+    proses(text);
+
   };
 
-  speechSynthesis.speak(voice);
+
+input.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      send.click();
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   STOP BUTTON
+================================================== */
+
+stopSpeakingButton.onclick =
+  () => {
+
+    /*
+    Hentikan suara Sarah
+    */
+
+    stopSpeaking();
+
+    /*
+    Hentikan microphone jika
+    sedang aktif
+    */
+
+    if (
+      recognition
+    ) {
+
+      try {
+
+        recognition.stop();
+
+      }
+
+      catch(error) {
+
+        console.log(error);
+
+      }
+
+    }
+
+
+    mic.classList.remove(
+      "active"
+    );
+
+
+    mic.innerHTML =
+      "🎤";
+
+
+    avatarWrapper.classList.remove(
+      "listening"
+    );
+
+  };
+
+
+/* ==================================================
+   VOICE RECOGNITION
+================================================== */
+
+const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
+
+
+if (
+  SpeechRecognition
+) {
+
+  recognition =
+    new SpeechRecognition();
+
+
+  recognition.lang =
+    "id-ID";
+
+
+  recognition.continuous =
+    false;
+
+
+  recognition.interimResults =
+    false;
+
+
+  mic.onclick =
+    () => {
+
+      /*
+      Jika Sarah sedang bicara,
+      hentikan suara terlebih dahulu.
+      */
+
+      if (
+        isSpeaking
+      ) {
+
+        stopSpeaking();
+
+      }
+
+
+      try {
+
+        recognition.start();
+
+        mic.classList.add(
+          "active"
+        );
+
+        mic.innerHTML =
+          "🔴";
+
+        status.innerText =
+          "Mendengarkan...";
+
+        avatarStatus.innerText =
+          "Sarah sedang mendengarkan...";
+
+        avatarWrapper.classList.add(
+          "listening"
+        );
+
+      }
+
+      catch(error) {
+
+        console.log(error);
+
+      }
+
+    };
+
+
+  recognition.onresult =
+    event => {
+
+      const text =
+        event.results[0][0].transcript;
+
+
+      mic.classList.remove(
+        "active"
+      );
+
+      mic.innerHTML =
+        "🎤";
+
+
+      avatarWrapper.classList.remove(
+        "listening"
+      );
+
+
+      proses(text);
+
+    };
+
+
+  recognition.onend =
+    () => {
+
+      mic.classList.remove(
+        "active"
+      );
+
+      mic.innerHTML =
+        "🎤";
+
+
+      avatarWrapper.classList.remove(
+        "listening"
+      );
+
+
+      if (
+        !isSpeaking
+      ) {
+
+        avatarStatus.innerText =
+          "Customer Service";
+
+      }
+
+    };
+
+
+  recognition.onerror =
+    event => {
+
+      console.log(
+        event.error
+      );
+
+
+      mic.classList.remove(
+        "active"
+      );
+
+      mic.innerHTML =
+        "🎤";
+
+
+      avatarWrapper.classList.remove(
+        "listening"
+      );
+
+
+      status.innerText =
+        "Silakan coba lagi.";
+
+      avatarStatus.innerText =
+        "Customer Service";
+
+    };
+
 }
+
+else {
+
+  mic.disabled =
+    true;
+
+  mic.style.opacity =
+    "0.5";
+
+  status.innerText =
+    "Browser Anda tidak mendukung voice recognition.";
+
+}
+
+
+/* ==================================================
+   KONDISI AWAL
+================================================== */
+
+stopSpeakingButton.disabled =
+  true;
+
+
+/* ==================================================
+   CLEANUP
+================================================== */
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if (
+      "speechSynthesis" in window
+    ) {
+
+      window.speechSynthesis.cancel();
+
+    }
+
+    if (
+      recognition
+    ) {
+
+      try {
+
+        recognition.stop();
+
+      }
+
+      catch(error) {}
+
+    }
+
+  }
+);
 
 </script>
 
