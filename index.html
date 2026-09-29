@@ -1019,7 +1019,7 @@ setiap kali percakapan bertambah.
 
     <div class="message bot">
 
-      Halo 👋 Saya Sarah,
+      Halo 👋 Saya Amanda,
       Customer Service Anda.
 
       Silakan tanyakan tentang
@@ -1080,20 +1080,25 @@ setiap kali percakapan bertambah.
    DATA CUSTOMER SERVICE
 ================================================== */
 
+/* ==================================================
+   DATA CUSTOMER SERVICE
+   NORTON BALI COMPUTER
+================================================== */
+
 const DATA = {
 
   perusahaan: {
 
-    nama: "Toko ABC",
+    nama: "Norton Bali Computer",
 
     alamat:
-      "Jl. Contoh No. 123, Denpasar, Bali",
+      "Denpasar, Bali",
 
     telepon:
-      "08123456789",
+      "",
 
     email:
-      "customer@tokoabc.com",
+      "",
 
     jam:
       "Senin sampai Sabtu, pukul 08.00 sampai 17.00"
@@ -1103,76 +1108,852 @@ const DATA = {
 
   produk: [
 
+    /* ==================================================
+       LAPTOP / COMPUTER
+    ================================================== */
+
     {
-      nama: "Produk A",
-
-      harga: "Rp100.000",
-
+      nama: "Acer 5 AL14-51M Ci5 8/512GB",
+      kategori: "Laptop",
+      harga: 8850000,
+      harga_display: "Rp8.850.000",
       deskripsi:
-        "Produk berkualitas untuk kebutuhan sehari-hari.",
-
-      stok:
-        "Tersedia"
-
+        "Laptop Acer 5 AL14-51M dengan Intel Core i5, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
-      nama: "Produk B",
-
-      harga: "Rp150.000",
-
+      nama: "Acer AL1-14M Ci3 8/512GB",
+      kategori: "Laptop",
+      harga: 7045000,
+      harga_display: "Rp7.045.000",
       deskripsi:
-        "Produk premium dengan kualitas terbaik.",
-
-      stok:
-        "Tersedia"
-
+        "Laptop Acer dengan Intel Core i3, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
     },
 
     {
-      nama: "Produk C",
-
-      harga: "Rp200.000",
-
+      nama: "Acer AL14-31P Celeron N100 8/256GB",
+      kategori: "Laptop",
+      harga: 4900000,
+      harga_display: "Rp4.900.000",
       deskripsi:
-        "Produk pilihan untuk kebutuhan keluarga.",
+        "Laptop Acer dengan Intel Celeron N100, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
 
-      stok:
-        "Habis"
+    {
+      nama: "Acer AL14-31P N100 8/512GB",
+      kategori: "Laptop",
+      harga: 5215000,
+      harga_display: "Rp5.215.000",
+      deskripsi:
+        "Laptop Acer dengan Intel N100, RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
+    },
 
+    {
+      nama: "Acer Nitro V15 Core-i5 8/512GB",
+      kategori: "Laptop Gaming",
+      harga: 10800000,
+      harga_display: "Rp10.800.000",
+      deskripsi:
+        "Laptop gaming Acer Nitro V15 dengan Intel Core i5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Advan Soul Plus Ryzen 5 8/256GB",
+      kategori: "Laptop",
+      harga: 4250000,
+      harga_display: "Rp4.250.000",
+      deskripsi:
+        "Laptop Advan Soul Plus dengan AMD Ryzen 5, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus A1400KA DC 8/512GB",
+      kategori: "Laptop",
+      harga: 5375000,
+      harga_display: "Rp5.375.000",
+      deskripsi:
+        "Laptop Asus A1400KA dengan RAM 8GB dan penyimpanan 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus A1404VA Core-i7 8/512GB",
+      kategori: "Laptop",
+      harga: 11450000,
+      harga_display: "Rp11.450.000",
+      deskripsi:
+        "Laptop Asus A1404VA dengan Intel Core i7, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus A1404ZA Core-i5 16/512GB",
+      kategori: "Laptop",
+      harga: 8995000,
+      harga_display: "Rp8.995.000",
+      deskripsi:
+        "Laptop Asus A1404ZA dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus E1404FA Ryzen 3 8/512GB",
+      kategori: "Laptop",
+      harga: 6495000,
+      harga_display: "Rp6.495.000",
+      deskripsi:
+        "Laptop Asus dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus E1404FA Ryzen 5 16/512GB",
+      kategori: "Laptop",
+      harga: 8695000,
+      harga_display: "Rp8.695.000",
+      deskripsi:
+        "Laptop Asus dengan AMD Ryzen 5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Asus E1404GA Core-i3 8/256GB",
+      kategori: "Laptop",
+      harga: 6150000,
+      harga_display: "Rp6.150.000",
+      deskripsi:
+        "Laptop Asus dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 245 G10 Ryzen 5 8/512GB",
+      kategori: "Laptop",
+      harga: 6700000,
+      harga_display: "Rp6.700.000",
+      deskripsi:
+        "Laptop HP 245 G10 dengan AMD Ryzen 5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s-dq5568TU Core-i3 8/512GB",
+      kategori: "Laptop",
+      harga: 6496000,
+      harga_display: "Rp6.496.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s-DQ5152TU Core-i5 8/512GB",
+      kategori: "Laptop",
+      harga: 8750000,
+      harga_display: "Rp8.750.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s FQ1009AU Ryzen 3 8/512GB",
+      kategori: "Laptop",
+      harga: 5875000,
+      harga_display: "Rp5.875.000",
+      deskripsi:
+        "Laptop HP 14s dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s DQ5115TU Core-i3 8/512GB",
+      kategori: "Laptop",
+      harga: 6399000,
+      harga_display: "Rp6.399.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s dq3888TU Celeron 8/512GB",
+      kategori: "Laptop",
+      harga: 5425000,
+      harga_display: "Rp5.425.000",
+      deskripsi:
+        "Laptop HP 14s dengan Intel Celeron, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo V14G4 AMD Athlon 8/256GB",
+      kategori: "Laptop",
+      harga: 4550000,
+      harga_display: "Rp4.550.000",
+      deskripsi:
+        "Laptop Lenovo V14G4 dengan AMD Athlon, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo LOQ 15IAX9 Core-i5 12/512GB",
+      kategori: "Laptop Gaming",
+      harga: 11299000,
+      harga_display: "Rp11.299.000",
+      deskripsi:
+        "Laptop gaming Lenovo LOQ dengan Intel Core i5, RAM 12GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo IPS3 14IAH8 Core-i5 16/512GB",
+      kategori: "Laptop",
+      harga: 9375000,
+      harga_display: "Rp9.375.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo IPS 3 14AMN8 Ryzen 3 8/512GB",
+      kategori: "Laptop",
+      harga: 6695000,
+      harga_display: "Rp6.695.000",
+      deskripsi:
+        "Laptop Lenovo dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo IP3 14IAU7 Core-i3 8/512GB",
+      kategori: "Laptop",
+      harga: 6475000,
+      harga_display: "Rp6.475.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo IP3 14IAU7 Core-i3 8/256GB",
+      kategori: "Laptop",
+      harga: 6099000,
+      harga_display: "Rp6.099.000",
+      deskripsi:
+        "Laptop Lenovo dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lenovo IP3 14abr8 Ryzen 5 8/512GB",
+      kategori: "Laptop",
+      harga: 8325000,
+      harga_display: "Rp8.325.000",
+      deskripsi:
+        "Laptop Lenovo dengan AMD Ryzen 5, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       ACER TAMBAHAN
+    ================================================== */
+
+    {
+      nama: "Acer AG14-31P i3-N305 8/512GB",
+      kategori: "Laptop",
+      harga: 6299000,
+      harga_display: "Rp6.299.000",
+      deskripsi:
+        "Laptop Acer dengan prosesor i3-N305, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Acer AL14-51M Ci3 8/256GB",
+      kategori: "Laptop",
+      harga: 6225000,
+      harga_display: "Rp6.225.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Core i3, RAM 8GB dan penyimpanan 256GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Acer AL14-52M Ci5 16/512GB",
+      kategori: "Laptop",
+      harga: 9085000,
+      harga_display: "Rp9.085.000",
+      deskripsi:
+        "Laptop Acer dengan Intel Core i5, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       HP TAMBAHAN
+    ================================================== */
+
+    {
+      nama: "HP 14 EM0222AU Athlon 8/512G",
+      kategori: "Laptop",
+      harga: 5149000,
+      harga_display: "Rp5.149.000",
+      deskripsi:
+        "Laptop HP dengan AMD Athlon, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 14s Dq5154 i7 16/512GB",
+      kategori: "Laptop",
+      harga: 11625000,
+      harga_display: "Rp11.625.000",
+      deskripsi:
+        "Laptop HP dengan Intel Core i7, RAM 16GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP EM0332AU R3 8/512GB",
+      kategori: "Laptop",
+      harga: 6375000,
+      harga_display: "Rp6.375.000",
+      deskripsi:
+        "Laptop HP dengan AMD Ryzen 3, RAM 8GB dan SSD 512GB.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       KEYBOARD
+    ================================================== */
+
+    {
+      nama: "Logitech MK240",
+      kategori: "Keyboard",
+      harga: 355000,
+      harga_display: "Rp355.000",
+      deskripsi:
+        "Keyboard Logitech MK240.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Fantech Atom 81 Gaming",
+      kategori: "Keyboard Gaming",
+      harga: 295000,
+      harga_display: "Rp295.000",
+      deskripsi:
+        "Keyboard gaming Fantech Atom 81.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Fantech Atom 96 Gaming",
+      kategori: "Keyboard Gaming",
+      harga: 295000,
+      harga_display: "Rp295.000",
+      deskripsi:
+        "Keyboard gaming Fantech Atom 96.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Rexus RX-KX3",
+      kategori: "Keyboard",
+      harga: 285000,
+      harga_display: "Rp285.000",
+      deskripsi:
+        "Keyboard Rexus RX-KX3.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Cliptec RZK 300 Keyboard + Mouse",
+      kategori: "Keyboard & Mouse",
+      harga: 105000,
+      harga_display: "Rp105.000",
+      deskripsi:
+        "Paket keyboard dan mouse Cliptec RZK 300.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HP 150 Kabel Keyboard + Mouse",
+      kategori: "Keyboard & Mouse",
+      harga: 175000,
+      harga_display: "Rp175.000",
+      deskripsi:
+        "Paket keyboard dan mouse HP 150.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Robot KM3500 Keyboard + Mouse",
+      kategori: "Keyboard & Mouse",
+      harga: 160000,
+      harga_display: "Rp160.000",
+      deskripsi:
+        "Paket keyboard dan mouse Robot KM3500.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Rapoo NX1500 Keyboard + Mouse",
+      kategori: "Keyboard & Mouse",
+      harga: 95000,
+      harga_display: "Rp95.000",
+      deskripsi:
+        "Paket keyboard dan mouse Rapoo NX1500.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Acome AKM2000 Wireless Keyboard + Mouse",
+      kategori: "Keyboard & Mouse",
+      harga: 195000,
+      harga_display: "Rp195.000",
+      deskripsi:
+        "Paket keyboard dan mouse wireless Acome AKM2000.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Cyborg USB K180",
+      kategori: "Keyboard",
+      harga: 160000,
+      harga_display: "Rp160.000",
+      deskripsi:
+        "Keyboard Cyborg USB K180.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "NYK KR-201 Plat Gaming",
+      kategori: "Keyboard Gaming",
+      harga: 185000,
+      harga_display: "Rp185.000",
+      deskripsi:
+        "Keyboard gaming NYK KR-201.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Genius KB7200",
+      kategori: "Keyboard",
+      harga: 200000,
+      harga_display: "Rp200.000",
+      deskripsi:
+        "Keyboard Genius KB7200.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       HEADSET / HEADPHONE
+    ================================================== */
+
+    {
+      nama: "Baseus Bass 30 Max Wireless",
+      kategori: "Headset",
+      harga: 400000,
+      harga_display: "Rp400.000",
+      deskripsi:
+        "Wireless headphone Baseus Bass 30 Max.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE SA1 Bluetooth",
+      kategori: "Headset",
+      harga: 210000,
+      harga_display: "Rp210.000",
+      deskripsi:
+        "Bluetooth headphone JETE SA1.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE SX1 Bluetooth",
+      kategori: "Headset",
+      harga: 315000,
+      harga_display: "Rp315.000",
+      deskripsi:
+        "Bluetooth headphone JETE SX1.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE SX3 Bluetooth",
+      kategori: "Headset",
+      harga: 350000,
+      harga_display: "Rp350.000",
+      deskripsi:
+        "Bluetooth headphone JETE SX3.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE-08 Pro Bluetooth",
+      kategori: "Headset",
+      harga: 315000,
+      harga_display: "Rp315.000",
+      deskripsi:
+        "Bluetooth headphone JETE-08 Pro.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE-11 Bluetooth",
+      kategori: "Headset",
+      harga: 160000,
+      harga_display: "Rp160.000",
+      deskripsi:
+        "Bluetooth headphone JETE-11.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE-12 Bluetooth",
+      kategori: "Headset",
+      harga: 260000,
+      harga_display: "Rp260.000",
+      deskripsi:
+        "Bluetooth headphone JETE-12.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JETE-13 Pro Bluetooth",
+      kategori: "Headset",
+      harga: 265000,
+      harga_display: "Rp265.000",
+      deskripsi:
+        "Bluetooth headphone JETE-13 Pro.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JBL Live 460 NC",
+      kategori: "Headset",
+      harga: 1500000,
+      harga_display: "Rp1.500.000",
+      deskripsi:
+        "Headphone JBL Live 460 NC.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JBL T720 Bluetooth",
+      kategori: "Headset",
+      harga: 1300000,
+      harga_display: "Rp1.300.000",
+      deskripsi:
+        "Bluetooth headphone JBL T720.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Gamen Shadow RGB Bluetooth",
+      kategori: "Headset Gaming",
+      harga: 380000,
+      harga_display: "Rp380.000",
+      deskripsi:
+        "Headset gaming Gamen Shadow RGB Bluetooth.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       FLASHDISK
+    ================================================== */
+
+    {
+      nama: "Kingston Kyson 128GB",
+      kategori: "Flashdisk",
+      harga: 215000,
+      harga_display: "Rp215.000",
+      deskripsi:
+        "Flashdisk Kingston Kyson kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk Ultra 128GB",
+      kategori: "Flashdisk",
+      harga: 195000,
+      harga_display: "Rp195.000",
+      deskripsi:
+        "Flashdisk Sandisk Ultra kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk SDDDC3 Dual 128GB",
+      kategori: "Flashdisk",
+      harga: 215000,
+      harga_display: "Rp215.000",
+      deskripsi:
+        "Flashdisk Sandisk SDDDC3 Dual kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk 128GB for iPhone",
+      kategori: "Flashdisk",
+      harga: 510000,
+      harga_display: "Rp510.000",
+      deskripsi:
+        "Flashdisk Sandisk 128GB untuk iPhone.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Kingston Exodia 128GB",
+      kategori: "Flashdisk",
+      harga: 165000,
+      harga_display: "Rp165.000",
+      deskripsi:
+        "Flashdisk Kingston Exodia kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lexar JumpDrive S80 128GB",
+      kategori: "Flashdisk",
+      harga: 195000,
+      harga_display: "Rp195.000",
+      deskripsi:
+        "Flashdisk Lexar JumpDrive S80 kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk Luxe CZ74 128GB",
+      kategori: "Flashdisk",
+      harga: 215000,
+      harga_display: "Rp215.000",
+      deskripsi:
+        "Flashdisk Sandisk Luxe CZ74 kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk Blade 128GB",
+      kategori: "Flashdisk",
+      harga: 180000,
+      harga_display: "Rp180.000",
+      deskripsi:
+        "Flashdisk Sandisk Blade kapasitas 128GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Lexar V400 16GB 3.0",
+      kategori: "Flashdisk",
+      harga: 140000,
+      harga_display: "Rp140.000",
+      deskripsi:
+        "Flashdisk Lexar V400 USB 3.0 kapasitas 16GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Sandisk Blade 64GB",
+      kategori: "Flashdisk",
+      harga: 235000,
+      harga_display: "Rp235.000",
+      deskripsi:
+        "Flashdisk Sandisk Blade kapasitas 64GB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Olike OFP264 64GB",
+      kategori: "Flashdisk",
+      harga: 155000,
+      harga_display: "Rp155.000",
+      deskripsi:
+        "Flashdisk Olike OFP264 kapasitas 64GB.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       KABEL & HARD DISK
+    ================================================== */
+
+    {
+      nama: "Ugreen HDMI 80401 8K 1M",
+      kategori: "Kabel",
+      harga: 12500,
+      harga_display: "Rp12.500",
+      deskripsi:
+        "Kabel HDMI Ugreen 80401 8K panjang 1 meter.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HDMI 25M Jaring",
+      kategori: "Kabel",
+      harga: 210000,
+      harga_display: "Rp210.000",
+      deskripsi:
+        "Kabel HDMI panjang 25 meter dengan jaring.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "M-Tech HDMI 5/10/15M 2.0 4K",
+      kategori: "Kabel",
+      harga: 75000,
+      harga_display: "Rp75.000",
+      deskripsi:
+        "Kabel HDMI M-Tech versi 2.0 dengan dukungan 4K.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "AISEN HDMI 1.5/10/15M 4K/8K",
+      kategori: "Kabel",
+      harga: 50000,
+      harga_display: "Rp50.000",
+      deskripsi:
+        "Kabel HDMI AISEN dengan dukungan 4K/8K.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "HDD Caddy SATA 9MM",
+      kategori: "HDD Caddy",
+      harga: 45000,
+      harga_display: "Rp45.000",
+      deskripsi:
+        "HDD Caddy SATA ukuran 9mm.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "Seagate Expansion External HDD 1TB/4TB",
+      kategori: "External HDD",
+      harga: 1725000,
+      harga_display: "Rp1.725.000",
+      deskripsi:
+        "External HDD Seagate Expansion dengan pilihan kapasitas 1TB/4TB.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "OSMOUS Slim Plus External HDD 500GB/1TB",
+      kategori: "External HDD",
+      harga: 620000,
+      harga_display: "Rp620.000",
+      deskripsi:
+        "External HDD OSMOUS Slim Plus dengan pilihan kapasitas 500GB/1TB.",
+      stok: "Tersedia"
+    },
+
+
+    /* ==================================================
+       GAMEPAD
+    ================================================== */
+
+    {
+      nama: "Rexus Gladius GX2",
+      kategori: "Gamepad",
+      harga: 205000,
+      harga_display: "Rp205.000",
+      deskripsi:
+        "Gamepad Rexus Gladius GX2.",
+      stok: "Tersedia"
+    },
+
+    {
+      nama: "JSX1 JETE",
+      kategori: "Gamepad",
+      harga: 275000,
+      harga_display: "Rp275.000",
+      deskripsi:
+        "Gamepad JETE JSX1.",
+      stok: "Tersedia"
     }
 
   ],
 
 
+  /* ==================================================
+     FAQ
+  ================================================== */
+
   faq: [
 
     {
       kata: ["cara", "pesan"],
-
       jawaban:
-        "Untuk melakukan pemesanan, silakan pilih produk dan hubungi customer service kami."
+        "Untuk melakukan pemesanan, silakan pilih produk yang diinginkan dan hubungi customer service Norton Bali Computer."
     },
 
     {
       kata: ["cara", "bayar"],
-
       jawaban:
-        "Kami menerima pembayaran melalui transfer bank dan pembayaran digital."
+        "Kami menerima pembayaran melalui transfer bank dan pembayaran digital. Untuk metode pembayaran yang tersedia, silakan hubungi customer service."
     },
 
     {
       kata: ["pengiriman"],
-
       jawaban:
-        "Kami melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan."
+        "Norton Bali Computer melayani pengiriman ke berbagai wilayah. Lama pengiriman tergantung lokasi tujuan dan layanan ekspedisi yang dipilih."
     },
 
     {
       kata: ["refund"],
-
       jawaban:
-        "Untuk pengajuan refund, silakan hubungi customer service kami."
+        "Untuk pengajuan refund, silakan hubungi customer service Norton Bali Computer."
+    },
+
+    {
+      kata: ["alamat", "lokasi"],
+      jawaban:
+        "Norton Bali Computer berada di Denpasar, Bali."
+    },
+
+    {
+      kata: ["harga", "laptop"],
+      jawaban:
+        "Kami menyediakan berbagai laptop Acer, Asus, HP, Lenovo, Advan dan lainnya. Silakan sebutkan budget atau merek yang Anda cari."
+    },
+
+    {
+      kata: ["laptop", "murah"],
+      jawaban:
+        "Untuk laptop dengan harga terjangkau, tersedia beberapa pilihan mulai dari kisaran Rp4 jutaan. Silakan sebutkan budget Anda agar kami dapat mencarikan produk yang sesuai."
+    },
+
+    {
+      kata: ["keyboard"],
+      jawaban:
+        "Kami menyediakan berbagai keyboard seperti Logitech, Fantech, Rexus, HP, Robot, Rapoo, Acome, NYK dan Genius."
+    },
+
+    {
+      kata: ["flashdisk"],
+      jawaban:
+        "Kami menyediakan flashdisk Kingston, Sandisk, Lexar, Olike dan berbagai kapasitas."
+    },
+
+    {
+      kata: ["headset", "headphone"],
+      jawaban:
+        "Kami menyediakan headset dan headphone dari Baseus, JETE, JBL dan Gamen."
     }
 
   ]
