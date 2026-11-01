@@ -621,6 +621,7 @@ input:focus{
 .message{
     min-width:0;
     min-height:0;
+    overflow:visible;
 
     position:relative;
 
@@ -644,6 +645,7 @@ input:focus{
 
 .avatar{
     position:relative;
+    flex-shrink:0;
 
     width:100%;
     max-width:560px;
@@ -1313,15 +1315,26 @@ input:focus{
 }
 .prayer-controls{
     position:relative;
-    z-index:60;
+    z-index:100;
     display:flex;
+    flex:0 0 auto;
+    width:100%;
+    min-height:48px;
     flex-wrap:wrap;
     justify-content:center;
     align-items:center;
     gap:8px;
     margin-top:10px;
 }
-.prayer-button{margin-top:0}
+.prayer-button{
+    margin-top:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:46px;
+    white-space:normal;
+    box-sizing:border-box;
+}
 .prayer-stop{
     padding:11px 16px;
     border:1px solid rgba(248,113,113,.4);
@@ -1680,6 +1693,18 @@ footer{
 
                 <!-- DOA -->
 
+                <div class="prayer-controls">
+                    <button class="prayer-button" type="button" onclick="speakPrayer()">
+                        🙏 TOMBOL DOA — TEKAN UNTUK MENDENGAR
+                    </button>
+                    <button class="prayer-stop" id="stopPrayerBtn" type="button" onclick="stopPrayer()" style="display:none">
+                        ■ HENTIKAN SUARA
+                    </button>
+                </div>
+                <div class="prayer-hint" id="prayerHint">
+                    Tekan tombol doa, Sarah akan membacakan doa dengan suara.
+                </div>
+
                 <div class="quote" aria-live="polite">
 
                     <strong id="prayerText">
@@ -1698,16 +1723,6 @@ footer{
 
                 </div>
 
-                <div class="prayer-controls">
-                    <button class="prayer-button" type="button" onclick="speakPrayer()">
-                        🔊 TEKAN UNTUK MENDENGAR DOA
-                    </button>
-                    <button class="prayer-stop" id="stopPrayerBtn" type="button" onclick="stopPrayer()" style="display:none">
-                        ■ HENTIKAN SUARA
-                    </button>
-                </div>
-                <div class="prayer-hint" id="prayerHint">
-                    Tekan tombol untuk mendengarkan doa dari Sarah.
                 </div>
 
             </section>
