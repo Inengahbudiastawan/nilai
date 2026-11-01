@@ -1288,6 +1288,73 @@ input:focus{
     color:#fda4af;
 }
 
+.prayer-button{
+    position:relative;
+    z-index:60;
+    margin-top:10px;
+    padding:12px 24px;
+    border:1px solid rgba(147,197,253,.45);
+    border-radius:999px;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.3px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 8px 24px rgba(37,99,235,.32);
+    transition:transform .2s, box-shadow .2s;
+}
+.prayer-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(37,99,235,.48);
+}
+.prayer-button:active{
+    transform:scale(.96);
+}
+.prayer-controls{
+    position:relative;
+    z-index:60;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+}
+.prayer-button{margin-top:0}
+.prayer-stop{
+    padding:11px 16px;
+    border:1px solid rgba(248,113,113,.4);
+    border-radius:999px;
+    color:#fecaca;
+    background:rgba(127,29,29,.35);
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+.prayer-stop:hover{background:rgba(127,29,29,.6)}
+.prayer-hint{
+    position:relative;
+    z-index:50;
+    margin-top:6px;
+    color:#94a3b8;
+    font-size:9px;
+    text-align:center;
+}
+.avatar.is-speaking .head{animation:headTalk .38s ease-in-out infinite alternate}
+.avatar.is-speaking .smile{
+    animation:mouthTalk .2s ease-in-out infinite alternate;
+    border-bottom-width:7px;
+}
+@keyframes headTalk{
+    from{transform:translateX(-50%) rotate(-1deg) translateY(0)}
+    to{transform:translateX(-50%) rotate(1deg) translateY(-2px)}
+}
+@keyframes mouthTalk{
+    from{height:7px;transform:scaleX(.85)}
+    to{height:23px;transform:scaleX(1.08)}
+}
+
 /* FOOTER */
 
 footer{
@@ -1369,6 +1436,12 @@ footer{
         padding:12px 14px;
 
         font-size:11px;
+    }
+
+    .prayer-button{
+        width:min(96%,340px);
+        padding:13px 16px;
+        font-size:10px;
     }
 
     .header-stars span{
@@ -1562,12 +1635,10 @@ footer{
 
                     <div class="speech">
 
-                        🙏 Terima kasih sudah
-                        memberikan review positif!
+                        🙏 Ada doa baik untuk Anda!
 
                         <small>
-                            Dukungan Anda sangat berarti
-                            bagi perjalanan kami. ❤️
+                            Tekan tombol di bawah untuk menerima doa spesial. ❤️
                         </small>
 
                     </div>
@@ -1609,9 +1680,9 @@ footer{
 
                 <!-- DOA -->
 
-                <div class="quote">
+                <div class="quote" aria-live="polite">
 
-                    “<strong>
+                    <strong id="prayerText">
                     Semoga Anda selalu diberikan kesehatan,
                     kebahagiaan, rezeki yang berlimpah,
                     serta kemudahan dalam setiap langkah.
@@ -1619,11 +1690,24 @@ footer{
 
                     <br>
 
-                    Terima kasih sudah menjadi bagian
-                    dari perjalanan kami.
+                    <span id="prayerClosing">
+                    Terima kasih sudah menjadi bagian dari perjalanan kami.
+                    </span>
 
                     <span class="red">❤️</span>
 
+                </div>
+
+                <div class="prayer-controls">
+                    <button class="prayer-button" type="button" onclick="speakPrayer()">
+                        🔊 TEKAN UNTUK MENDENGAR DOA
+                    </button>
+                    <button class="prayer-stop" id="stopPrayerBtn" type="button" onclick="stopPrayer()" style="display:none">
+                        ■ HENTIKAN SUARA
+                    </button>
+                </div>
+                <div class="prayer-hint" id="prayerHint">
+                    Tekan tombol untuk mendengarkan doa dari Sarah.
                 </div>
 
             </section>
@@ -1848,8 +1932,125 @@ function downloadQR(){
 
 
 /* =========================================
-   ENTER = BUAT QR
+   DOA AVATAR DENGAN SUARA WANITA
 ========================================= */
+
+const prayers = [
+    {
+        text: "Semoga Anda selalu diberikan kesehatan, kebahagiaan, rezeki yang berlimpah, serta kemudahan dalam setiap langkah.",
+        closing: "Semoga setiap usaha membawa hasil yang baik.",
+        hint: "Doa terbaik untuk kesehatan dan kesuksesan Anda."
+    },
+    {
+        text: "Semoga segala urusan Anda dilancarkan, setiap pekerjaan dimudahkan, dan setiap cita-cita selangkah demi selangkah menjadi kenyataan.",
+        closing: "Tetap semangat, masa depan yang baik sedang menanti.",
+        hint: "Semoga jalan Anda selalu dibukakan menuju keberhasilan."
+    },
+    {
+        text: "Semoga rumah Anda selalu dipenuhi kedamaian, keluarga Anda dilindungi, dan orang-orang tercinta senantiasa dalam keadaan sehat.",
+        closing: "Kebahagiaan keluarga adalah anugerah yang berharga.",
+        hint: "Salam hangat dan doa terbaik untuk keluarga Anda."
+    },
+    {
+        text: "Semoga rezeki Anda mengalir dengan lancar, pekerjaan membawa keberkahan, dan setiap kebaikan yang Anda berikan kembali berlipat ganda.",
+        closing: "Semoga sukses selalu menyertai perjalanan Anda.",
+        hint: "Semoga usaha dan kerja keras Anda berbuah manis."
+    },
+    {
+        text: "Semoga hari ini membawa kabar baik, hati Anda selalu tenang, pikiran tetap jernih, dan senyum tidak pernah jauh dari wajah Anda.",
+        closing: "Teruslah menjadi pribadi yang membawa kebaikan.",
+        hint: "Semoga hari Anda indah, damai, dan penuh sukacita."
+    },
+    {
+        text: "Semoga setiap langkah Anda dijauhkan dari kesulitan, diberi kekuatan menghadapi tantangan, dan dipertemukan dengan orang-orang yang tulus.",
+        closing: "Semoga perlindungan dan kebaikan selalu menyertai Anda.",
+        hint: "Doa tulus agar Anda selalu kuat dan diberi kemudahan."
+    }
+];
+
+let prayerIndex = 0;
+let selectedFemaleVoice = null;
+
+function findIndonesianFemaleVoice(){
+    if(!("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    const indonesian = voices.filter(v => /^id(-|_)/i.test(v.lang));
+    const female = indonesian.find(v => /female|woman|zira/i.test(v.name));
+    return female || indonesian[0] || voices.find(v => /^en/i.test(v.lang)) || voices[0] || null;
+}
+
+function renderPrayer(prayer){
+    document.getElementById("prayerText").textContent = prayer.text;
+    document.getElementById("prayerClosing").textContent = prayer.closing;
+    document.getElementById("prayerHint").textContent = prayer.hint;
+}
+
+function speakPrayer(){
+    if(!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)){
+        document.getElementById("prayerHint").textContent =
+            "Browser ini belum mendukung fitur suara. Silakan gunakan Google Chrome terbaru.";
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+    const prayer = prayers[prayerIndex];
+    renderPrayer(prayer);
+
+    const utterance = new SpeechSynthesisUtterance(prayer.text + " " + prayer.closing);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.88;
+    utterance.pitch = 1.12;
+    utterance.volume = 1;
+
+    selectedFemaleVoice = findIndonesianFemaleVoice();
+    if(selectedFemaleVoice){
+        utterance.voice = selectedFemaleVoice;
+        utterance.lang = selectedFemaleVoice.lang;
+    }
+
+    const avatar = document.querySelector(".avatar");
+    const stopButton = document.getElementById("stopPrayerBtn");
+    const hint = document.getElementById("prayerHint");
+
+    utterance.onstart = () => {
+        avatar.classList.add("is-speaking");
+        stopButton.style.display = "inline-block";
+        hint.textContent = "Sarah sedang membacakan doa untuk Anda…";
+    };
+    utterance.onend = () => {
+        avatar.classList.remove("is-speaking");
+        stopButton.style.display = "none";
+        hint.textContent = "Aamiin. Semoga doa baik ini menyertai Anda. ❤️";
+    };
+    utterance.onerror = () => {
+        avatar.classList.remove("is-speaking");
+        stopButton.style.display = "none";
+        hint.textContent = "Suara tidak dapat diputar. Periksa pengaturan suara browser.";
+    };
+
+    window.speechSynthesis.speak(utterance);
+    prayerIndex = (prayerIndex + 1) % prayers.length;
+}
+
+function stopPrayer(){
+    if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    document.querySelector(".avatar").classList.remove("is-speaking");
+    document.getElementById("stopPrayerBtn").style.display = "none";
+    document.getElementById("prayerHint").textContent = "Pembacaan doa dihentikan.";
+}
+
+if("speechSynthesis" in window){
+    window.speechSynthesis.onvoiceschanged = () => {
+        selectedFemaleVoice = findIndonesianFemaleVoice();
+    };
+}
+
+
+/* =========================================
+   ENTER = BUAT QR
+=========================================
+
+ */
 
 document
     .getElementById("reviewLink")
