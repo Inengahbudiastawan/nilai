@@ -1,224 +1,67 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kucing Penarik Rejeki - I Nengah Budiastawan</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Plus Jakarta Sans & Cinzel Decorative -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root {
-            --gold-light: #fde047;
-            --gold-main: #eab308;
-            --gold-dark: #a16207;
-            --crimson-main: #b91c1c;
-            --crimson-dark: #7f1d1d;
-            --cream-bg: #fffbeb;
-        }
-
+<!-- ... existing code ... -->
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #7f1d1d;
             background-image: 
                 radial-gradient(circle at 50% 0%, #b91c1c 0%, #7f1d1d 60%, #450a0a 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             overflow-x: hidden;
             color: #1f2937;
         }
-
-        .font-display {
-            font-family: 'Cinzel Decorative', serif;
-        }
-
-        /* Pola Ornamen Halus Latar Belakang */
-        .bg-ornament {
-            background-image: radial-gradient(rgba(253, 224, 71, 0.12) 2px, transparent 2px),
-                              radial-gradient(rgba(253, 224, 71, 0.08) 2px, #7f1d1d 2px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-        }
-
-        /* Animasi Tangan Melambai Maneki-Neko */
-        @keyframes wavePaw {
-            0%, 100% {
-                transform: rotate(0deg);
-            }
-            50% {
-                transform: rotate(-28deg);
-            }
-        }
-
-        @keyframes wavePawFast {
-            0%, 100% {
-                transform: rotate(5deg);
-            }
-            50% {
-                transform: rotate(-36deg);
-            }
-        }
-
-        .cat-paw {
-            transform-origin: 215px 215px;
-            animation: wavePaw 2s ease-in-out infinite;
-            transition: animation-duration 0.3s ease;
-        }
-
-        .cat-paw.boost-mode {
-            animation: wavePawFast 0.55s ease-in-out infinite;
-        }
-
-        /* Animasi Mata Berkedip */
-        @keyframes blinkEyes {
-            0%, 92%, 100% {
-                transform: scaleY(1);
-            }
-            96% {
-                transform: scaleY(0.1);
-            }
-        }
-
-        .cat-eyes {
-            transform-origin: 150px 128px;
-            animation: blinkEyes 4.5s infinite;
-        }
-
-        /* Animasi Lonceng Bergoyang */
-        @keyframes bellSwing {
-            0%, 100% { transform: rotate(-6deg); }
-            50% { transform: rotate(6deg); }
-        }
-
-        .cat-bell {
-            transform-origin: 150px 186px;
-            animation: bellSwing 2s ease-in-out infinite;
-        }
-
-        /* Animasi Aura Cahaya Emas di Belakang Kucing */
-        @keyframes pulseAura {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.55;
-            }
-            50% {
-                transform: scale(1.08);
-                opacity: 0.85;
-            }
-        }
-
-        .gold-aura {
-            animation: pulseAura 3.5s ease-in-out infinite;
-        }
-
-        /* Animasi Putar Sinar Keberuntungan */
-        @keyframes spinSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .sunburst-spin {
-            animation: spinSlow 35s linear infinite;
-        }
-
-        /* Animasi Koin Terbang saat Diklik */
-        @keyframes coinPop {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(360deg);
-            }
-        }
-
-        .floating-coin {
-            position: fixed;
-            pointer-events: none;
-            z-index: 50;
-            animation: coinPop 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        /* Kartu Kaca Hangat */
-        .prosperity-card {
-            background: rgba(255, 251, 235, 0.96);
-            backdrop-filter: blur(12px);
-            border: 2px solid #f59e0b;
-            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.45), 0 0 20px rgba(251, 191, 36, 0.25);
-        }
-
-        /* Tombol Emas 3D */
-        .btn-gold {
-            background: linear-gradient(180deg, #fde047 0%, #eab308 50%, #ca8a04 100%);
-            border: 2px solid #fef08a;
-            box-shadow: 0 5px 0 #854d0e, 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.15s ease;
-        }
-
-        .btn-gold:hover {
-            filter: brightness(1.06);
-            transform: translateY(-2px);
-            box-shadow: 0 7px 0 #854d0e, 0 14px 24px rgba(0, 0, 0, 0.35);
-        }
-
+<!-- ... existing code ... -->
         .btn-gold:active {
             transform: translateY(3px);
             box-shadow: 0 2px 0 #854d0e, 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Ukuran Dinamis Panggung Kucing untuk HP & Laptop */
+        .cat-stage-responsive {
+            width: clamp(230px, 56vw, 370px);
+            height: clamp(230px, 56vw, 370px);
+        }
+
+        @media (min-width: 1024px) {
+            .cat-stage-responsive {
+                width: clamp(310px, 28vw, 390px);
+                height: clamp(310px, 28vw, 390px);
+            }
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        ::-webkit-scrollbar-track {
-            background: #450a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d97706;
-            border-radius: 9999px;
-        }
-    </style>
-</head>
-<body class="bg-ornament flex flex-col justify-between selection:bg-amber-300 selection:text-red-900">
-
+<!-- ... existing code ... -->
     <!-- Notifikasi Toast Melayang (Pengganti alert) -->
     <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-11/12 max-w-md"></div>
 
     <!-- Header Pemilik Usaha -->
-    <header class="w-full pt-5 pb-3 px-4 sm:px-6">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 bg-red-950/75 border border-amber-400/50 rounded-2xl px-5 py-3.5 shadow-xl backdrop-blur-md">
-            <div class="flex items-center gap-3 text-center sm:text-left">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 flex items-center justify-center text-red-950 font-black text-xl shadow-inner border border-yellow-200 shrink-0">
+    <header class="w-full pt-3 sm:pt-5 pb-2 px-3 sm:px-6">
+        <div class="max-w-6xl mx-auto flex flex-row items-center justify-between gap-2 sm:gap-4 bg-red-950/80 border border-amber-400/50 rounded-2xl px-3.5 sm:px-6 py-2.5 sm:py-3.5 shadow-xl backdrop-blur-md">
+            <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 flex items-center justify-center text-red-950 font-black text-lg sm:text-xl shadow-inner border border-yellow-200 shrink-0">
                     <i class="fa-solid fa-coins"></i>
                 </div>
-                <div>
-                    <p class="text-xs uppercase tracking-widest text-amber-300 font-bold">Pusat Aura Keberuntungan &amp; Penglaris Usaha</p>
-                    <h1 class="text-lg sm:text-2xl font-extrabold text-white tracking-tight">
+                <div class="min-w-0">
+                    <p class="text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-amber-300 font-bold truncate">Pusat Aura Keberuntungan Usaha</p>
+                    <h1 class="text-base sm:text-2xl lg:text-[26px] font-extrabold text-white tracking-tight truncate">
                         I Nengah Budiastawan
                     </h1>
                 </div>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-3">
-                <!-- Status Waktu & Hari Baik -->
-                <div class="hidden md:flex flex-col items-end text-right mr-2">
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                <!-- Status Waktu & Hari Baik (Tampil di Tablet/Laptop) -->
+                <div class="hidden md:flex flex-col items-end text-right">
                     <span id="current-date" class="text-xs font-semibold text-amber-200">Memuat tanggal...</span>
-                    <span class="text-[11px] text-emerald-300 flex items-center gap-1 font-medium">
+                    <span class="text-[11px] text-emerald-300 flex items-center gap-1.5 font-medium mt-0.5">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Aura Rejeki Aktif
                     </span>
                 </div>
 
                 <!-- Tombol Suara -->
-                <button id="sound-toggle" type="button" title="Aktifkan/Matikan Suara Koin & Lonceng" class="p-3 rounded-xl bg-red-900/90 hover:bg-red-800 text-amber-300 border border-amber-400/40 transition flex items-center gap-2 text-sm font-semibold shadow">
+                <button id="sound-toggle" type="button" title="Aktifkan/Matikan Suara Koin & Lonceng" class="p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-red-900/90 hover:bg-red-800 text-amber-300 border border-amber-400/40 transition flex items-center gap-2 text-xs sm:text-sm font-semibold shadow cursor-pointer">
                     <i id="sound-icon" class="fa-solid fa-volume-high"></i>
                     <span class="hidden sm:inline" id="sound-label">Suara Aktif</span>
                 </button>
@@ -226,260 +69,127 @@
         </div>
     </header>
 
-    <!-- Konten Utama -->
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- Konten Utama: 1 Kolom Ringkas di HP, 2 Kolom Seimbang & Mewah di Laptop/Desktop -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-3 sm:px-6 py-2 sm:py-4 flex items-center">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-stretch">
 
-        <!-- Kolom Kiri (7 kolom): Avatar Kucing Penarik Rejeki Interaktif -->
-        <section class="lg:col-span-7 prosperity-card rounded-3xl p-5 sm:p-7 flex flex-col items-center relative overflow-hidden">
-            <!-- Ornamen Sudut -->
-            <div class="absolute top-3 left-3 text-amber-500/40 text-xl pointer-events-none"><i class="fa-solid fa-dharmachakra"></i></div>
-            <div class="absolute top-3 right-3 text-amber-500/40 text-xl pointer-events-none"><i class="fa-solid fa-dharmachakra"></i></div>
+            <!-- Kolom Kiri (7 kolom di Laptop): Panggung Utama Avatar Kucing Penarik Rejeki -->
+            <section class="lg:col-span-7 prosperity-card rounded-3xl p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-between relative overflow-hidden">
+                <!-- Ornamen Sudut -->
+                <div class="absolute top-3 left-3 text-amber-500/40 text-lg sm:text-xl pointer-events-none"><i class="fa-solid fa-dharmachakra"></i></div>
+                <div class="absolute top-3 right-3 text-amber-500/40 text-lg sm:text-xl pointer-events-none"><i class="fa-solid fa-dharmachakra"></i></div>
 
-            <!-- Nama Toko / Usaha yang Bisa Diedit -->
-            <div class="w-full text-center mb-2 z-10">
-                <div class="inline-flex items-center gap-2 bg-red-900 text-amber-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow border border-amber-400/50">
-                    <i class="fa-solid fa-store text-amber-400"></i>
-                    <span id="shop-name-display" contenteditable="true" spellcheck="false" title="Klik untuk ubah nama usaha" class="outline-none focus:bg-red-800 focus:px-2 rounded transition cursor-text">USAHA &amp; DAGANG I NENGAH BUDIASTAWAN</span>
-                    <button id="edit-shop-btn" type="button" title="Edit Nama Usaha" class="text-amber-300 hover:text-white ml-1">
-                        <i class="fa-solid fa-pen-to-square text-xs"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Area Panggung Kucing Maneki-Neko -->
-            <div id="cat-stage" class="relative w-full max-w-[330px] sm:max-w-[360px] aspect-square flex items-center justify-center my-1 cursor-pointer select-none group" title="Klik Kucing Rejeki untuk memanggil pembeli & koin emas!">
-                
-                <!-- Sinar Matahari Keberuntungan Berputar -->
-                <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-amber-300/40 via-yellow-200/50 to-amber-500/30 gold-aura pointer-events-none"></div>
-                <svg class="absolute inset-0 w-full h-full sunburst-spin opacity-35 pointer-events-none" viewBox="0 0 200 200">
-                    <g fill="#f59e0b">
-                        <polygon points="100,100 92,0 108,0" />
-                        <polygon points="100,100 142,8 156,16" />
-                        <polygon points="100,100 184,44 192,58" />
-                        <polygon points="100,100 200,92 200,108" />
-                        <polygon points="100,100 192,142 184,156" />
-                        <polygon points="100,100 156,184 142,192" />
-                        <polygon points="100,100 108,200 92,200" />
-                        <polygon points="100,100 58,192 44,184" />
-                        <polygon points="100,100 16,156 8,142" />
-                        <polygon points="100,100 0,108 0,92" />
-                        <polygon points="100,100 8,58 16,44" />
-                        <polygon points="100,100 44,16 58,8" />
-                    </g>
-                </svg>
-
-                <!-- SVG Avatar Kucing Maneki-Neko Custom -->
-                <svg id="maneki-neko-svg" viewBox="0 0 300 320" class="w-full h-full drop-shadow-2xl relative z-10 transition-transform duration-200 group-active:scale-95">
-                    <defs>
-                        <!-- Gradasi Tubuh Putih Mutiara Hangat -->
-                        <radialGradient id="catBodyGrad" cx="45%" cy="35%" r="65%">
-                            <stop offset="0%" stop-color="#ffffff" />
-                            <stop offset="70%" stop-color="#fef9c3" />
-                            <stop offset="100%" stop-color="#fde68a" />
-                        </radialGradient>
-                        <!-- Gradasi Emas Koin Koban -->
-                        <linearGradient id="goldCoinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#fef08a" />
-                            <stop offset="45%" stop-color="#eab308" />
-                            <stop offset="100%" stop-color="#a16207" />
-                        </linearGradient>
-                        <!-- Gradasi Merah Bantal & Kerah -->
-                        <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ef4444" />
-                            <stop offset="60%" stop-color="#b91c1c" />
-                            <stop offset="100%" stop-color="#7f1d1d" />
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Bantal Duduk Merah Keberuntungan (Zabuton) -->
-                    <ellipse cx="150" cy="292" rx="115" ry="22" fill="#450a0a" opacity="0.35" />
-                    <path d="M 45 270 Q 150 250 255 270 L 265 288 Q 150 308 35 288 Z" fill="url(#crimsonGrad)" stroke="#f59e0b" stroke-width="3" />
-                    <!-- Rumbai Emas di Sudut Bantal -->
-                    <circle cx="40" cy="285" r="6" fill="#facc15" />
-                    <circle cx="260" cy="285" r="6" fill="#facc15" />
-
-                    <!-- Badan Kucing -->
-                    <path d="M 88 180 C 68 215, 65 268, 95 278 C 125 286, 175 286, 205 278 C 235 268, 232 215, 212 180 Z" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" />
-
-                    <!-- Kaki Kiri Bawah -->
-                    <ellipse cx="112" cy="272" rx="22" ry="13" fill="#ffffff" stroke="#d97706" stroke-width="2" />
-                    <path d="M 105 270 L 105 278 M 112 269 L 112 279 M 119 270 L 119 278" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" />
-
-                    <!-- Kaki Kanan Bawah -->
-                    <ellipse cx="188" cy="272" rx="22" ry="13" fill="#ffffff" stroke="#d97706" stroke-width="2" />
-                    <path d="M 181 270 L 181 278 M 188 269 L 188 279 M 195 270 L 195 278" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" />
-
-                    <!-- Tangan Kiri (Memegang Koin Koban Raksasa) -->
-                    <path d="M 88 192 C 62 205, 68 242, 102 242 C 118 242, 122 225, 110 215" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" />
-
-                    <!-- Koin Emas Koban ("REJEKI") di Dada -->
-                    <g transform="translate(105, 198)">
-                        <rect x="0" y="0" width="54" height="76" rx="24" fill="url(#goldCoinGrad)" stroke="#fef08a" stroke-width="2.5" />
-                        <rect x="5" y="5" width="44" height="66" rx="20" fill="none" stroke="#854d0e" stroke-width="1.2" stroke-dasharray="3,2" />
-                        <!-- Ukiran Tulisan Koin -->
-                        <text x="27" y="25" text-anchor="middle" fill="#713f12" font-weight="900" font-size="10" font-family="sans-serif">REJEKI</text>
-                        <text x="27" y="42" text-anchor="middle" fill="#713f12" font-weight="900" font-size="13" font-family="serif">千万両</text>
-                        <text x="27" y="59" text-anchor="middle" fill="#713f12" font-weight="900" font-size="9" font-family="sans-serif">LARIS</text>
-                    </g>
-
-                    <!-- Tangan Kanan Melambai (Animated Paw) -->
-                    <g class="cat-paw">
-                        <path d="M 206 196 C 232 182, 245 142, 232 115 C 224 100, 202 104, 198 122 C 194 142, 192 168, 190 185" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" />
-                        <!-- Bantalan Telapak Kucing Pink -->
-                        <ellipse cx="216" cy="122" rx="7" ry="6" fill="#fda4af" />
-                        <circle cx="209" cy="112" r="2.8" fill="#fda4af" />
-                        <circle cx="216" cy="109" r="2.8" fill="#fda4af" />
-                        <circle cx="223" cy="112" r="2.8" fill="#fda4af" />
-                    </g>
-
-                    <!-- Kerah Merah & Lonceng Emas -->
-                    <path d="M 96 175 Q 150 194 204 175 L 208 186 Q 150 206 92 186 Z" fill="url(#crimsonGrad)" stroke="#fef08a" stroke-width="1.5" />
-                    <g class="cat-bell">
-                        <circle cx="150" cy="195" r="13" fill="url(#goldCoinGrad)" stroke="#713f12" stroke-width="1.8" />
-                        <line x1="139" y1="194" x2="161" y2="194" stroke="#713f12" stroke-width="2" />
-                        <circle cx="150" cy="199" r="3" fill="#713f12" />
-                        <line x1="150" y1="199" x2="150" y2="206" stroke="#713f12" stroke-width="2" />
-                    </g>
-
-                    <!-- Kepala Kucing -->
-                    <!-- Telinga Kiri -->
-                    <path d="M 85 112 L 74 52 L 122 82 Z" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round" />
-                    <path d="M 88 104 L 81 64 L 112 85 Z" fill="#fca5a5" />
-                    <!-- Telinga Kanan -->
-                    <path d="M 215 112 L 226 52 L 178 82 Z" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round" />
-                    <path d="M 212 104 L 219 64 L 188 85 Z" fill="#fca5a5" />
-
-                    <!-- Bentuk Wajah Bulat Lucu -->
-                    <ellipse cx="150" cy="132" rx="74" ry="58" fill="url(#catBodyGrad)" stroke="#d97706" stroke-width="2.5" />
-
-                    <!-- Ornamen Kening Emas / Mahkota Kecil Keberuntungan -->
-                    <circle cx="150" cy="88" r="10" fill="url(#goldCoinGrad)" stroke="#b45309" stroke-width="1.5" />
-                    <path d="M 145 88 L 150 82 L 155 88 L 150 94 Z" fill="#b91c1c" />
-
-                    <!-- Pipi Merona -->
-                    <ellipse cx="103" cy="142" rx="12" ry="7" fill="#fda4af" opacity="0.7" />
-                    <ellipse cx="197" cy="142" rx="12" ry="7" fill="#fda4af" opacity="0.7" />
-
-                    <!-- Mata Tersenyum Bahagia -->
-                    <g class="cat-eyes">
-                        <path d="M 106 126 Q 120 112 134 126" fill="none" stroke="#1f2937" stroke-width="4.5" stroke-linecap="round" />
-                        <path d="M 166 126 Q 180 112 194 126" fill="none" stroke="#1f2937" stroke-width="4.5" stroke-linecap="round" />
-                    </g>
-
-                    <!-- Hidung & Mulut Kucing (:3) -->
-                    <ellipse cx="150" cy="138" rx="6" ry="4.5" fill="#fb7185" />
-                    <path d="M 150 142.5 L 150 149 M 136 149 Q 143 156 150 149 Q 157 156 164 149" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round" />
-
-                    <!-- Kumis Kucing -->
-                    <g stroke="#92400e" stroke-width="2" stroke-linecap="round" opacity="0.75">
-                        <line x1="65" y1="130" x2="90" y2="134" />
-                        <line x1="62" y1="142" x2="88" y2="142" />
-                        <line x1="67" y1="154" x2="90" y2="149" />
-
-                        <line x1="235" y1="130" x2="210" y2="134" />
-                        <line x1="238" y1="142" x2="212" y2="142" />
-                        <line x1="233" y1="154" x2="210" y2="149" />
-                    </g>
-                </svg>
-
-                <!-- Petunjuk Klik Interaktif -->
-                <div class="absolute bottom-1 bg-amber-100/95 border border-amber-400 text-amber-950 text-xs font-bold px-3 py-1 rounded-full shadow-sm pointer-events-none">
-                    <i class="fa-solid fa-hand-pointer text-red-600 mr-1 animate-bounce"></i> Sentuh Kucing untuk Panggil Rejeki!
-                </div>
-            </div>
-
-            <!-- Statistik Ketukan Rejeki & Tombol Boost -->
-            <div class="w-full mt-3 flex flex-col sm:flex-row items-center justify-between gap-3 bg-amber-100/80 border border-amber-300 rounded-2xl p-3.5">
-                <div class="text-center sm:text-left">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-800 block">Poin Energi Rejeki Hari Ini</span>
-                    <div class="flex items-baseline justify-center sm:justify-start gap-2">
-                        <span id="fortune-points" class="text-2xl sm:text-3xl font-black text-red-700">0</span>
-                        <span class="text-xs font-semibold text-amber-900">Koin Keberuntungan</span>
-                    </div>
-                </div>
-
-                <button id="boost-btn" type="button" class="btn-gold w-full sm:w-auto px-5 py-3 rounded-xl text-red-950 font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-wand-magic-sparkles text-red-700"></i>
-                    <span>Tarik Rejeki &amp; Pembeli!</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- Kolom Kanan (5 kolom): Doa/Afirmasi Dagang & Catatan Penglaris Harian -->
-        <aside class="lg:col-span-5 flex flex-col gap-5">
-
-            <!-- Kartu 1: Afirmasi & Petuah Dagang Harian -->
-            <div class="prosperity-card rounded-3xl p-5 sm:p-6 relative">
-                <div class="flex items-center justify-between mb-3">
-                    <h2 class="text-base sm:text-lg font-extrabold text-red-900 flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-red-800 text-amber-300 flex items-center justify-center text-sm shadow">
-                            <i class="fa-solid fa-scroll"></i>
-                        </span>
-                        Afirmasi &amp; Petuah Dagang
-                    </h2>
-                    <button id="new-affirmation-btn" type="button" title="Ganti Afirmasi Keberuntungan" class="text-xs font-bold bg-amber-200 hover:bg-amber-300 text-amber-950 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 border border-amber-400">
-                        <i class="fa-solid fa-rotate"></i> Baru
-                    </button>
-                </div>
-
-                <div class="bg-gradient-to-br from-red-900 to-red-950 text-amber-50 rounded-2xl p-4 border border-amber-400/50 shadow-inner relative">
-                    <i class="fa-solid fa-quote-left text-amber-400/30 text-2xl absolute top-2.5 left-3"></i>
-                    <p id="affirmation-text" class="text-sm sm:text-base font-medium leading-relaxed text-center px-3 py-1 text-amber-100">
-                        "Astungkara, hari ini dagangan I Nengah Budiastawan laris manis, pembeli datang berbondong-bondong membawa berkah dan senyuman."
-                    </p>
-                    <div class="mt-2 pt-2 border-t border-amber-400/20 flex items-center justify-between text-[11px] text-amber-300 font-semibold">
-                        <span><i class="fa-solid fa-star text-yellow-400 mr-1"></i> Aura: <span id="lucky-aura">Sangat Cerah</span></span>
-                        <span>Angka Hoki: <span id="lucky-number" class="bg-amber-400 text-red-950 px-1.5 py-0.5 rounded font-black">88</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kartu 2: Penghitung Pembeli & Catatan Penglaris Harian -->
-            <div class="prosperity-card rounded-3xl p-5 sm:p-6">
-                <div class="flex items-center justify-between mb-3">
-                    <h2 class="text-base sm:text-lg font-extrabold text-red-900 flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-amber-500 text-red-950 flex items-center justify-center text-sm shadow">
-                            <i class="fa-solid fa-cash-register"></i>
-                        </span>
-                        Catatan Penglaris Harian
-                    </h2>
-                    <button id="reset-daily-btn" type="button" title="Reset Hitungan Hari Ini" class="text-xs font-semibold text-red-700 hover:text-red-900 underline">
-                        Reset Hari Ini
-                    </button>
-                </div>
-
-                <!-- Penghitung Pembeli / Transaksi -->
-                <div class="bg-white border border-amber-300 rounded-2xl p-3.5 mb-3 flex items-center justify-between shadow-sm">
-                    <div>
-                        <p class="text-xs font-bold text-gray-500 uppercase">Pembeli / Transaksi</p>
-                        <p class="text-2xl font-black text-gray-900"><span id="customer-count">0</span> <span class="text-xs font-semibold text-emerald-600">Orang</span></p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button id="dec-customer" type="button" aria-label="Kurangi pembeli" class="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-black text-lg border border-gray-300 transition active:scale-95">-</button>
-                        <button id="inc-customer" type="button" aria-label="Tambah pembeli" class="px-4 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition active:scale-95 flex items-center gap-1">
-                            <i class="fa-solid fa-plus"></i> Laris!
+                <!-- Nama Toko / Usaha yang Bisa Diedit -->
+                <div class="w-full text-center z-10">
+                    <div class="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-red-900 text-amber-200 px-3.5 sm:px-5 py-1.5 rounded-full text-[11px] sm:text-sm font-bold shadow border border-amber-400/50 max-w-full">
+                        <i class="fa-solid fa-store text-amber-400 shrink-0"></i>
+                        <span id="shop-name-display" contenteditable="true" spellcheck="false" title="Klik untuk ubah nama usaha" class="outline-none focus:bg-red-800 focus:px-2 rounded transition cursor-text truncate">USAHA &amp; DAGANG I NENGAH BUDIASTAWAN</span>
+                        <button id="edit-shop-btn" type="button" title="Edit Nama Usaha" class="text-amber-300 hover:text-white ml-0.5 shrink-0 p-1">
+                            <i class="fa-solid fa-pen-to-square text-xs"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Target & Catatan Singkat Dagang -->
-                <div>
-                    <label for="daily-notes" class="block text-xs font-bold text-amber-950 uppercase mb-1.5">
-                        Target &amp; Catatan Dagang I Nengah Budiastawan:
-                    </label>
-                    <textarea id="daily-notes" rows="3" placeholder="Tulis target omzet, barang terlaris, atau doa usaha hari ini..." class="w-full rounded-xl border border-amber-300 bg-white/90 p-3 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-500 transition resize-none"></textarea>
-                    <div class="flex items-center justify-between mt-1.5 text-[11px] text-gray-500">
-                        <span><i class="fa-solid fa-floppy-disk text-amber-600 mr-1"></i> Tersimpan otomatis di perangkat</span>
-                        <span id="save-status" class="text-emerald-700 font-semibold opacity-0 transition-opacity">Tersimpan!</span>
+                <!-- Area Panggung Kucing Maneki-Neko -->
+                <div id="cat-stage" class="cat-stage-responsive relative flex items-center justify-center my-2 sm:my-3 cursor-pointer select-none group" title="Klik Kucing Rejeki untuk memanggil pembeli & koin emas!">
+                    
+                    <!-- Sinar Matahari Keberuntungan Berputar -->
+                    <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-amber-300/40 via-yellow-200/50 to-amber-500/30 gold-aura pointer-events-none"></div>
+                    <svg class="absolute inset-0 w-full h-full sunburst-spin opacity-35 pointer-events-none" viewBox="0 0 200 200">
+<!-- ... existing code ... -->
+                    <!-- Petunjuk Klik Interaktif -->
+                    <div class="absolute bottom-0.5 bg-amber-100/95 border border-amber-400 text-amber-950 text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-sm pointer-events-none whitespace-nowrap">
+                        <i class="fa-solid fa-hand-pointer text-red-600 mr-1 animate-bounce"></i> Sentuh Kucing untuk Panggil Rejeki!
                     </div>
                 </div>
-            </div>
 
-        </aside>
+                <!-- Bar Poin Energi Rejeki (Responsif HP & Laptop) -->
+                <div class="w-full bg-amber-100/90 border border-amber-300 rounded-2xl px-4 py-3 flex items-center justify-between gap-3 shadow-inner">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-amber-400/30 border border-amber-500/40 flex items-center justify-center text-amber-700 text-base shrink-0">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-800 block">Energi Rejeki Terkumpul</span>
+                            <div class="flex items-baseline gap-1.5">
+                                <span id="fortune-points" class="text-xl sm:text-2xl lg:text-3xl font-black text-red-700">88</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-amber-900">Koin Keberuntungan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right hidden sm:block">
+                        <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                            <i class="fa-solid fa-sparkles"></i> Magnet Pembeli
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kolom Kanan (5 kolom di Laptop): Kartu Doa/Afirmasi Dagang & Tombol Aktivasi Rejeki -->
+            <aside class="lg:col-span-5 flex flex-col justify-between gap-4 sm:gap-5">
+
+                <!-- Kartu Afirmasi & Doa Kelancaran Dagang -->
+                <div class="prosperity-card rounded-3xl p-4 sm:p-6 lg:p-7 flex-grow flex flex-col justify-between relative">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3 sm:mb-4">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-red-900 flex items-center gap-2">
+                                <span class="w-8 h-8 rounded-lg bg-red-800 text-amber-300 flex items-center justify-center text-sm shadow shrink-0">
+                                    <i class="fa-solid fa-scroll"></i>
+                                </span>
+                                <span>Doa &amp; Afirmasi Dagang</span>
+                            </h2>
+                            <button id="new-affirmation-btn" type="button" title="Ganti Afirmasi Keberuntungan" class="text-xs font-bold bg-amber-200 hover:bg-amber-300 text-amber-950 px-3 py-2 rounded-xl transition flex items-center gap-1.5 border border-amber-400 cursor-pointer shrink-0">
+                                <i class="fa-solid fa-rotate"></i> <span>Ganti</span>
+                            </button>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-red-900 to-red-950 text-amber-50 rounded-2xl p-4 sm:p-5 border border-amber-400/50 shadow-inner relative">
+                            <i class="fa-solid fa-quote-left text-amber-400/25 text-2xl sm:text-3xl absolute top-3 left-3.5"></i>
+                            <p id="affirmation-text" class="text-sm sm:text-base lg:text-[17px] font-medium leading-relaxed text-center px-2 sm:px-3 py-2 text-amber-100 transition-opacity duration-200">
+                                "Astungkara, hari ini dagangan I Nengah Budiastawan laris manis, pembeli datang berbondong-bondong membawa berkah dan senyuman."
+                            </p>
+                            <div class="mt-3 pt-2.5 border-t border-amber-400/20 flex items-center justify-between text-[11px] sm:text-xs text-amber-300 font-semibold">
+                                <span><i class="fa-solid fa-star text-yellow-400 mr-1"></i> Aura: <span id="lucky-aura">Keemasan &amp; Berkah</span></span>
+                                <span>Hoki: <span id="lucky-number" class="bg-amber-400 text-red-950 px-2 py-0.5 rounded font-black">88</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pilar Keberuntungan Usaha (Tampil rapi di Laptop & HP) -->
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-4">
+                        <div class="bg-amber-50 border border-amber-300/80 rounded-xl p-2.5 text-center">
+                            <i class="fa-solid fa-users text-red-700 text-sm sm:text-base mb-1"></i>
+                            <p class="text-[10px] sm:text-xs font-bold text-amber-950">Pembeli Ramai</p>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-300/80 rounded-xl p-2.5 text-center">
+                            <i class="fa-solid fa-arrows-spin text-amber-600 text-sm sm:text-base mb-1"></i>
+                            <p class="text-[10px] sm:text-xs font-bold text-amber-950">Rejeki Lancar</p>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-300/80 rounded-xl p-2.5 text-center">
+                            <i class="fa-solid fa-face-smile-beam text-emerald-600 text-sm sm:text-base mb-1"></i>
+                            <p class="text-[10px] sm:text-xs font-bold text-amber-950">Penuh Berkah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Tombol Aktivasi Aura Penglaris -->
+                <div class="prosperity-card rounded-3xl p-4 sm:p-5 flex flex-col items-center text-center">
+                    <p class="text-xs sm:text-sm font-semibold text-amber-950 mb-3">
+                        Ketuk tombol di bawah untuk memancarkan gelombang koin emas &amp; menarik pelanggan ke tempat usaha Anda:
+                    </p>
+                    <button id="boost-btn" type="button" class="btn-gold w-full py-3.5 sm:py-4 px-6 rounded-2xl text-red-950 font-extrabold text-sm sm:text-base lg:text-lg flex items-center justify-center gap-2.5 cursor-pointer">
+                        <i class="fa-solid fa-wand-magic-sparkles text-red-700 text-lg"></i>
+                        <span>Tarik Rejeki &amp; Pembeli!</span>
+                    </button>
+                </div>
+
+            </aside>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full py-4 px-4 text-center text-amber-200/80 text-xs">
+    <footer class="w-full py-3 sm:py-4 px-4 text-center text-amber-200/85 text-[11px] sm:text-xs">
         <p>Semoga Usaha &amp; Perdagangan <strong class="text-amber-300">I Nengah Budiastawan</strong> Selalu Diberkahi Kelancaran, Pelanggan Ramai, dan Rejeki Berlimpah.</p>
     </footer>
 
@@ -487,19 +197,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- 1. KONFIGURASI STATE & LOCALSTORAGE ---
-            const STORAGE_KEY = 'rejeki_budiastawan_v1';
+            const STORAGE_KEY = 'rejeki_budiastawan_v2';
             const todayStr = new Date().toLocaleDateString('id-ID', {
                 weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
             });
-            document.getElementById('current-date').textContent = todayStr;
+            const dateEl = document.getElementById('current-date');
+            if (dateEl) dateEl.textContent = todayStr;
 
             let state = {
                 shopName: 'USAHA & DAGANG I NENGAH BUDIASTAWAN',
                 fortunePoints: 88,
-                customerCount: 0,
-                dailyNotes: '',
-                soundEnabled: true,
-                lastDate: new Date().toDateString()
+                soundEnabled: true
             };
 
             // Muat data tersimpan
@@ -516,12 +224,6 @@
             function saveState() {
                 try {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-                    const statusEl = document.getElementById('save-status');
-                    statusEl.classList.remove('opacity-0');
-                    clearTimeout(window._saveTimer);
-                    window._saveTimer = setTimeout(() => {
-                        statusEl.classList.add('opacity-0');
-                    }, 1500);
                 } catch (e) {
                     console.warn('Gagal menyimpan data:', e);
                 }
@@ -566,7 +268,7 @@
             const affirmations = [
                 {
                     text: "Astungkara, hari ini dagangan I Nengah Budiastawan laris manis, pembeli datang berbondong-bondong membawa berkah dan senyuman.",
-                    aura: "Keemasan & Penuh Berkah",
+                    aura: "Keemasan & Berkah",
                     number: "88"
                 },
                 {
@@ -581,7 +283,7 @@
                 },
                 {
                     text: "Dagangan habis terjual, modal berputar cepat, dan keberuntungan selalu menyertai setiap transaksi I Nengah Budiastawan.",
-                    aura: "Laris Manis Tanjung Kimpul",
+                    aura: "Laris Manis",
                     number: "78"
                 },
                 {
@@ -595,8 +297,6 @@
             const shopNameEl = document.getElementById('shop-name-display');
             const editShopBtn = document.getElementById('edit-shop-btn');
             const fortunePointsEl = document.getElementById('fortune-points');
-            const customerCountEl = document.getElementById('customer-count');
-            const dailyNotesEl = document.getElementById('daily-notes');
             const catStage = document.getElementById('cat-stage');
             const catPaw = document.querySelector('.cat-paw');
             const boostBtn = document.getElementById('boost-btn');
@@ -607,8 +307,6 @@
             // Inisialisasi Tampilan Awal
             shopNameEl.textContent = state.shopName;
             fortunePointsEl.textContent = state.fortunePoints.toLocaleString('id-ID');
-            customerCountEl.textContent = state.customerCount;
-            dailyNotesEl.value = state.dailyNotes;
             updateSoundUI();
 
             // --- 5. FUNGSI ANIMASI KOIN EMAS & NOTIFIKASI ---
@@ -696,42 +394,9 @@
                 playCoinSound(false);
             });
 
-            // --- 8. PENGHITUNG PEMBELI & CATATAN DAGANG ---
-            document.getElementById('inc-customer').addEventListener('click', (e) => {
-                state.customerCount += 1;
-                state.fortunePoints += 10;
-                customerCountEl.textContent = state.customerCount;
-                fortunePointsEl.textContent = state.fortunePoints.toLocaleString('id-ID');
-                saveState();
-                playCoinSound(true);
-                spawnCoinBurst(e.clientX, e.clientY, 8);
-                showToast(`Astungkara! Pembeli ke-${state.customerCount} tercatat. Laris manis!`);
-            });
-
-            document.getElementById('dec-customer').addEventListener('click', () => {
-                if (state.customerCount > 0) {
-                    state.customerCount -= 1;
-                    customerCountEl.textContent = state.customerCount;
-                    saveState();
-                }
-            });
-
-            document.getElementById('reset-daily-btn').addEventListener('click', () => {
-                state.customerCount = 0;
-                customerCountEl.textContent = 0;
-                saveState();
-                showToast('Hitungan pembeli harian telah direset untuk memulai hari baru.');
-            });
-
-            dailyNotesEl.addEventListener('input', () => {
-                state.dailyNotes = dailyNotesEl.value;
-                saveState();
-            });
-
-            // --- 9. EDIT NAMA USAHA & KONTROL SUARA ---
+            // --- 8. EDIT NAMA USAHA & KONTROL SUARA ---
             editShopBtn.addEventListener('click', () => {
                 shopNameEl.focus();
-                // Pindahkan kursor ke akhir teks
                 const range = document.createRange();
                 const sel = window.getSelection();
                 range.selectNodeContents(shopNameEl);
